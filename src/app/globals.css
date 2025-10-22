@@ -1,26 +1,259 @@
 @import "tailwindcss";
 
+/* Design tokens from Figma - Mobile First (Base: Mobile mode < 640px) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colors */
+  --background: #f2efea;
+  --foreground: #000000;
+  --coral: #f37d7d;
+  
+  /* Layout - Mobile mode */
+  --max-width: 340px;
+  --min-width: 100px;
+  --menu-home-width: 40px;
+  --menu-catalog-width: 55px;
+  --contact-button-width: 100px;
+  --contact-button-weight: 3;
+  
+  /* Typography - Mobile mode */
+  --text-tiny: 12px;
+  --text-menu: 12px;
+  --text-paragraph: 28px;
+  --text-header: 42px;
+  
+  /* Spacing - Mobile mode */
+  --padding-gap: 16px;
+  --padding-lr: 16px;
+  --padding-tb: 48px;
+  --padding-gap-large: 48px;
+  --padding-tb-large: 96px;
+  --gutter: 16px;
+  --columns: 4;
+  
+  /* Squiggle decorations - Mobile mode */
+  --squiggle-2: 10px;
+  --squiggle-3: 15px;
+  --squiggle-4: 20px;
+  --squiggle-5: 23px;
+  --squiggle-6: 35px;
+  --squiggle-7: 45px;
+  --squiggle-8: 60px;
+  
+  /* Display width */
+  --display-width: 390px;
+  
+  /* Mobile hide flag */
+  --mobile-hide: false;
+  
+  /* Overlay text - Mobile mode */
+  --text-overlay-title: 20px;
+  --text-overlay-subtitle: 14px;
+  --overlay-padding: 15px;
+  --overlay-gap: 16px;
+  
+  /* Modal sizing - Mobile mode */
+  --modal-max-width: 95vw;
+  --modal-padding: 24px;
+  --modal-close-size: 32px;
+  --modal-title-size: 28px;
+  --modal-label-size: 20px;
+  --modal-input-text: 16px;
+  --modal-input-height: 45px;
+  --modal-button-text: 20px;
+  --modal-gap: 16px;
+}
+
+/* Tablet breakpoint (640px - 1024px) */
+@media (min-width: 640px) {
+  :root {
+    /* Layout - Tablet mode */
+    --max-width: 500px;
+    --min-width: 460px;
+    --menu-home-width: 75px;
+    --menu-catalog-width: 100px;
+    --contact-button-width: 200px;
+    --contact-button-weight: 8;
+    
+    /* Typography - Tablet mode */
+    --text-menu: 24px;
+    --text-paragraph: 36px;
+    --text-header: 54px;
+    
+    /* Spacing - Tablet mode */
+    --padding-gap: 24px;
+    --padding-lr: 24px;
+    --padding-tb: 72px;
+    --padding-gap-large: 72px;
+    --padding-tb-large: 144px;
+    --gutter: 24px;
+    --columns: 8;
+    
+    /* Squiggle decorations - Tablet mode */
+    --squiggle-2: 20px;
+    --squiggle-3: 30px;
+    --squiggle-4: 40px;
+    --squiggle-5: 55px;
+    --squiggle-6: 70px;
+    --squiggle-7: 90px;
+    --squiggle-8: 120px;
+    
+    /* Display width */
+    --display-width: 900px;
+    
+    /* Mobile hide flag */
+    --mobile-hide: true;
+    
+    /* Overlay text - Tablet mode */
+    --text-overlay-title: 28px;
+    --text-overlay-subtitle: 18px;
+    --overlay-padding: 20px;
+    --overlay-gap: 24px;
+    
+    /* Modal sizing - Tablet mode */
+    --modal-max-width: 700px;
+    --modal-padding: 40px;
+    --modal-close-size: 48px;
+    --modal-title-size: 40px;
+    --modal-label-size: 26px;
+    --modal-input-text: 20px;
+    --modal-input-height: 52px;
+    --modal-button-text: 26px;
+    --modal-gap: 24px;
+  }
+}
+
+/* Desktop breakpoint (1024px+) */
+@media (min-width: 1024px) {
+  :root {
+    /* Layout - Desktop mode */
+    --max-width: 800px;
+    --min-width: 460px;
+    --menu-home-width: 100px;
+    --menu-catalog-width: 130px;
+    --contact-button-width: 356px;
+    --contact-button-weight: 10;
+    
+    /* Typography - Desktop mode */
+    --text-tiny: 16px;
+    --text-menu: 32px;
+    --text-paragraph: 48px;
+    --text-header: 72px;
+    
+    /* Spacing - Desktop mode */
+    --padding-gap: 24px;
+    --padding-lr: 24px;
+    --padding-tb: 96px;
+    --padding-gap-large: 96px;
+    --padding-tb-large: 192px;
+    --gutter: 32px;
+    --columns: 12;
+    
+    /* Squiggle decorations - Desktop mode */
+    --squiggle-2: 23px;
+    --squiggle-3: 33px;
+    --squiggle-4: 45px;
+    --squiggle-5: 66px;
+    --squiggle-6: 80px;
+    --squiggle-7: 100px;
+    --squiggle-8: 130px;
+    
+    /* Display width */
+    --display-width: 1440px;
+    
+    /* Mobile hide flag */
+    --mobile-hide: true;
+    
+    /* Overlay text - Desktop mode */
+    --text-overlay-title: 40px;
+    --text-overlay-subtitle: 24px;
+    --overlay-padding: 30px;
+    --overlay-gap: 32px;
+    
+    /* Modal sizing - Desktop mode */
+    --modal-max-width: 1135px;
+    --modal-padding: 60px;
+    --modal-close-size: 64px;
+    --modal-title-size: 64px;
+    --modal-label-size: 32px;
+    --modal-input-text: 24px;
+    --modal-input-height: 59px;
+    --modal-button-text: 32px;
+    --modal-gap: 24px;
+  }
 }
 
 @theme inline {
+  /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-coral: var(--coral);
+  --color-pci-bg: #f2efea;
+  --color-pci-text: #000000;
+  
+  /* Fonts */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  
+  /* Responsive spacing - adapts to breakpoints */
+  --spacing-gap: var(--padding-gap);
+  --spacing-lr: var(--padding-lr);
+  --spacing-tb: var(--padding-tb);
+  --spacing-gap-large: var(--padding-gap-large);
+  --spacing-tb-large: var(--padding-tb-large);
+  --spacing-gutter: var(--gutter);
+  
+  /* Spacing scale matching Figma (fixed values) */
+  --spacing-4: 16px;
+  --spacing-6: 24px;
+  --spacing-12: 48px;
+  --spacing-24: 96px;
+  --spacing-48: 192px;
+  
+  /* Responsive typography - adapts to breakpoints */
+  --font-size-tiny: var(--text-tiny);
+  --font-size-menu: var(--text-menu);
+  --font-size-paragraph: var(--text-paragraph);
+  --font-size-header: var(--text-header);
+  
+  /* Responsive widths - adapts to breakpoints */
+  --width-max-content: var(--max-width);
+  --width-min-content: var(--min-width);
+  --width-menu-home: var(--menu-home-width);
+  --width-menu-catalog: var(--menu-catalog-width);
+  --width-contact-button: var(--contact-button-width);
+  
+  /* Max widths (fixed) */
+  --max-width-prose: 800px;
+  --max-width-full: 1440px;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Responsive visibility utilities */
+/* desktop-hide: Hidden on mobile, visible on tablet and desktop */
+.desktop-hide {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .desktop-hide {
+    display: block;
+  }
+}
+
+/* mobile-only: Visible on mobile, hidden on tablet and desktop */
+.mobile-only {
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .mobile-only {
+    display: none;
+  }
 }

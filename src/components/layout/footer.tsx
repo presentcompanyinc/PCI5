@@ -1,86 +1,62 @@
-import Link from 'next/link';
-import { siteConfig, socialLinks } from '@/constants/site';
+'use client';
+
+/**
+ * Footer component
+ * Extracted from Figma design
+ */
+
+import { useContactModal } from '@/contexts/ContactModalContext';
+import { CONTACT_MODAL_TYPE } from '@/config/contact';
+import { WeatherTimeWidget } from '@/components/ui/WeatherTimeWidget';
+
+const CONTACT_BUTTON = 'http://localhost:3845/assets/fd8d28de32c690aef3183c9d268ec4c2ae7abc8f.svg';
 
 export function Footer() {
+  const { openFormModal, openInfoModal } = useContactModal();
+  const openContactModal = CONTACT_MODAL_TYPE === 'form' ? openFormModal : openInfoModal;
+
   return (
-    <footer className="border-t bg-background">
-      <div className="container py-8 md:py-12">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-          <div className="col-span-1 md:col-span-2">
-            <h3 className="text-lg font-semibold">{siteConfig.name}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
-              {siteConfig.description}
-            </p>
-          </div>
-          <div>
-            <h4 className="text-sm font-semibold">Navigation</h4>
-            <nav className="mt-4 space-y-2">
-              <Link
-                href="/"
-                className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                href="/about"
-                className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                About
-              </Link>
-              <Link
-                href="/services"
-                className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Services
-              </Link>
-              <Link
-                href="/contact"
-                className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Contact
-              </Link>
-            </nav>
-          </div>
-          <div>
-            <h4 className="text-sm font-semibold">Connect</h4>
-            <nav className="mt-4 space-y-2">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </nav>
-          </div>
+    <div 
+      className="bg-[#f2efea] flex flex-col items-center pb-0 w-full"
+      style={{
+        gap: 'var(--padding-gap-large)',
+        padding: 'var(--padding-tb) var(--padding-lr) 0'
+      }}
+    >
+      {/* Contact Button */}
+      <div className="flex items-center justify-center">
+        <button 
+          onClick={openContactModal}
+          className="relative cursor-pointer transition-transform duration-300 hover:scale-105"
+          style={{
+            width: 'var(--contact-button-width)',
+            height: 'auto',
+            aspectRatio: '356/95.986'
+          }}
+        >
+          <img alt="Contact Us" className="w-full h-full" src={CONTACT_BUTTON} />
+        </button>
+      </div>
+
+      {/* Footer Info */}
+      <div 
+        className="bg-[#f2efea] flex flex-col md:flex-row items-center md:items-start justify-between text-black text-center w-full max-w-[1440px]"
+        style={{
+          fontSize: 'var(--text-tiny)',
+          padding: '0 var(--padding-lr)',
+          gap: 'var(--padding-gap)'
+        }}
+      >
+        <div className="font-['PCI_Sans_Bold',_sans-serif] shrink-0">
+          <p className="leading-normal whitespace-pre">COPYRIGHT 2025 P.C.I</p>
         </div>
-        <div className="mt-8 border-t pt-8">
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
-            </p>
-            <div className="flex items-center space-x-4">
-              <Link
-                href="/privacy"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/terms"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Terms of Service
-              </Link>
-            </div>
-          </div>
+
+        <WeatherTimeWidget />
+
+        <div className="font-['PCI_Sans_Bold',_sans-serif] shrink-0">
+          <p className="leading-normal whitespace-pre">INSTAGRAM</p>
         </div>
       </div>
-    </footer>
+    </div>
   );
 }
-

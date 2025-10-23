@@ -3,10 +3,10 @@
 /* PCI Sans Bold Font */
 @font-face {
   font-family: 'PCI_Sans_Bold';
-  src: url('/fonts/PCI_Sans_Bold.otf') format('opentype');
+  src: url('/fonts/PCISansBold.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: fallback;
 }
 
 /* Design tokens from Figma - Mobile First (Base: Mobile mode < 640px) */

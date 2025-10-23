@@ -1,8 +1,9 @@
 'use client';
 
 /**
- * WeatherTimeWidget - Real-time weather and time display for Los Angeles
+ * WeatherTimeWidget - Real-time weather and time display for Los Feliz (90027)
  * Updates every minute for time, every 10 minutes for weather
+ * Weather data fetched from OpenWeatherMap API
  */
 
 import { useState, useEffect } from 'react';
@@ -33,7 +34,7 @@ export function WeatherTimeWidget() {
       const displayHours = hours % 12 || 12;
       const displayMinutes = minutes.toString().padStart(2, '0');
       
-      setTime(`LOS ANGELES ${displayHours}:${displayMinutes}${ampm} (PST)`);
+      setTime(`LOS FELIZ ${displayHours}:${displayMinutes}${ampm} (PST)`);
     };
 
     // Update immediately
@@ -45,23 +46,20 @@ export function WeatherTimeWidget() {
     return () => clearInterval(interval);
   }, []);
 
-  // Update weather every 10 minutes (mock data for now)
+  // Fetch real weather data every 10 minutes
   useEffect(() => {
-    const updateWeather = () => {
-      // Mock weather data - in a real app, you'd call a weather API
-      const conditions = ['SUNNY', 'PARTLY CLOUDY', 'CLOUDY', 'CLEAR'];
-      const icons = ['☀️', '⛅', '☁️', '🌙'];
-      const temperatures = [68, 70, 72, 74, 76, 78];
-      
-      const randomCondition = conditions[Math.floor(Math.random() * conditions.length)];
-      const randomTemp = temperatures[Math.floor(Math.random() * temperatures.length)];
-      const conditionIndex = conditions.indexOf(randomCondition);
-      
-      setWeather({
-        temperature: randomTemp,
-        condition: randomCondition,
-        icon: icons[conditionIndex] || '☀️'
-      });
+    const updateWeather = async () => {
+      try {
+        const response = await fetch('/api/weather');
+        if (response.ok) {
+          const data = await response.json();
+          setWeather(data);
+        } else {
+          console.error('Failed to fetch weather data');
+        }
+      } catch (error) {
+        console.error('Error fetching weather:', error);
+      }
     };
 
     // Update immediately

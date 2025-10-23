@@ -13,7 +13,7 @@ export function IntroSection() {
       data-name="Intro Text"
     >
       <div
-        className="flex flex-col justify-center leading-[0.99] w-full text-black font-['PCI_Sans_Bold',_sans-serif]"
+        className="flex flex-col justify-center leading-[0.99] w-full text-black font-pci-sans-bold"
         style={{
           fontSize: 'var(--text-paragraph)',
           maxWidth: 'var(--max-width)'

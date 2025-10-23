@@ -76,7 +76,7 @@ function WorkItem({ src, srcOverlay, alt, title, subtitle1, subtitle2, studio, c
             <div className="flex flex-col gap-[13px]">
               <div className="w-full">
                 <p 
-                  className="font-['PCI_Sans_Bold',_sans-serif] text-[#cecece] uppercase leading-normal"
+                  className="font-pci-sans-bold text-[#cecece] uppercase leading-normal"
                   style={{ fontSize: 'var(--text-overlay-title)' }}
                 >
                   {title}
@@ -84,14 +84,14 @@ function WorkItem({ src, srcOverlay, alt, title, subtitle1, subtitle2, studio, c
               </div>
               <div className="flex flex-col gap-1 w-full">
                 <p 
-                  className="font-['PCI_Sans_Bold',_sans-serif] text-[#cecece] uppercase leading-normal"
+                  className="font-pci-sans-bold text-[#cecece] uppercase leading-normal"
                   style={{ fontSize: 'var(--text-overlay-subtitle)' }}
                 >
                   {subtitle1}
                 </p>
                 {subtitle2 && (
                   <p 
-                    className="font-['PCI_Sans_Bold',_sans-serif] text-[#cecece] uppercase leading-normal"
+                    className="font-pci-sans-bold text-[#cecece] uppercase leading-normal"
                     style={{ fontSize: 'var(--text-overlay-subtitle)' }}
                   >
                     {subtitle2}
@@ -103,7 +103,7 @@ function WorkItem({ src, srcOverlay, alt, title, subtitle1, subtitle2, studio, c
             {/* Studio */}
             <div className="w-full">
               <p 
-                className="font-['PCI_Sans_Bold',_sans-serif] text-[#cecece] uppercase leading-normal"
+                className="font-pci-sans-bold text-[#cecece] uppercase leading-normal"
                 style={{ fontSize: 'var(--text-overlay-subtitle)' }}
               >
                 {studio}
@@ -129,7 +129,7 @@ export function WorkGridSection() {
           style={{ transform: 'rotate(0.5deg)' }}
         >
           <h2 
-            className="font-['PCI_Sans_Bold',_sans-serif] leading-normal text-black whitespace-pre"
+            className="font-pci-sans-bold leading-normal text-black whitespace-pre"
             style={{ fontSize: 'var(--text-header)' }}
           >
             SELECTED WORK

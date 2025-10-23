@@ -56,7 +56,7 @@ export function ContactInfoModal({ isOpen, onClose }: ContactInfoModalProps) {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute font-['PCI_Sans_Bold',_sans-serif] leading-none text-black hover:opacity-70 transition-opacity"
+          className="absolute font-pci-sans-bold leading-none text-black hover:opacity-70 transition-opacity"
           style={{
             fontSize: 'var(--modal-close-size)',
             top: 'calc(var(--modal-padding) / 2.5)',
@@ -73,7 +73,7 @@ export function ContactInfoModal({ isOpen, onClose }: ContactInfoModalProps) {
         >
           {/* Phone */}
           <div 
-            className="font-['PCI_Sans_Bold',_sans-serif] leading-none text-black"
+            className="font-pci-sans-bold leading-none text-black"
             style={{ fontSize: 'var(--modal-title-size)' }}
           >
             {phoneRevealed ? (
@@ -95,7 +95,7 @@ export function ContactInfoModal({ isOpen, onClose }: ContactInfoModalProps) {
 
           {/* Email */}
           <div 
-            className="font-['PCI_Sans_Bold',_sans-serif] leading-none text-black"
+            className="font-pci-sans-bold leading-none text-black"
             style={{ fontSize: 'var(--modal-title-size)' }}
           >
             {emailRevealed ? (
@@ -117,7 +117,7 @@ export function ContactInfoModal({ isOpen, onClose }: ContactInfoModalProps) {
 
           {/* Ask for */}
           <div 
-            className="font-['PCI_Sans_Bold',_sans-serif] leading-none text-black"
+            className="font-pci-sans-bold leading-none text-black"
             style={{ fontSize: 'var(--modal-title-size)' }}
           >
             Ask for Nick or Patrick
@@ -126,7 +126,7 @@ export function ContactInfoModal({ isOpen, onClose }: ContactInfoModalProps) {
 
         {/* Helper text */}
         <p 
-          className="mt-8 font-['PCI_Sans_Bold',_sans-serif] text-black/50"
+          className="mt-8 font-pci-sans-bold text-black/50"
           style={{ fontSize: 'var(--modal-input-text)' }}
         >
           Click phone or email to reveal and contact us

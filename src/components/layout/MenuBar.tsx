@@ -74,7 +74,7 @@ function MenuItem({ children, rotation, width, href, onClick }: MenuItemProps) {
     >
       <div style={{ transform: `rotate(${rotation}deg)` }}>
         <p
-          className="font-['PCI_Sans_Bold',_sans-serif] text-black leading-normal whitespace-pre"
+          className="font-pci-sans-bold text-black leading-normal whitespace-pre"
           style={{ 
             fontSize: 'var(--text-menu)',
             letterSpacing: '0.04em'

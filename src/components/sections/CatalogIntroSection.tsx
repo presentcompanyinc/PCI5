@@ -15,7 +15,7 @@ export function CatalogIntroSection() {
           style={{ transform: 'rotate(0.25deg)' }}
         >
           <div 
-            className="font-['PCI_Sans_Bold',_sans-serif] leading-normal text-black"
+            className="font-pci-sans-bold leading-normal text-black"
             style={{ fontSize: 'var(--text-paragraph)' }}
           >
             <p>

@@ -38,7 +38,7 @@ export function ClientsSection() {
       >
         <div className="flex-1 flex flex-col justify-center">
           <p 
-            className="font-['PCI_Sans_Bold',_sans-serif] text-black leading-normal uppercase"
+            className="font-pci-sans-bold text-black leading-normal uppercase"
             style={{ fontSize: 'var(--text-header)' }}
           >
             Selected Clients

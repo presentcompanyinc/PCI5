@@ -47,13 +47,13 @@ export function Footer() {
           gap: 'var(--padding-gap)'
         }}
       >
-        <div className="font-['PCI_Sans_Bold',_sans-serif] shrink-0">
+        <div className="font-pci-sans-bold shrink-0">
           <p className="leading-normal whitespace-pre">COPYRIGHT 2025 P.C.I</p>
         </div>
 
         <WeatherTimeWidget />
 
-        <div className="font-['PCI_Sans_Bold',_sans-serif] shrink-0">
+        <div className="font-pci-sans-bold shrink-0">
           <p className="leading-normal whitespace-pre">INSTAGRAM</p>
         </div>
       </div>

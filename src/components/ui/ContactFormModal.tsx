@@ -58,7 +58,7 @@ export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute font-['PCI_Sans_Bold',_sans-serif] leading-none text-black hover:opacity-70 transition-opacity z-10"
+          className="absolute font-pci-sans-bold leading-none text-black hover:opacity-70 transition-opacity z-10"
           style={{
             fontSize: 'var(--modal-close-size)',
             top: 'calc(var(--modal-padding) / 2.5)',
@@ -73,13 +73,13 @@ export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
           <div className="flex items-center justify-center min-h-[400px]">
             <div className="text-center">
               <h2 
-                className="font-['PCI_Sans_Bold',_sans-serif] text-black mb-4"
+                className="font-pci-sans-bold text-black mb-4"
                 style={{ fontSize: 'var(--modal-title-size)' }}
               >
                 Thanks for reaching out!
               </h2>
               <p 
-                className="font-['PCI_Sans_Bold',_sans-serif] text-black opacity-70"
+                className="font-pci-sans-bold text-black opacity-70"
                 style={{ fontSize: 'var(--modal-label-size)' }}
               >
                 We'll get back to you soon.
@@ -102,7 +102,7 @@ export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
               <div className="flex-1">
                 <label 
                   htmlFor="firstName"
-                  className="block font-['PCI_Sans_Bold',_sans-serif] text-black uppercase mb-4"
+                  className="block font-pci-sans-bold text-black uppercase mb-4"
                   style={{ fontSize: 'var(--modal-label-size)' }}
                 >
                   First Name
@@ -113,7 +113,7 @@ export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
                   value={formData.firstName}
                   onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                   placeholder="optional"
-                  className="w-full px-6 border-[3px] border-black border-dashed rounded-sm bg-[#f2efea] font-['PCI_Sans_Bold',_sans-serif] text-black placeholder:text-black/40 focus:outline-none focus:border-solid"
+                  className="w-full px-6 border-[3px] border-black border-dashed rounded-sm bg-[#f2efea] font-pci-sans-bold text-black placeholder:text-black/40 focus:outline-none focus:border-solid"
                   style={{
                     height: 'var(--modal-input-height)',
                     fontSize: 'var(--modal-input-text)'
@@ -123,7 +123,7 @@ export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
               <div className="flex-1">
                 <label 
                   htmlFor="lastName"
-                  className="block font-['PCI_Sans_Bold',_sans-serif] text-black uppercase mb-4"
+                  className="block font-pci-sans-bold text-black uppercase mb-4"
                   style={{ fontSize: 'var(--modal-label-size)' }}
                 >
                   Last Name
@@ -134,7 +134,7 @@ export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
                   value={formData.lastName}
                   onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                   placeholder="optional"
-                  className="w-full px-6 border-[3px] border-black border-dashed rounded-sm bg-[#f2efea] font-['PCI_Sans_Bold',_sans-serif] text-black placeholder:text-black/40 focus:outline-none focus:border-solid"
+                  className="w-full px-6 border-[3px] border-black border-dashed rounded-sm bg-[#f2efea] font-pci-sans-bold text-black placeholder:text-black/40 focus:outline-none focus:border-solid"
                   style={{
                     height: 'var(--modal-input-height)',
                     fontSize: 'var(--modal-input-text)'
@@ -147,7 +147,7 @@ export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
             <div className="mb-8">
               <label 
                 htmlFor="email"
-                className="block font-['PCI_Sans_Bold',_sans-serif] text-black uppercase mb-4"
+                className="block font-pci-sans-bold text-black uppercase mb-4"
                 style={{ fontSize: 'var(--modal-label-size)' }}
               >
                 E-mail
@@ -158,7 +158,7 @@ export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full md:max-w-[449px] px-6 border-[3px] border-black border-dashed rounded-sm bg-[#f2efea] font-['PCI_Sans_Bold',_sans-serif] text-black focus:outline-none focus:border-solid"
+                className="w-full md:max-w-[449px] px-6 border-[3px] border-black border-dashed rounded-sm bg-[#f2efea] font-pci-sans-bold text-black focus:outline-none focus:border-solid"
                 style={{
                   height: 'var(--modal-input-height)',
                   fontSize: 'var(--modal-input-text)'
@@ -170,7 +170,7 @@ export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
             <div className="mb-8">
               <label 
                 htmlFor="message"
-                className="block font-['PCI_Sans_Bold',_sans-serif] text-black uppercase mb-4"
+                className="block font-pci-sans-bold text-black uppercase mb-4"
                 style={{ fontSize: 'var(--modal-label-size)' }}
               >
                 Message
@@ -181,7 +181,7 @@ export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 rows={8}
-                className="w-full md:max-w-[700px] px-6 py-4 border-[3px] border-black border-dashed rounded-sm bg-[#f2efea] font-['PCI_Sans_Bold',_sans-serif] text-black focus:outline-none focus:border-solid resize-none"
+                className="w-full md:max-w-[700px] px-6 py-4 border-[3px] border-black border-dashed rounded-sm bg-[#f2efea] font-pci-sans-bold text-black focus:outline-none focus:border-solid resize-none"
                 style={{ fontSize: 'var(--modal-input-text)' }}
               />
             </div>
@@ -208,7 +208,7 @@ export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
                 {/* Button Content */}
                 <div className="absolute inset-0 flex items-center justify-center border-4 border-black rounded-[36px] mx-[6px] my-[6px] bg-[#f2efea] group-hover:bg-black/5 transition-colors">
                   <span 
-                    className="font-['PCI_Sans_Bold',_sans-serif] text-black leading-none"
+                    className="font-pci-sans-bold text-black leading-none"
                     style={{ fontSize: 'var(--modal-button-text)' }}
                   >
                     {isSubmitting ? 'SENDING...' : 'SUBMIT'}

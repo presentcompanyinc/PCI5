@@ -75,10 +75,10 @@ export function WeatherTimeWidget() {
 
   return (
     <div className="flex flex-col items-start justify-end shrink-0">
-      <div className="font-['PCI_Sans_Bold',_sans-serif] w-full">
+      <div className="font-pci-sans-bold w-full">
         <p className="leading-normal">{time}</p>
       </div>
-      <div className="font-['PCI_Sans_Bold',_sans-serif] h-[39px] w-full">
+      <div className="font-pci-sans-bold h-[39px] w-full">
         <p className="leading-normal">{weather.condition}, {weather.temperature}°</p>
       </div>
     </div>

@@ -24,7 +24,7 @@ function ServiceItem({
     <>
       <div className="flex items-center justify-center w-full" style={{ transform: `rotate(${rotation}deg)` }}>
         <p 
-          className="font-['PCI_Sans_Bold',_sans-serif] text-black leading-normal w-full"
+          className="font-pci-sans-bold text-black leading-normal w-full"
           style={{ fontSize: 'var(--text-menu)' }}
         >
           {children}
@@ -56,7 +56,7 @@ export function ServicesSection() {
       >
         <div style={{ transform: 'rotate(359.75deg)' }}>
           <p 
-            className="font-['PCI_Sans_Bold',_sans-serif] text-black leading-normal"
+            className="font-pci-sans-bold text-black leading-normal"
             style={{ fontSize: 'var(--text-header)' }}
           >
             WHAT IS PCI?
@@ -65,7 +65,7 @@ export function ServicesSection() {
 
         <div style={{ transform: 'rotate(0.25deg)' }}>
           <p
-            className="font-['PCI_Sans_Bold',_sans-serif] text-black leading-normal"
+            className="font-pci-sans-bold text-black leading-normal"
             style={{ 
               fontSize: 'var(--text-paragraph)',
               fontVariationSettings: "'CTGR' 0, 'wdth' 100, 'wght' 400" 

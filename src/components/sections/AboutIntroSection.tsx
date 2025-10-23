@@ -15,7 +15,7 @@ export function AboutIntroSection() {
           style={{ transform: 'rotate(0.25deg)' }}
         >
           <div 
-            className="font-['PCI_Sans_Bold',_sans-serif] leading-none text-black"
+            className="font-pci-sans-bold leading-none text-black"
             style={{ fontSize: 'var(--text-paragraph)' }}
           >
             <p>

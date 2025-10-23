@@ -32,7 +32,7 @@ export function FeaturedWorkSection() {
       >
         <div style={{ transform: 'rotate(359deg)' }}>
           <p
-            className="font-['PCI_Sans_Bold',_sans-serif] text-black leading-normal whitespace-pre"
+            className="font-pci-sans-bold text-black leading-normal whitespace-pre"
             style={{ 
               fontSize: 'var(--text-header)',
               fontVariationSettings: "'wght' 700" 
@@ -49,7 +49,7 @@ export function FeaturedWorkSection() {
         >
           <div style={{ transform: 'rotate(0.75deg)' }} className="flex items-center">
             <p 
-              className="font-['PCI_Sans_Bold',_sans-serif] text-black leading-normal whitespace-nowrap"
+              className="font-pci-sans-bold text-black leading-normal whitespace-nowrap"
               style={{ fontSize: 'var(--text-menu)' }}
             >
               VIEW MORE WORK

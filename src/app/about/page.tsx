@@ -8,8 +8,8 @@ import { AboutIntroSection } from '@/components/sections';
 import { AboutPagePlayground } from '@/components/memphis/AboutPagePlayground';
 
 // Divider assets
-const DIVIDER_BW_PATTERN = 'http://localhost:3845/assets/8a262ab8cff0c45f44317ac57ff9e491972ecd9f.png';
-const DIVIDER_CYAN = 'http://localhost:3845/assets/e65793c9cf813cd55852717f75df2a8699396a25.svg';
+const DIVIDER_BW_PATTERN = '/assets/PCI_Divider_6.svg';
+const DIVIDER_CYAN = '/assets/Divider3.svg';
 
 export default function AboutPage() {
   return (

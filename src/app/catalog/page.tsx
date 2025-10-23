@@ -10,8 +10,8 @@ import {
 } from '@/components/sections';
 
 // Divider image
-const DIVIDER_WAVY = 'http://localhost:3845/assets/939f4772e8c7d8abcfff2f29a2bedac61ef7dba0.png';
-const DIVIDER_BOTTOM = 'http://localhost:3845/assets/a59f317f4c84c6948bb3d3539d995bf445c54504.svg';
+const DIVIDER_WAVY = '/assets/PCI_Divider_1.svg';
+const DIVIDER_BOTTOM = '/assets/PCI_Divider_4.svg';
 
 export default function CatalogPage() {
   return (

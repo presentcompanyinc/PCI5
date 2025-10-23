@@ -3,7 +3,7 @@
  * Extracted from Figma design
  */
 
-const SQUIGGLY_LINE = 'http://localhost:3845/assets/ce5a172bf3d7c7a84db8e68c0008c6aa65a54b8a.svg';
+const SQUIGGLY_LINE = '/assets/services-list-squiggly-line.svg';
 
 const services = [
   'Theme Songs',
@@ -31,8 +31,8 @@ function ServiceItem({
         </p>
       </div>
       <div className="flex items-center justify-center w-full" style={{ transform: 'rotate(0.5deg)' }}>
-        <div className="h-[14px] w-full">
-          <img alt="" className="w-full h-full" src={SQUIGGLY_LINE} />
+        <div className="w-full" style={{ height: 'var(--squiggle-2)' }}>
+          <img alt="" className="w-full h-full object-contain" src={SQUIGGLY_LINE} />
         </div>
       </div>
     </>
@@ -42,7 +42,7 @@ function ServiceItem({
 export function ServicesSection() {
   return (
     <div
-      className="flex flex-col lg:flex-row flex-wrap items-start justify-between w-full"
+      className="flex flex-col md:flex-row flex-wrap items-start justify-between w-full"
       style={{
         gap: 'var(--padding-gap-large)',
         padding: 'var(--padding-tb-large) var(--padding-lr)'
@@ -51,7 +51,7 @@ export function ServicesSection() {
     >
       {/* Description */}
       <div 
-        className="flex flex-col items-start w-full lg:max-w-[600px]"
+        className="flex flex-col items-start w-full md:max-w-[600px]"
         style={{ gap: 'var(--padding-gap-large)' }}
       >
         <div style={{ transform: 'rotate(359.75deg)' }}>
@@ -79,7 +79,7 @@ export function ServicesSection() {
 
       {/* Services List */}
       <div 
-        className="flex flex-col items-start w-full lg:flex-1 lg:max-w-[459px] lg:min-w-[300px]"
+        className="flex flex-col items-start w-full md:flex-1 md:max-w-[459px] md:min-w-[300px]"
         style={{ gap: 'var(--padding-gap)' }}
       >
         <ServiceItem rotation={0.5}>{services[0]}</ServiceItem>

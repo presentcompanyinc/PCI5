@@ -24,6 +24,7 @@ export default function Home() {
       <ServicesSection />
       <DividerSection variant="blue" />
       <ClientsSection />
+      <DividerSection variant="purple" />
       <Footer />
     </main>
   );

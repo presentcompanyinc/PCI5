@@ -10,15 +10,15 @@ import { useState, useEffect, useRef } from 'react';
 import { useContactModal } from '@/contexts/ContactModalContext';
 import { CONTACT_MODAL_TYPE } from '@/config/contact';
 
-// Squiggle animation frames from Figma
+// Squiggle animation frames from local assets
 const SQUIGGLE_FRAMES = [
-  'http://localhost:3845/assets/1c04e0543f2c207ebb0565dec9d7b20961229a31.svg',
-  'http://localhost:3845/assets/26717a3a5ca808859f53c398652a6ee39f43ce73.svg',
-  'http://localhost:3845/assets/2e1eeef50041cd20969622f82dfc113f1a4bbc00.svg',
-  'http://localhost:3845/assets/a1898d03a6fe51d66d7b1533354a8e7c2fd89e26.svg',
-  'http://localhost:3845/assets/57140007324da0acd6785793817235f17b112b18.svg',
-  'http://localhost:3845/assets/7c5e3481b8421b849ab63c6d8c67c3d08b0e7e1f.svg',
-  'http://localhost:3845/assets/285542f94aa38a7dd887073b0c769f7fd440edef.svg',
+  '/assets/Squiggle 1.svg',
+  '/assets/Squiggle 2.svg',
+  '/assets/Squiggle 3.svg',
+  '/assets/Squiggle 4.svg',
+  '/assets/Squiggle 5.svg',
+  '/assets/Squiggle 6.svg',
+  '/assets/Squiggle 7.svg',
 ];
 
 interface MenuItemProps {

@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/* PCI Sans Bold Font */
+@font-face {
+  font-family: 'PCI_Sans_Bold';
+  src: url('/fonts/PCI_Sans_Bold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Design tokens from Figma - Mobile First (Base: Mobile mode < 640px) */
 :root {
   /* Colors */
@@ -63,7 +72,7 @@
   --modal-gap: 16px;
 }
 
-/* Tablet breakpoint (640px - 1024px) */
+/* Tablet breakpoint (640px - 768px) */
 @media (min-width: 640px) {
   :root {
     /* Layout - Tablet mode */
@@ -119,6 +128,65 @@
     --modal-input-height: 52px;
     --modal-button-text: 26px;
     --modal-gap: 24px;
+  }
+}
+
+/* Large tablet breakpoint (768px - 1024px) */
+@media (min-width: 768px) {
+  :root {
+    /* Layout - Large tablet mode */
+    --max-width: 600px;
+    --min-width: 460px;
+    --menu-home-width: 85px;
+    --menu-catalog-width: 110px;
+    --contact-button-width: 250px;
+    --contact-button-weight: 9;
+    
+    /* Typography - Large tablet mode */
+    --text-menu: 28px;
+    --text-paragraph: 42px;
+    --text-header: 63px;
+    
+    /* Spacing - Large tablet mode */
+    --padding-gap: 24px;
+    --padding-lr: 24px;
+    --padding-tb: 84px;
+    --padding-gap-large: 84px;
+    --padding-tb-large: 168px;
+    --gutter: 28px;
+    --columns: 10;
+    
+    /* Squiggle decorations - Large tablet mode */
+    --squiggle-2: 21px;
+    --squiggle-3: 31px;
+    --squiggle-4: 42px;
+    --squiggle-5: 60px;
+    --squiggle-6: 75px;
+    --squiggle-7: 95px;
+    --squiggle-8: 125px;
+    
+    /* Display width */
+    --display-width: 1200px;
+    
+    /* Mobile hide flag */
+    --mobile-hide: true;
+    
+    /* Overlay text - Large tablet mode */
+    --text-overlay-title: 34px;
+    --text-overlay-subtitle: 21px;
+    --overlay-padding: 25px;
+    --overlay-gap: 28px;
+    
+    /* Modal sizing - Large tablet mode */
+    --modal-max-width: 900px;
+    --modal-padding: 50px;
+    --modal-close-size: 56px;
+    --modal-title-size: 52px;
+    --modal-label-size: 29px;
+    --modal-input-text: 22px;
+    --modal-input-height: 55px;
+    --modal-button-text: 29px;
+    --modal-gap: 28px;
   }
 }
 

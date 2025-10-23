@@ -3,13 +3,14 @@
  * Extracted from Figma design
  */
 
-const DIVIDER_RED_BLOBS = 'http://localhost:3845/assets/e65793c9cf813cd55852717f75df2a8699396a25.svg';
-const DIVIDER_TEAL = 'http://localhost:3845/assets/d539c52c2d27b4e22d52140d3ef22e96764fe5f6.svg';
-const DIVIDER_BLUE = 'http://localhost:3845/assets/a140a061cbf015d8303ae4305bcaf404b65b330b.svg';
-const DIVIDER_OLIVE = 'http://localhost:3845/assets/82e7dabeae944fac092c1b54e85c88639966fcc3.svg';
+const DIVIDER_RED_BLOBS = '/assets/PCI_Divider_1.svg';
+const DIVIDER_TEAL = '/assets/Divider2.svg';
+const DIVIDER_BLUE = '/assets/Divider3.svg';
+const DIVIDER_OLIVE = '/assets/PCI_Divider_4.svg';
+const DIVIDER_PURPLE = '/assets/Divider 5.svg';
 
 interface DividerSectionProps {
-  variant?: 'red' | 'teal' | 'blue' | 'olive';
+  variant?: 'red' | 'teal' | 'blue' | 'olive' | 'purple';
 }
 
 export function DividerSection({ variant = 'red' }: DividerSectionProps) {
@@ -22,24 +23,29 @@ export function DividerSection({ variant = 'red' }: DividerSectionProps) {
     teal: {
       bgColor: 'bg-[#afbab6]',
       imgSrc: DIVIDER_TEAL,
-      aspectRatio: '6000/480.001',
+      aspectRatio: '2838/175',
     },
     blue: {
-      bgColor: 'bg-[#f2efea]',
+      bgColor: 'bg-[#03bed8]',
       imgSrc: DIVIDER_BLUE,
-      aspectRatio: '6000/480.622',
+      aspectRatio: '2838/175',
     },
     olive: {
       bgColor: 'bg-[#666a47]',
       imgSrc: DIVIDER_OLIVE,
       aspectRatio: '6001.53/482.588',
     },
+    purple: {
+      bgColor: 'bg-[#8b5fbf]',
+      imgSrc: DIVIDER_PURPLE,
+      aspectRatio: '2838/175',
+    },
   };
 
   const { bgColor, imgSrc, aspectRatio } = config[variant];
 
   return (
-    <div className={`${bgColor} flex flex-col items-start w-full`} data-name="Divider">
+    <div className={`${bgColor} flex flex-col items-start w-full min-w-full`} data-name="Divider">
       <div className="w-full relative" style={{ aspectRatio }}>
         <img alt="" className="w-full h-auto" src={imgSrc} />
       </div>

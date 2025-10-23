@@ -4,32 +4,32 @@
  */
 
 // Work sample images - Default
-const IMG_INGRID_GOES_WEST = 'http://localhost:3845/assets/44398f9b696f6c849b98ae4d6a631d6164f7d364.png';
-const IMG_SISTERS = 'http://localhost:3845/assets/152c3218624df2103bb8a33c8e4ffda17ac8227f.png';
-const IMG_JOE_MANDE = 'http://localhost:3845/assets/cc5b575c4fd8a880184fab8cf1e95abbabfec128.png';
-const IMG_DUCK_BUTTER = 'http://localhost:3845/assets/3ff43df270f8af11c91cea2facebdb995cc1d4e4.png';
-const IMG_NEW_YORKER = 'http://localhost:3845/assets/dddf154e369207a5e2443033b6e9e229fcd2676b.png';
-const IMG_PAST_MY_BEDTIME = 'http://localhost:3845/assets/2e3ed2052311f816c86b7aeefe98484721514693.png';
-const IMG_SUNDOWNERS = 'http://localhost:3845/assets/31293974e668043ae35355855b535e76eb4e9cbc.png';
-const IMG_CITY_OF_LIES = 'http://localhost:3845/assets/c6efb453265f18a486cf18769fdcbadf5d1c3a1c.png';
-const IMG_DICKINSON = 'http://localhost:3845/assets/f5160b3eb5b4b96772563f17502f7e9d8e3a6819.png';
-const IMG_FAMILY_GUY = 'http://localhost:3845/assets/2f9c2972acfeddad5d89798e7cab4aa50ccfade4.png';
-const IMG_TELL_ME_YOUR_SECRETS = 'http://localhost:3845/assets/26962d5c2ca22470df6ffcc47d5ed6ae66e12981.png';
-const IMG_THE_DRY = 'http://localhost:3845/assets/e73de199a4e9e7eb09524fc566835ff409a62936.png';
+const IMG_INGRID_GOES_WEST = '/assets/PCI_IngridGoesWest.jpg';
+const IMG_SISTERS = '/assets/PCI_Sisters.jpg';
+const IMG_JOE_MANDE = '/assets/PCI_JoeMandeChill.jpg';
+const IMG_DUCK_BUTTER = '/assets/PCI_DuckButter.jpg';
+const IMG_NEW_YORKER = '/assets/PCI_NewYorkerPresents.jpg';
+const IMG_PAST_MY_BEDTIME = '/assets/PCI_PastMyBedtime.jpg';
+const IMG_SUNDOWNERS = '/assets/PCI_Sundowners.jpg';
+const IMG_CITY_OF_LIES = '/assets/PCI_CityofLies.jpg';
+const IMG_DICKINSON = '/assets/PCI_Dickinson.jpg';
+const IMG_FAMILY_GUY = '/assets/PCI_FamilyGuy.jpg';
+const IMG_TELL_ME_YOUR_SECRETS = '/assets/PCI_TellMeYourSecrets.jpg';
+const IMG_THE_DRY = '/assets/PCI_TheDry.jpg';
 
 // Work sample images - Overlay (noTitle versions)
-const IMG_INGRID_GOES_WEST_OVERLAY = 'http://localhost:3845/assets/b77eec8ec56b01fbd7dfa0a0d0c2e57e67eded52.png';
-const IMG_SISTERS_OVERLAY = 'http://localhost:3845/assets/d8131e9a05912cd1e7c73f395e9d9ef0abbd3954.png';
-const IMG_JOE_MANDE_OVERLAY = 'http://localhost:3845/assets/80face50e95d22a8e4b916e1845d45764fda2055.png';
-const IMG_DUCK_BUTTER_OVERLAY = 'http://localhost:3845/assets/8f537237924d08daf209e63091440af48d7197d8.png';
-const IMG_NEW_YORKER_OVERLAY = 'http://localhost:3845/assets/1d1758519921efee5ca15c2502788d1b2c893c75.png';
-const IMG_PAST_MY_BEDTIME_OVERLAY = 'http://localhost:3845/assets/d05f7437efd71d7b6b8ceeb9358f7b8d6bd6678a.png';
-const IMG_SUNDOWNERS_OVERLAY = 'http://localhost:3845/assets/d95ca9ac3f123b77e56188de4f94418a99365216.png';
-const IMG_CITY_OF_LIES_OVERLAY = 'http://localhost:3845/assets/ed2901ed56efc66839dabfe4005a4d74e22ade98.png';
-const IMG_DICKINSON_OVERLAY = 'http://localhost:3845/assets/aee2c2a2b6d0a38f9441eae63210173b051c96cf.png';
-const IMG_FAMILY_GUY_OVERLAY = 'http://localhost:3845/assets/a7a2a5e653944aa7505a3cfca7594df4b75d4b20.png';
-const IMG_TELL_ME_YOUR_SECRETS_OVERLAY = 'http://localhost:3845/assets/ce544c7280a9e41f9626584b9e180663da56c7e3.png';
-const IMG_THE_DRY_OVERLAY = 'http://localhost:3845/assets/9dcfd8a7e90ee0079fddcce5ad120cb932c5e8d1.png';
+const IMG_INGRID_GOES_WEST_OVERLAY = '/assets/PCI_IngridGoesWest_NoTitle.jpg';
+const IMG_SISTERS_OVERLAY = '/assets/PCI_Sisters_NoTitle.jpg';
+const IMG_JOE_MANDE_OVERLAY = '/assets/PCI_JoeMandeChill_NoTitle.jpg';
+const IMG_DUCK_BUTTER_OVERLAY = '/assets/PCI_DuckButter_NoTitle.jpg';
+const IMG_NEW_YORKER_OVERLAY = '/assets/PCI_NewYorkerPresents_NoTitle.jpg';
+const IMG_PAST_MY_BEDTIME_OVERLAY = '/assets/PCI_PastMyBedtime_NoTitle.jpg';
+const IMG_SUNDOWNERS_OVERLAY = '/assets/PCI_Sundowners_NoTitle.jpg';
+const IMG_CITY_OF_LIES_OVERLAY = '/assets/PCI_CityofLies_NoTitle.jpg';
+const IMG_DICKINSON_OVERLAY = '/assets/PCI_Dickinson_NoTitle.jpg';
+const IMG_FAMILY_GUY_OVERLAY = '/assets/PCI_FamilyGuy_NoTitle.jpg';
+const IMG_TELL_ME_YOUR_SECRETS_OVERLAY = '/assets/PCI_TellMeYourSecrets_NoTitle.jpg';
+const IMG_THE_DRY_OVERLAY = '/assets/PCI_TheDry_NoTitle.jpg';
 
 interface WorkItemProps {
   src: string;

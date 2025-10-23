@@ -9,7 +9,7 @@ import { useContactModal } from '@/contexts/ContactModalContext';
 import { CONTACT_MODAL_TYPE } from '@/config/contact';
 import { WeatherTimeWidget } from '@/components/ui/WeatherTimeWidget';
 
-const CONTACT_BUTTON = 'http://localhost:3845/assets/fd8d28de32c690aef3183c9d268ec4c2ae7abc8f.svg';
+const CONTACT_BUTTON = '/assets/ContactUs.svg';
 
 export function Footer() {
   const { openFormModal, openInfoModal } = useContactModal();

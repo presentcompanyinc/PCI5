@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 import { siteConfig } from '@/constants/site';
 import { ContactModalProvider } from '@/contexts/ContactModalContext';
 import { ContactModals } from '@/components/ui/ContactModals';
@@ -15,6 +16,13 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
   display: 'swap',
+});
+
+const pciSansBold = localFont({
+  src: '../../public/fonts/PCISansBold.otf',
+  variable: '--font-pci-sans-bold',
+  display: 'swap',
+  weight: '700',
 });
 
 export const metadata: Metadata = {
@@ -97,17 +105,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <head>
-        <link
-          rel="preload"
-          href="/fonts/PCISansBold.otf"
-          as="font"
-          type="font/otf"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background text-foreground`}
+        className={`${geistSans.variable} ${geistMono.variable} ${pciSansBold.variable} antialiased min-h-screen bg-background text-foreground`}
       >
         <ContactModalProvider>
           <div className="relative flex min-h-screen flex-col">

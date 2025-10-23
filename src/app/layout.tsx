@@ -19,10 +19,14 @@ const geistMono = Geist_Mono({
 });
 
 const pciSansBold = localFont({
-  src: '../../public/fonts/PCISansBold.otf',
+  src: [{
+    path: '../fonts/PCISansBold.otf',
+    weight: '700',
+    style: 'normal',
+  }],
   variable: '--font-pci-sans-bold',
   display: 'swap',
-  weight: '700',
+  preload: true,
 });
 
 export const metadata: Metadata = {

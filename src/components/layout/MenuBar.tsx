@@ -74,7 +74,7 @@ function MenuItem({ children, rotation, width, href, onClick }: MenuItemProps) {
     >
       <div style={{ transform: `rotate(${rotation}deg)` }}>
         <p
-          className="font-pci-sans-bold text-black leading-normal whitespace-pre"
+          className="font-pci-sans-bold text-black leading-normal whitespace-nowrap"
           style={{ 
             fontSize: 'var(--text-menu)',
             letterSpacing: '0.04em'
@@ -97,7 +97,8 @@ function MenuItem({ children, rotation, width, href, onClick }: MenuItemProps) {
   );
 
   const itemStyle = {
-    width: width || 'var(--menu-home-width)'
+    minWidth: width || 'var(--menu-home-width)',
+    flexShrink: 0
   };
 
   if (onClick) {
@@ -129,10 +130,12 @@ export function MenuBar() {
 
   return (
     <div 
-      className="bg-[#f2efea] flex items-start w-full max-w-[var(--max-width)]" 
+      className="bg-[#f2efea] flex flex-nowrap items-start w-full overflow-x-auto overflow-y-hidden scrollbar-hide" 
       style={{
         gap: 'var(--padding-gap)',
-        padding: '16px var(--padding-lr)'
+        padding: '16px var(--padding-lr)',
+        maxWidth: 'var(--display-width)',
+        WebkitOverflowScrolling: 'touch'
       }}
       data-name="Menu Bar"
     >

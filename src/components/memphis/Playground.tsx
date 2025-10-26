@@ -72,22 +72,15 @@ const MemphisPlayground = React.forwardRef<MemphisPlaygroundHandle, MemphisPlayg
     if (!ctx) return;
 
     const dpr = window.devicePixelRatio || 1;
-    const BASE_W = 1440;
-    const BASE_H = 500;
-    const ASPECT = BASE_W / BASE_H;
     let initialized = false;
 
     const computeSize = () => {
       const parent = canvas.parentElement as HTMLElement | null;
       const availableW = parent?.clientWidth ?? window.innerWidth;
       const availableH = parent?.clientHeight ?? window.innerHeight;
-      let targetW = Math.min(BASE_W, Math.max(320, availableW));
-      let targetH = Math.round(targetW / ASPECT);
-      const maxH = Math.min(BASE_H, Math.max(300, availableH - 0));
-      if (targetH > maxH) {
-        targetH = maxH;
-        targetW = Math.round(targetH * ASPECT);
-      }
+      // Use available space directly without forcing aspect ratio
+      const targetW = Math.max(320, availableW);
+      const targetH = Math.max(200, availableH);
       return { w: targetW, h: targetH };
     };
 

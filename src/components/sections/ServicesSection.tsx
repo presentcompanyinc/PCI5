@@ -45,7 +45,7 @@ export function ServicesSection() {
       className="flex flex-col md:flex-row flex-wrap items-start justify-between w-full"
       style={{
         gap: 'var(--padding-gap-large)',
-        padding: 'var(--padding-tb-large) var(--padding-lr)'
+        padding: '48px var(--padding-lr)'
       }}
       data-name="Services"
     >
@@ -71,8 +71,8 @@ export function ServicesSection() {
               fontVariationSettings: "'CTGR' 0, 'wdth' 100, 'wght' 400" 
             }}
           >
-            A one-stop shop for all your music needs. A music house with an off-beat library,
-            production services, and the ability to tailor to your project&apos;s creative goals.
+            A one-stop shop for all your music needs. A music house with an off-beat library, production services, and the ability to tailor to your project’s creative goals.
+
           </p>
         </div>
       </div>

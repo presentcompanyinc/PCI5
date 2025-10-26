@@ -14,18 +14,20 @@ import {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#f2efea]">
-      <Header />
-      <MenuBar />
-      <IntroSection />
-      <DividerSection variant="red" />
-      <FeaturedWorkSection />
-      <DividerSection variant="teal" />
-      <ServicesSection />
-      <DividerSection variant="blue" />
-      <ClientsSection />
-      <DividerSection variant="purple" />
-      <Footer />
+    <main className="min-h-screen bg-[#f2efea] flex flex-col items-center">
+      <div className="w-full max-w-[1700px]">
+        <Header />
+        <MenuBar />
+        <IntroSection />
+        <div className="py-6"><DividerSection variant="red" /></div>
+        <FeaturedWorkSection />
+        <div className="py-6"><DividerSection variant="teal" /></div>
+        <ServicesSection />
+        <div className="py-6"><DividerSection variant="blue" /></div>
+        <ClientsSection />
+        <div className="py-6"><DividerSection variant="purple" /></div>
+        <Footer />
+      </div>
     </main>
   );
 }

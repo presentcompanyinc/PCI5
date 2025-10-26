@@ -17,9 +17,9 @@
   
   /* Typography - Mobile mode */
   --text-tiny: 12px;
-  --text-menu: 12px;
-  --text-paragraph: 28px;
-  --text-header: 42px;
+  --text-menu: 16px;
+  --text-paragraph: 18px;
+  --text-header: 32px;
   
   /* Spacing - Mobile mode */
   --padding-gap: 16px;
@@ -63,6 +63,29 @@
   --modal-gap: 16px;
 }
 
+/* Very small mobile breakpoint (< 390px) */
+@media (max-width: 389px) {
+  :root {
+    /* Reduce text sizes on very small screens */
+    --text-menu: 12px;
+    --text-paragraph: 16px;
+  }
+}
+
+/* Intermediate mobile breakpoint (390px - 680px) - Squiggle interpolation */
+@media (min-width: 390px) and (max-width: 679px) {
+  :root {
+    /* Squiggle decorations - Interpolated values */
+    --squiggle-2: 15px;
+    --squiggle-3: 22px;
+    --squiggle-4: 30px;
+    --squiggle-5: 39px;
+    --squiggle-6: 52px;
+    --squiggle-7: 67px;
+    --squiggle-8: 90px;
+  }
+}
+
 /* Tablet breakpoint (640px - 768px) */
 @media (min-width: 640px) {
   :root {
@@ -76,7 +99,7 @@
     
     /* Typography - Tablet mode */
     --text-menu: 24px;
-    --text-paragraph: 36px;
+    --text-paragraph: 20px;
     --text-header: 54px;
     
     /* Spacing - Tablet mode */
@@ -135,7 +158,7 @@
     
     /* Typography - Large tablet mode */
     --text-menu: 28px;
-    --text-paragraph: 42px;
+    --text-paragraph: 22px;
     --text-header: 63px;
     
     /* Spacing - Large tablet mode */
@@ -194,9 +217,9 @@
     
     /* Typography - Desktop mode */
     --text-tiny: 16px;
-    --text-menu: 32px;
-    --text-paragraph: 48px;
-    --text-header: 72px;
+    --text-menu: 24px;
+    --text-paragraph: 24px;
+    --text-header: 54px;
     
     /* Spacing - Desktop mode */
     --padding-gap: 24px;
@@ -217,7 +240,7 @@
     --squiggle-8: 130px;
     
     /* Display width */
-    --display-width: 1440px;
+    --display-width: 1700px;
     
     /* Mobile hide flag */
     --mobile-hide: true;
@@ -238,6 +261,13 @@
     --modal-input-height: 59px;
     --modal-button-text: 32px;
     --modal-gap: 24px;
+  }
+}
+
+/* Extra large desktop breakpoint (> 1700px) - Remove horizontal padding */
+@media (min-width: 1701px) {
+  :root {
+    --padding-lr: 0px;
   }
 }
 
@@ -283,20 +313,20 @@
   
   /* Max widths (fixed) */
   --max-width-prose: 800px;
-  --max-width-full: 1440px;
+  --max-width-full: 1700px;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-pci-sans-bold), "Helvetica Neue", Helvetica, "Arial Black", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* PCI Sans Bold Font Class - Use this for all custom font text */
 .font-pci-sans-bold {
-  font-family: var(--font-pci-sans-bold), sans-serif;
+  font-family: var(--font-pci-sans-bold), "Helvetica Neue", Helvetica, "Arial Black", Arial, sans-serif;
   font-weight: 700;
 }
 
@@ -321,4 +351,14 @@ body {
   .mobile-only {
     display: none;
   }
+}
+
+/* Hide scrollbar for menu */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
 }

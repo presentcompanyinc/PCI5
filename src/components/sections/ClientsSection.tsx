@@ -53,13 +53,13 @@ export function ClientsSection() {
   return (
     <div 
       className="bg-[#f2efea] flex flex-col items-start justify-end w-full" 
-      style={{ padding: 'var(--padding-tb-large) 0' }}
+      style={{ padding: '48px 0' }}
       data-name="Selected Clients"
     >
       {/* Title */}
       <div 
         className="flex items-center justify-center w-full"
-        style={{ padding: '0 var(--padding-lr)', gap: '10px', marginBottom: 'var(--padding-gap-large)' }}
+        style={{ padding: '0 var(--padding-lr)', gap: '10px', marginBottom: '24px' }}
       >
         <div className="flex-1 flex flex-col justify-center">
           <p 

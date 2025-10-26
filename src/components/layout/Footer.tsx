@@ -17,7 +17,7 @@ export function Footer() {
 
   return (
     <div 
-      className="bg-[#f2efea] flex flex-col items-center pb-0 w-full"
+      className="bg-[#f2efea] flex flex-col items-center w-full pb-20 md:pb-0"
       style={{
         gap: 'var(--padding-gap-large)',
         padding: 'var(--padding-tb) var(--padding-lr) 0'

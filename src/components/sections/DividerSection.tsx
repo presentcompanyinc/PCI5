@@ -46,8 +46,11 @@ export function DividerSection({ variant = 'red' }: DividerSectionProps) {
 
   return (
     <div className={`${bgColor} flex flex-col items-start w-full min-w-full`} data-name="Divider">
-      <div className="w-full relative" style={{ aspectRatio }}>
+      <div className="w-full relative lg:block hidden" style={{ aspectRatio }}>
         <img alt="" className="w-full h-auto" src={imgSrc} />
+      </div>
+      <div className="w-full relative overflow-hidden lg:hidden h-[80px]">
+        <img alt="" className="absolute inset-0 w-full h-full object-cover" src={imgSrc} />
       </div>
     </div>
   );

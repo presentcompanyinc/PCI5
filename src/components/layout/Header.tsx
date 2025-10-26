@@ -11,9 +11,8 @@ export function Header() {
   return (
     <div className="bg-[#f2efea] flex flex-wrap items-center gap-0 w-full" data-name="Top Bar">
       <div 
-        className="bg-[#f2efea] flex flex-col md:flex-row items-start w-full"
+        className="bg-[#f2efea] flex flex-col md:flex-row items-start w-full gap-2 md:gap-[var(--padding-gap)]"
         style={{ 
-          gap: 'var(--padding-gap)',
           padding: 'var(--padding-gap) var(--padding-lr)'
         }}
       >

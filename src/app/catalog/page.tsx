@@ -7,6 +7,7 @@ import { Header, MenuBar, Footer } from '@/components/layout';
 import {
   CatalogIntroSection,
   CatalogGridSection,
+  DividerSection,
 } from '@/components/sections';
 
 // Divider image
@@ -15,35 +16,31 @@ const DIVIDER_BOTTOM = '/assets/PCI_Divider_4.svg';
 
 export default function CatalogPage() {
   return (
-    <main className="min-h-screen bg-[#f2efea]">
-      {/* Header */}
-      <Header />
-      
-      {/* Menu Bar */}
-      <MenuBar />
-      
-      {/* Intro Text */}
-      <CatalogIntroSection />
-      
-      {/* Top Divider */}
-      <div className="w-full">
-        <div className="w-full relative" style={{ aspectRatio: '4096/328' }}>
-          <img alt="" className="w-full h-full object-cover" src={DIVIDER_WAVY} />
+    <main className="min-h-screen bg-[#f2efea] flex flex-col items-center">
+      <div className="w-full max-w-[1700px]">
+        {/* Header */}
+        <Header />
+        
+        {/* Menu Bar */}
+        <MenuBar />
+        
+        {/* Intro Text */}
+        <CatalogIntroSection />
+        
+        {/* Top Divider */}
+        <div className="py-6"><DividerSection variant="red" /></div>
+        
+        {/* Catalog Grid */}
+        <div className="pt-6">
+          <CatalogGridSection />
         </div>
+        
+        {/* Bottom Divider */}
+        <div className="py-6"><DividerSection variant="olive" /></div>
+        
+        {/* Footer */}
+        <Footer />
       </div>
-      
-      {/* Catalog Grid */}
-      <CatalogGridSection />
-      
-      {/* Bottom Divider */}
-      <div className="w-full px-[10px] py-[10px]">
-        <div className="w-full relative" style={{ aspectRatio: '6000/480.001' }}>
-          <img alt="" className="w-full h-auto" src={DIVIDER_BOTTOM} />
-        </div>
-      </div>
-      
-      {/* Footer */}
-      <Footer />
     </main>
   );
 }

@@ -44,7 +44,7 @@ export function AnimatedFeaturedWorkSection() {
   const { opacity: opacity3 } = useScrollFade({ target: card3Ref });
 
   const handleViewMoreClick = () => {
-    router.push('/preview/work');
+    router.push('/work');
   };
 
   const wiggleVariants = {

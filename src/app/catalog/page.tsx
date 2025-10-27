@@ -3,7 +3,8 @@
  * Music catalog browsing - library music albums
  */
 
-import { Header, MenuBar, Footer } from '@/components/layout';
+import { Header, Footer } from '@/components/layout';
+import { AnimatedMenuBar } from '@/components/animated';
 import {
   CatalogIntroSection,
   CatalogGridSection,
@@ -22,7 +23,7 @@ export default function CatalogPage() {
         <Header />
         
         {/* Menu Bar */}
-        <MenuBar />
+        <AnimatedMenuBar />
         
         {/* Intro Text */}
         <CatalogIntroSection />

@@ -3,7 +3,8 @@
  * Company information with interactive Memphis Playground
  */
 
-import { Header, MenuBar, Footer } from '@/components/layout';
+import { Header, Footer } from '@/components/layout';
+import { AnimatedMenuBar } from '@/components/animated';
 import { AboutIntroSection, DividerSection } from '@/components/sections';
 import { AboutPagePlayground } from '@/components/memphis/AboutPagePlayground';
 
@@ -19,7 +20,7 @@ export default function AboutPage() {
         <Header />
         
         {/* Menu Bar */}
-        <MenuBar />
+        <AnimatedMenuBar />
         
         {/* Intro Text */}
         <AboutIntroSection />

@@ -113,12 +113,12 @@ export function AnimatedMenuBar() {
       }}
       data-name="Menu Bar"
     >
-      <MenuItem rotation={358.749} href="/preview">Home</MenuItem>
-      <MenuItem rotation={2} href="/preview/work">Work</MenuItem>
-      <MenuItem rotation={359.25} width="var(--menu-catalog-width)" href="/preview/catalog">
+      <MenuItem rotation={358.749} href="/">Home</MenuItem>
+      <MenuItem rotation={2} href="/work">Work</MenuItem>
+      <MenuItem rotation={359.25} width="var(--menu-catalog-width)" href="/catalog">
         Catalog
       </MenuItem>
-      <MenuItem rotation={1} href="/preview/about">About</MenuItem>
+      <MenuItem rotation={1} href="/about">About</MenuItem>
       <MenuItem rotation={358.25} width="var(--menu-catalog-width)" onClick={openContactModal}>
         Contact
       </MenuItem>

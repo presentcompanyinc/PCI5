@@ -3,7 +3,8 @@
  * Showcases PCI's portfolio of work
  */
 
-import { Header, MenuBar, Footer } from '@/components/layout';
+import { Header, Footer } from '@/components/layout';
+import { AnimatedMenuBar } from '@/components/animated';
 import {
   WorkIntroSection,
   DividerSection,
@@ -18,7 +19,7 @@ export default function WorkPage() {
         <Header />
         
         {/* Menu Bar */}
-        <MenuBar />
+        <AnimatedMenuBar />
         
         {/* Intro Text */}
         <WorkIntroSection />

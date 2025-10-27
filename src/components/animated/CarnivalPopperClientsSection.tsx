@@ -110,7 +110,7 @@ export function CarnivalPopperClientsSection() {
   
   const [explodedLogos, setExplodedLogos] = useState<Set<string>>(new Set());
   const [particles, setParticles] = useState<ExplosionParticle[]>([]);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | undefined>(undefined);
   const particlesStartTimeRef = useRef<number>(0);
 
   // Row 1: Scrolls left to right (normal direction)

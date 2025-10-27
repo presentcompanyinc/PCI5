@@ -3,6 +3,10 @@
  * Extracted from Figma design
  */
 
+'use client';
+
+import { motion } from 'framer-motion';
+
 // Work sample images - Default
 const IMG_INGRID_GOES_WEST = '/assets/PCI_IngridGoesWest.jpg';
 const IMG_SISTERS = '/assets/PCI_Sisters.jpg';
@@ -40,11 +44,22 @@ interface WorkItemProps {
   subtitle2?: string;
   studio: string;
   className?: string;
+  delay?: number;
 }
 
-function WorkItem({ src, srcOverlay, alt, title, subtitle1, subtitle2, studio, className = '' }: WorkItemProps) {
+function WorkItem({ src, srcOverlay, alt, title, subtitle1, subtitle2, studio, className = '', delay = 0 }: WorkItemProps) {
   return (
-    <div className={`flex-1 min-w-0 ${className} group cursor-pointer`}>
+    <motion.div 
+      className={`flex-1 min-w-0 ${className} group cursor-pointer`}
+      initial={{ opacity: 0, y: 80 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ 
+        duration: 0.9, 
+        delay,
+        ease: [0.22, 1, 0.36, 1] // Custom easing for smooth float
+      }}
+    >
       <div 
         className="relative w-full overflow-hidden" 
         style={{ aspectRatio: '1/1' }}
@@ -112,7 +127,7 @@ function WorkItem({ src, srcOverlay, alt, title, subtitle1, subtitle2, studio, c
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -153,6 +168,7 @@ export function WorkGridSection() {
           subtitle1="Original Score"
           subtitle2="Dir. Matt Spicer"
           studio="NEON"
+          delay={0}
         />
         <WorkItem 
           src={IMG_SISTERS}
@@ -162,6 +178,7 @@ export function WorkGridSection() {
           subtitle1="Original Song"
           subtitle2="Created by: Sarah Goldberg + Susan Stanley"
           studio="Shaftesbury"
+          delay={0.1}
         />
       </div>
 
@@ -180,6 +197,7 @@ export function WorkGridSection() {
           subtitle1="Main Theme"
           subtitle2="Created by Joe Mande"
           studio="HULU"
+          delay={0.2}
         />
         <WorkItem 
           src={IMG_DUCK_BUTTER}
@@ -189,6 +207,7 @@ export function WorkGridSection() {
           subtitle1="Original Score"
           subtitle2="Dir. Miguel Arteta"
           studio="The Orchard"
+          delay={0.3}
         />
       </div>
 
@@ -206,6 +225,7 @@ export function WorkGridSection() {
           title="The New Yorker Presents"
           subtitle1="Main Theme"
           studio="Amazon/Jigsaw Productions"
+          delay={0.4}
         />
         <WorkItem 
           src={IMG_PAST_MY_BEDTIME}
@@ -215,6 +235,7 @@ export function WorkGridSection() {
           subtitle1="Original Song"
           subtitle2="Created by: Max Silvestri + Leah Beckmann"
           studio="Audible"
+          delay={0.5}
         />
       </div>
 
@@ -233,6 +254,7 @@ export function WorkGridSection() {
           subtitle1="Original Score"
           subtitle2="Dir. Pavan Moondi"
           studio="Search Engine Films"
+          delay={0.6}
         />
         <WorkItem 
           src={IMG_CITY_OF_LIES}
@@ -242,6 +264,7 @@ export function WorkGridSection() {
           subtitle1="Score Production"
           subtitle2="Dir. Brad Furman"
           studio="Saban Films"
+          delay={0.7}
         />
       </div>
 
@@ -260,6 +283,7 @@ export function WorkGridSection() {
           subtitle1="Synchronization"
           subtitle2="Created by Alena Smith"
           studio="Apple"
+          delay={0.8}
         />
         <WorkItem 
           src={IMG_FAMILY_GUY}
@@ -269,6 +293,7 @@ export function WorkGridSection() {
           subtitle1="Synchronization"
           subtitle2="Created by: Seth McFarlane"
           studio="FOX"
+          delay={0.9}
         />
       </div>
 
@@ -287,6 +312,7 @@ export function WorkGridSection() {
           subtitle1="Score Production"
           subtitle2="Created by Harriet Warner"
           studio="Amazon"
+          delay={1.0}
         />
         <WorkItem 
           src={IMG_THE_DRY}
@@ -296,6 +322,7 @@ export function WorkGridSection() {
           subtitle1="Score Production"
           subtitle2="Dir. Robert Connoly"
           studio="Roadshow Films"
+          delay={1.1}
         />
       </div>
     </div>

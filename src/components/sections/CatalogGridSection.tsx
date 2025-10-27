@@ -3,6 +3,11 @@
  * Extracted from Figma design - 30 albums in a 4-column grid
  */
 
+'use client';
+
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { useState } from 'react';
+
 // Catalog album cover images
 const ALBUMS = [
   { id: 1, src: '/assets/PCI001final.jpg', alt: 'PCI001' },
@@ -43,18 +48,83 @@ interface AlbumCoverProps {
 }
 
 function AlbumCover({ src, alt }: AlbumCoverProps) {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  // Motion values for smooth mouse tracking
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  
+  // Spring animation for smooth, natural movement
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), {
+    stiffness: 300,
+    damping: 30,
+  });
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-8, 8]), {
+    stiffness: 300,
+    damping: 30,
+  });
+  
+  // Dynamic shadow based on tilt
+  const shadowX = useTransform(x, [-0.5, 0.5], [-10, 10]);
+  const shadowY = useTransform(y, [-0.5, 0.5], [-10, 10]);
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    // Normalize mouse position from -0.5 to 0.5
+    x.set((event.clientX - centerX) / rect.width);
+    y.set((event.clientY - centerY) / rect.height);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    x.set(0);
+    y.set(0);
+  };
+
   return (
     <div className="flex-1 min-w-0 basis-0">
-      <div 
-        className="relative w-full overflow-hidden" 
-        style={{ aspectRatio: '1/1' }}
+      <motion.div
+        className="relative w-full cursor-pointer"
+        style={{ 
+          aspectRatio: '1/1',
+          perspective: '1000px',
+        }}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={handleMouseLeave}
+        whileHover={{ 
+          scale: 1.05,
+          transition: { 
+            duration: 0.3,
+            ease: [0.22, 1, 0.36, 1]
+          }
+        }}
       >
-        <img
-          alt={alt}
-          className="w-full h-full object-cover"
-          src={src}
-        />
-      </div>
+        <motion.div
+          className="w-full h-full relative"
+          style={{
+            rotateX,
+            rotateY,
+            transformStyle: 'preserve-3d',
+          }}
+          animate={{
+            boxShadow: isHovered 
+              ? '0 25px 50px rgba(0, 0, 0, 0.3)' 
+              : '0 4px 8px rgba(0, 0, 0, 0.1)',
+          }}
+          transition={{ duration: 0.3 }}
+        >
+          <img
+            alt={alt}
+            className="w-full h-full object-cover"
+            src={src}
+            style={{ pointerEvents: 'none' }}
+          />
+        </motion.div>
+      </motion.div>
     </div>
   );
 }
@@ -74,25 +144,44 @@ export function CatalogGridSection() {
         padding: '0 var(--padding-lr)'
       }}
     >
-      {rows.map((row, rowIndex) => (
-        <div 
-          key={rowIndex} 
-          className="flex flex-col md:flex-row w-full"
-          style={{ gap: 'var(--padding-gap)' }}
-        >
-          {row.map((album) => (
-            <AlbumCover 
-              key={album.id} 
-              src={album.src} 
-              alt={album.alt} 
-            />
-          ))}
-          {/* Fill empty slots in last row to maintain grid alignment */}
-          {row.length < 4 && Array.from({ length: 4 - row.length }).map((_, idx) => (
-            <div key={`empty-${idx}`} className="flex-1 min-w-0 basis-0 md:block hidden" />
-          ))}
-        </div>
-      ))}
+      {rows.map((row, rowIndex) => {
+        // Alternate direction: even rows from left, odd rows from right
+        const isEvenRow = rowIndex % 2 === 0;
+        
+        return (
+          <motion.div 
+            key={rowIndex} 
+            className="flex flex-col md:flex-row w-full"
+            style={{ gap: 'var(--padding-gap)' }}
+            initial={{ 
+              opacity: 0, 
+              x: isEvenRow ? -200 : 200 
+            }}
+            whileInView={{ 
+              opacity: 1, 
+              x: 0 
+            }}
+            viewport={{ once: true, margin: "0px" }}
+            transition={{ 
+              duration: 1.2, 
+              delay: 0.1,
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}
+          >
+            {row.map((album) => (
+              <AlbumCover 
+                key={album.id} 
+                src={album.src} 
+                alt={album.alt} 
+              />
+            ))}
+            {/* Fill empty slots in last row to maintain grid alignment */}
+            {row.length < 4 && Array.from({ length: 4 - row.length }).map((_, idx) => (
+              <div key={`empty-${idx}`} className="flex-1 min-w-0 basis-0 md:block hidden" />
+            ))}
+          </motion.div>
+        );
+      })}
     </div>
   );
 }

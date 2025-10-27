@@ -27,12 +27,12 @@ function MenuItem({ children, rotation, width, href, onClick }: MenuItemProps) {
     hover: { 
       pathLength: 1, 
       opacity: 1,
-      transition: { duration: 0.3, ease: "easeInOut" }
+      transition: { duration: 0.3, ease: [0.42, 0, 0.58, 1] as const }
     },
     exit: {
       pathLength: 0,
       opacity: 0,
-      transition: { duration: 0.3, ease: "easeInOut" }
+      transition: { duration: 0.3, ease: [0.42, 0, 0.58, 1] as const }
     }
   };
 

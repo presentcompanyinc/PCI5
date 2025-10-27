@@ -79,7 +79,7 @@ function AnimatedServiceItem({
               fill="none"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={squiggleInView ? { pathLength: 1, opacity: 1 } : {}}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
+              transition={{ duration: 0.6, ease: [0.42, 0, 0.58, 1] as const }}
             />
           </svg>
         </div>
@@ -108,7 +108,7 @@ export function AnimatedServicesSection() {
         style={{ gap: 'var(--padding-gap-large)' }}
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: [0, 0, 0.58, 1] as const }}
       >
         <motion.div 
           style={{ transform: 'rotate(359.75deg)' }}

@@ -52,7 +52,7 @@ function AnimatedSection({ section, index }: { section: { title: string; color: 
         y: 0, 
         rotate: section.rotation 
       } : {}}
-      transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+      transition={{ duration: 0.6, ease: [0, 0, 0.58, 1] as const, delay: index * 0.1 }}
       className="border-2 border-black p-8"
       style={{ backgroundColor: section.color }}
     >

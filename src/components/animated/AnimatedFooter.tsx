@@ -66,7 +66,6 @@ export function AnimatedFooter() {
       {/* Contact Button with Float and Fill Animation */}
       <div className="flex items-center justify-center">
         <animated.div
-          style={float1}
           className="relative"
           style={{
             ...float1,
@@ -92,7 +91,7 @@ export function AnimatedFooter() {
                 }}
                 transition={{ 
                   duration: 0.25, 
-                  ease: [0.65, 0, 0.35, 1],
+                  ease: [0.65, 0, 0.35, 1] as const,
                   delay: 0
                 }}
               />
@@ -107,7 +106,7 @@ export function AnimatedFooter() {
                 animate={{ scaleX: isHovered ? 1 : 0 }}
                 transition={{ 
                   duration: 0.3, 
-                  ease: [0.87, 0, 0.13, 1],
+                  ease: [0.87, 0, 0.13, 1] as const,
                   delay: 0.05
                 }}
               />
@@ -122,7 +121,7 @@ export function AnimatedFooter() {
                 }}
                 transition={{ 
                   duration: 0.35, 
-                  ease: [0.76, 0, 0.24, 1],
+                  ease: [0.76, 0, 0.24, 1] as const,
                   delay: 0.1
                 }}
               />

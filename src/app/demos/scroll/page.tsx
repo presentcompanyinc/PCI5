@@ -5,10 +5,9 @@
  * Demonstrations of animations triggered by scrolling
  */
 
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
-import { useSpring, animated } from '@react-spring/web';
-import { DemoCard, DemoControls, CodeBlock } from '@/components/demos';
+import { DemoCard, CodeBlock } from '@/components/demos';
 
 export default function ScrollDemos() {
   return (
@@ -39,11 +38,32 @@ export default function ScrollDemos() {
   );
 }
 
+// Helper component for animated section
+function AnimatedSection({ section, index }: { section: { title: string; color: string; rotation: number }; index: number }) {
+  const sectionRef = useRef(null);
+  const sectionInView = useInView(sectionRef, { once: true, amount: 0.3 });
+  
+  return (
+    <motion.div
+      ref={sectionRef}
+      initial={{ opacity: 0, y: 50, rotate: section.rotation - 359 }}
+      animate={sectionInView ? { 
+        opacity: 1, 
+        y: 0, 
+        rotate: section.rotation 
+      } : {}}
+      transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+      className="border-2 border-black p-8"
+      style={{ backgroundColor: section.color }}
+    >
+      <h3 className="font-pci-sans-bold text-4xl">{section.title}</h3>
+      <p className="mt-2 opacity-80">This section animates when scrolled into view</p>
+    </motion.div>
+  );
+}
+
 // Demo D: Section Fade-Up with Rotation Jitter
 function DemoDSectionFadeUp() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-
   const sections = [
     { title: "FEATURED", color: "#f37d7d", rotation: 359 },
     { title: "SERVICES", color: "#03bed8", rotation: 1 },
@@ -85,29 +105,9 @@ function Section() {
           <p>Scroll down...</p>
         </div>
 
-        {sections.map((section, index) => {
-          const sectionRef = useRef(null);
-          const sectionInView = useInView(sectionRef, { once: true, amount: 0.3 });
-          
-          return (
-            <motion.div
-              key={section.title}
-              ref={sectionRef}
-              initial={{ opacity: 0, y: 50, rotate: section.rotation - 359 }}
-              animate={sectionInView ? { 
-                opacity: 1, 
-                y: 0, 
-                rotate: section.rotation 
-              } : {}}
-              transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
-              className="border-2 border-black p-8"
-              style={{ backgroundColor: section.color }}
-            >
-              <h3 className="font-pci-sans-bold text-4xl">{section.title}</h3>
-              <p className="mt-2 opacity-80">This section animates when scrolled into view</p>
-            </motion.div>
-          );
-        })}
+        {sections.map((section, index) => (
+          <AnimatedSection key={section.title} section={section} index={index} />
+        ))}
 
         <div style={{ height: '200px' }} />
       </div>
@@ -262,7 +262,7 @@ function DemoFLogoPop() {
       opacity: 1,
       transition: {
         duration: 0.4,
-        ease: [0.34, 1.56, 0.64, 1], // Bounce easing
+        ease: [0.34, 1.56, 0.64, 1] as const, // Bounce easing
       },
     },
   };
@@ -319,7 +319,7 @@ const itemVariants = {
           animate={isInView ? "visible" : "hidden"}
           className="grid grid-cols-3 md:grid-cols-6 gap-4 mt-8"
         >
-          {logos.map((logo, index) => (
+          {logos.map((logo) => (
             <motion.div
               key={logo.name}
               variants={itemVariants}

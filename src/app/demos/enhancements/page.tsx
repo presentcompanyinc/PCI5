@@ -6,8 +6,8 @@
  */
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useSpring, animated, useTrail } from '@react-spring/web';
+import { motion } from 'framer-motion';
+import { useSpring, animated } from '@react-spring/web';
 import { DemoCard, CodeBlock, ComparisonView } from '@/components/demos';
 
 export default function EnhancementDemos() {
@@ -36,6 +36,30 @@ export default function EnhancementDemos() {
       {/* Demo I: Work Overlay Spring */}
       <DemoIOverlaySpring />
     </div>
+  );
+}
+
+// Helper component for animated logo
+function AnimatedLogo({ logo, isHovered, onHover, onLeave }: { 
+  logo: string; 
+  isHovered: boolean; 
+  onHover: () => void;
+  onLeave: () => void;
+}) {
+  const spring = useSpring({
+    scale: isHovered ? 1.15 : 1,
+    config: { tension: 300, friction: 20 }
+  });
+
+  return (
+    <animated.div
+      style={spring}
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
+      className="w-20 h-20 border-2 border-black flex items-center justify-center bg-white font-pci-sans-bold shrink-0 cursor-pointer"
+    >
+      {logo}
+    </animated.div>
   );
 }
 
@@ -106,24 +130,15 @@ function Logo({ name, isHovered, onHover }) {
                   animation: hoveredIndex !== null ? 'none' : 'marquee-demo 12s linear infinite',
                 }}
               >
-                {logos.map((logo, i) => {
-                  const spring = useSpring({
-                    scale: hoveredIndex === i ? 1.15 : 1,
-                    config: { tension: 300, friction: 20 }
-                  });
-
-                  return (
-                    <animated.div
-                      key={i}
-                      style={spring}
-                      onMouseEnter={() => setHoveredIndex(i)}
-                      onMouseLeave={() => setHoveredIndex(null)}
-                      className="w-20 h-20 border-2 border-black flex items-center justify-center bg-white font-pci-sans-bold shrink-0 cursor-pointer"
-                    >
-                      {logo}
-                    </animated.div>
-                  );
-                })}
+                {logos.map((logo, i) => (
+                  <AnimatedLogo
+                    key={i}
+                    logo={logo}
+                    isHovered={hoveredIndex === i}
+                    onHover={() => setHoveredIndex(i)}
+                    onLeave={() => setHoveredIndex(null)}
+                  />
+                ))}
               </div>
             </div>
           </div>

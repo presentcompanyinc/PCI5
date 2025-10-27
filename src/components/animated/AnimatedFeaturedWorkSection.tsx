@@ -93,9 +93,8 @@ export function AnimatedFeaturedWorkSection() {
 
       {/* Main Featured Image with Parallax */}
       <motion.div 
-        style={{ y: y1 }}
         className="w-full relative group cursor-pointer overflow-hidden" 
-        style={{ aspectRatio: '4096/1886' }}
+        style={{ y: y1, aspectRatio: '4096/1886' }}
       >
         <img
           alt="The Paper"
@@ -157,9 +156,8 @@ export function AnimatedFeaturedWorkSection() {
         style={{ gap: 'var(--padding-gap)' }}
       >
         <motion.div 
-          style={{ y: y2 }}
           className="flex-1 relative group cursor-pointer overflow-hidden" 
-          style={{ aspectRatio: '2000/2000' }}
+          style={{ y: y2, aspectRatio: '2000/2000' }}
         >
           <img
             alt="Oh Jerome No"
@@ -215,9 +213,8 @@ export function AnimatedFeaturedWorkSection() {
           </div>
         </motion.div>
         <motion.div 
-          style={{ y: y2 }}
           className="flex-1 relative group cursor-pointer overflow-hidden" 
-          style={{ aspectRatio: '2000/2000' }}
+          style={{ y: y2, aspectRatio: '2000/2000' }}
         >
           <img
             alt="Serial"

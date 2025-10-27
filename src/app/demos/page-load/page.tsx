@@ -8,7 +8,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useSpring, animated } from '@react-spring/web';
-import { DemoCard, DemoControls, CodeBlock, ComparisonView } from '@/components/demos';
+import { DemoCard, DemoControls, CodeBlock } from '@/components/demos';
 
 export default function PageLoadDemos() {
   return (
@@ -70,7 +70,7 @@ function DemoAStaggeredText() {
       rotate: Math.random() * 2 - 1, // -1 to +1 degrees
       transition: { 
         duration: duration,
-        ease: [0.43, 0.13, 0.23, 0.96]
+        ease: [0.43, 0.13, 0.23, 0.96] as const
       }
     },
   };
@@ -166,7 +166,6 @@ const wordVariants = {
 
 // Demo B: Logo Stamp Effect
 function DemoBLogoStamp() {
-  const [key, setKey] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const spring1 = useSpring({
@@ -192,8 +191,8 @@ function DemoBLogoStamp() {
   });
 
   const replay = () => {
-    setIsAnimating(true);
-    setKey(k => k + 1);
+    setIsAnimating(false);
+    setTimeout(() => setIsAnimating(true), 10);
   };
 
   useEffect(() => {
@@ -234,21 +233,18 @@ const spring2 = useSpring({
 
       <div className="bg-[#f2efea] border-2 border-black p-8 flex flex-col gap-4">
         <animated.div 
-          style={spring1}
           className="font-pci-sans-bold"
           style={{...spring1, fontSize: 'var(--text-header)' }}
         >
           PRESENT
         </animated.div>
         <animated.div 
-          style={spring2}
           className="font-pci-sans-bold"
           style={{...spring2, fontSize: 'var(--text-header)' }}
         >
           COMPANY
         </animated.div>
         <animated.div 
-          style={spring3}
           className="font-pci-sans-bold"
           style={{...spring3, fontSize: 'var(--text-header)' }}
         >

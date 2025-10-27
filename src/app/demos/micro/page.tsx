@@ -7,7 +7,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSpring, animated, config } from '@react-spring/web';
+import { useSpring, animated } from '@react-spring/web';
 import { DemoCard, CodeBlock } from '@/components/demos';
 
 export default function MicroDemos() {
@@ -41,8 +41,6 @@ export default function MicroDemos() {
 
 // Demo J: Button Wiggle on Hover
 function DemoJButtonWiggle() {
-  const [isHovered, setIsHovered] = useState(false);
-
   const wiggleVariants = {
     hover: {
       rotate: [0, -1, 1, -1, 1, 0],
@@ -83,8 +81,6 @@ const wiggleVariants = {
         <motion.button
           variants={wiggleVariants}
           whileHover="hover"
-          onHoverStart={() => setIsHovered(true)}
-          onHoverEnd={() => setIsHovered(false)}
           className="px-6 py-3 bg-white border-2 border-black font-pci-sans-bold flex items-center gap-2 cursor-pointer"
           style={{ boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)' }}
         >

@@ -31,7 +31,7 @@ export function AnimatedIntroSection() {
       y: 0,
       transition: { 
         duration: 0.2, // 2x faster: 0.2s duration
-        ease: [0.43, 0.13, 0.23, 0.96]
+        ease: [0.43, 0.13, 0.23, 0.96] as const
       }
     },
   };

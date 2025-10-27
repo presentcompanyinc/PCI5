@@ -78,7 +78,7 @@ export function AnimatedDividerSection({ variant = 'red' }: AnimatedDividerSecti
         animate={isInView ? { opacity: 1 } : {}}
         transition={{
           duration: 0.6,
-          ease: "easeOut"
+          ease: [0, 0, 0.58, 1] as const
         }}
       >
         <img alt="" className="w-full h-auto" src={imgSrc} />
@@ -91,7 +91,7 @@ export function AnimatedDividerSection({ variant = 'red' }: AnimatedDividerSecti
         animate={isInView ? { opacity: 1 } : {}}
         transition={{
           duration: 0.6,
-          ease: "easeOut"
+          ease: [0, 0, 0.58, 1] as const
         }}
       >
         <img alt="" className="absolute inset-0 w-full h-full object-cover" src={imgSrc} />

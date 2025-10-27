@@ -4,11 +4,13 @@
  * AnimatedFeaturedWorkSection - Featured work with button wiggle on hover
  * Animation 6: Button Wiggle on Hover
  * Animation 3: Parallax Depth Effect
+ * Scroll-linked fade applied to individual cards
  */
 
 import { useRouter } from 'next/navigation';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { useScrollFade } from '@/hooks/useScrollFade';
 
 const IMG_THE_PAPER = '/assets/PCI_ThePaper.jpg';
 const IMG_THE_PAPER_OVERLAY = '/assets/PCI_ThePaper_NoTitle.jpg';
@@ -21,6 +23,11 @@ const ARROW = '/assets/arrow.svg';
 export function AnimatedFeaturedWorkSection() {
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Refs for each card for scroll-fade effect
+  const card1Ref = useRef<HTMLDivElement>(null);
+  const card2Ref = useRef<HTMLDivElement>(null);
+  const card3Ref = useRef<HTMLDivElement>(null);
 
   // Parallax effect for images
   const { scrollYProgress } = useScroll({
@@ -30,6 +37,11 @@ export function AnimatedFeaturedWorkSection() {
 
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -30]); // Main image - slower
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -50]); // Side images - faster
+  
+  // Scroll-fade for each individual card
+  const { opacity: opacity1 } = useScrollFade({ target: card1Ref });
+  const { opacity: opacity2 } = useScrollFade({ target: card2Ref });
+  const { opacity: opacity3 } = useScrollFade({ target: card3Ref });
 
   const handleViewMoreClick = () => {
     router.push('/preview/work');
@@ -93,8 +105,9 @@ export function AnimatedFeaturedWorkSection() {
 
       {/* Main Featured Image with Parallax */}
       <motion.div 
+        ref={card1Ref}
         className="w-full relative group cursor-pointer overflow-hidden" 
-        style={{ y: y1, aspectRatio: '4096/1886' }}
+        style={{ y: y1, opacity: opacity1, aspectRatio: '4096/1886' }}
       >
         <img
           alt="The Paper"
@@ -156,8 +169,9 @@ export function AnimatedFeaturedWorkSection() {
         style={{ gap: 'var(--padding-gap)' }}
       >
         <motion.div 
+          ref={card2Ref}
           className="flex-1 relative group cursor-pointer overflow-hidden" 
-          style={{ y: y2, aspectRatio: '2000/2000' }}
+          style={{ y: y2, opacity: opacity2, aspectRatio: '2000/2000' }}
         >
           <img
             alt="Oh Jerome No"
@@ -213,8 +227,9 @@ export function AnimatedFeaturedWorkSection() {
           </div>
         </motion.div>
         <motion.div 
+          ref={card3Ref}
           className="flex-1 relative group cursor-pointer overflow-hidden" 
-          style={{ y: y2, aspectRatio: '2000/2000' }}
+          style={{ y: y2, opacity: opacity3, aspectRatio: '2000/2000' }}
         >
           <img
             alt="Serial"

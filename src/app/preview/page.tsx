@@ -9,9 +9,10 @@ import {
   AnimatedMenuBar,
   AnimatedDividerSection,
   AnimatedFeaturedWorkSection,
-  AnimatedClientsSection,
+  CarnivalPopperClientsSection,
   AnimatedServicesSection,
   AnimatedFooter,
+  ScrollFadeWrapper,
 } from '@/components/animated';
 
 export default function PreviewHome() {
@@ -35,14 +36,39 @@ export default function PreviewHome() {
       <div className="w-full max-w-[1700px]">
         <Header />
         <AnimatedMenuBar />
-        <AnimatedIntroSection />
-        <div className="py-6"><AnimatedDividerSection variant="red" /></div>
+        
+        <ScrollFadeWrapper>
+          <AnimatedIntroSection />
+        </ScrollFadeWrapper>
+        
+        <ScrollFadeWrapper>
+          <div className="py-6"><AnimatedDividerSection variant="red" /></div>
+        </ScrollFadeWrapper>
+        
+        {/* FeaturedWork has individual card scroll-fade built-in */}
         <AnimatedFeaturedWorkSection />
-        <div className="py-6"><AnimatedDividerSection variant="teal" /></div>
-        <AnimatedServicesSection />
-        <div className="py-6"><AnimatedDividerSection variant="blue" /></div>
-        <AnimatedClientsSection />
-        <div className="py-6"><AnimatedDividerSection variant="purple" /></div>
+        
+        <ScrollFadeWrapper>
+          <div className="py-6"><AnimatedDividerSection variant="teal" /></div>
+        </ScrollFadeWrapper>
+        
+        <ScrollFadeWrapper>
+          <AnimatedServicesSection />
+        </ScrollFadeWrapper>
+        
+        <ScrollFadeWrapper>
+          <div className="py-6"><AnimatedDividerSection variant="blue" /></div>
+        </ScrollFadeWrapper>
+        
+        <ScrollFadeWrapper>
+          <CarnivalPopperClientsSection />
+        </ScrollFadeWrapper>
+        
+        <ScrollFadeWrapper>
+          <div className="py-6"><AnimatedDividerSection variant="purple" /></div>
+        </ScrollFadeWrapper>
+        
+        {/* Footer stays at full opacity */}
         <AnimatedFooter />
       </div>
     </main>

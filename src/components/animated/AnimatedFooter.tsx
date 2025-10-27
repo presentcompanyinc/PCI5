@@ -19,40 +19,40 @@ export function AnimatedFooter() {
   const openContactModal = CONTACT_MODAL_TYPE === 'form' ? openFormModal : openInfoModal;
   const [isHovered, setIsHovered] = useState(false);
 
-  // Float animation for contact button
+  // Subtle float animation for contact button - gentle movement with slight rotation
   const float1 = useSpring({
-    from: { y: 0 },
+    from: { y: 0, rotate: 0 },
     to: async (next) => {
       while (true) {
-        await next({ y: -8 });
-        await next({ y: 0 });
+        await next({ y: -6, rotate: -0.5 });
+        await next({ y: 0, rotate: 0 });
       }
     },
-    config: { duration: 3000 }
+    config: { tension: 80, friction: 20, mass: 2 }
   });
 
-  // Float animation for copyright text
+  // Subtle float animation for copyright text - gentle vertical movement
   const float2 = useSpring({
-    from: { y: 0 },
+    from: { y: 0, x: 0, rotate: 0 },
     to: async (next) => {
       while (true) {
-        await next({ y: -6 });
-        await next({ y: 0 });
+        await next({ y: -4, x: 1, rotate: 0.3 });
+        await next({ y: 0, x: 0, rotate: 0 });
       }
     },
-    config: { duration: 3500 }
+    config: { tension: 70, friction: 22, mass: 2.5 }
   });
 
-  // Float animation for instagram text
+  // Subtle float animation for instagram text - gentle opposite movement
   const float3 = useSpring({
-    from: { y: 0 },
+    from: { y: 0, x: 0, rotate: 0 },
     to: async (next) => {
       while (true) {
-        await next({ y: -10 });
-        await next({ y: 0 });
+        await next({ y: -5, x: -1, rotate: -0.3 });
+        await next({ y: 0, x: 0, rotate: 0 });
       }
     },
-    config: { duration: 4000 }
+    config: { tension: 75, friction: 21, mass: 2.2 }
   });
 
   return (
@@ -68,7 +68,8 @@ export function AnimatedFooter() {
         <animated.div
           className="relative"
           style={{
-            ...float1,
+            y: float1.y,
+            rotate: float1.rotate,
             width: 'var(--contact-button-width)',
             height: 'auto',
             aspectRatio: '356/95.986'
@@ -145,13 +146,27 @@ export function AnimatedFooter() {
           gap: 'var(--padding-gap)'
         }}
       >
-        <animated.div style={float2} className="font-pci-sans-bold shrink-0">
+        <animated.div 
+          style={{
+            y: float2.y,
+            x: float2.x,
+            rotate: float2.rotate
+          }} 
+          className="font-pci-sans-bold shrink-0"
+        >
           <p className="leading-normal whitespace-pre">COPYRIGHT 2025 P.C.I</p>
         </animated.div>
 
         <WeatherTimeWidget />
 
-        <animated.div style={float3} className="font-pci-sans-bold shrink-0">
+        <animated.div 
+          style={{
+            y: float3.y,
+            x: float3.x,
+            rotate: float3.rotate
+          }} 
+          className="font-pci-sans-bold shrink-0"
+        >
           <p className="leading-normal whitespace-pre">INSTAGRAM</p>
         </animated.div>
       </div>

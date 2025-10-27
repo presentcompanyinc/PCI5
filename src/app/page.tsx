@@ -1,32 +1,60 @@
 /**
  * Homepage - Present Company Included
- * Pixel-perfect implementation from Figma design
+ * With all animations applied
  */
 
-import { Header, MenuBar, Footer } from '@/components/layout';
+import { Header } from '@/components/layout';
 import {
-  IntroSection,
-  DividerSection,
-  FeaturedWorkSection,
-  ServicesSection,
-  ClientsSection,
-} from '@/components/sections';
+  AnimatedIntroSection,
+  AnimatedMenuBar,
+  AnimatedDividerSection,
+  AnimatedFeaturedWorkSection,
+  CarnivalPopperClientsSection,
+  AnimatedServicesSection,
+  AnimatedFooter,
+  ScrollFadeWrapper,
+} from '@/components/animated';
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#f2efea] flex flex-col items-center">
       <div className="w-full max-w-[1700px]">
         <Header />
-        <MenuBar />
-        <IntroSection />
-        <div className="py-6"><DividerSection variant="red" /></div>
-        <FeaturedWorkSection />
-        <div className="py-6"><DividerSection variant="teal" /></div>
-        <ServicesSection />
-        <div className="py-6"><DividerSection variant="blue" /></div>
-        <ClientsSection />
-        <div className="py-6"><DividerSection variant="purple" /></div>
-        <Footer />
+        <AnimatedMenuBar />
+        
+        <ScrollFadeWrapper>
+          <AnimatedIntroSection />
+        </ScrollFadeWrapper>
+        
+        <ScrollFadeWrapper>
+          <div className="py-6"><AnimatedDividerSection variant="red" /></div>
+        </ScrollFadeWrapper>
+        
+        {/* FeaturedWork has individual card scroll-fade built-in */}
+        <AnimatedFeaturedWorkSection />
+        
+        <ScrollFadeWrapper>
+          <div className="py-6"><AnimatedDividerSection variant="teal" /></div>
+        </ScrollFadeWrapper>
+        
+        <ScrollFadeWrapper>
+          <AnimatedServicesSection />
+        </ScrollFadeWrapper>
+        
+        <ScrollFadeWrapper>
+          <div className="py-6"><AnimatedDividerSection variant="blue" /></div>
+        </ScrollFadeWrapper>
+        
+        <ScrollFadeWrapper>
+          <CarnivalPopperClientsSection />
+        </ScrollFadeWrapper>
+        
+        <ScrollFadeWrapper>
+          <div className="py-6"><AnimatedDividerSection variant="purple" /></div>
+        </ScrollFadeWrapper>
+        
+        {/* Footer stays at full opacity */}
+        <AnimatedFooter />
       </div>
     </main>
   );

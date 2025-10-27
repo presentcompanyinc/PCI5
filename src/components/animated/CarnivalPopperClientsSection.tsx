@@ -6,7 +6,7 @@
  */
 
 import { useRef, useState, useEffect } from 'react';
-import { motion, useInView, AnimatePresence, useAnimationFrame } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 
 // Existing client logos
 const IMG_ABC = '/assets/ABC.svg';
@@ -222,7 +222,7 @@ export function CarnivalPopperClientsSection() {
           let newY = particle.y + newVelocityY;
           let newVelocityX = particle.velocity.x * friction;
           let newX = particle.x + newVelocityX;
-          let newRotation = particle.rotation + particle.angularVelocity;
+          const newRotation = particle.rotation + particle.angularVelocity;
           let newScale = particle.scale;
 
           // Bounce off bottom

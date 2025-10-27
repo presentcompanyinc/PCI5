@@ -8,7 +8,7 @@ import { RefObject } from 'react';
 
 interface UseScrollFadeOptions {
   /** Element reference to track */
-  target: RefObject<HTMLElement>;
+  target: RefObject<HTMLElement | null>;
   /** Fade completes when element reaches this % into viewport (0-1, default: 0.2 = 20%) */
   fadeInStart?: number;
   /** Fade out begins when element reaches this % through viewport (0-1, default: 0.8 = 80%) */

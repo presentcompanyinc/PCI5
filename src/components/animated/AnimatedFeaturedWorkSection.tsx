@@ -13,7 +13,6 @@ import { motion, useScroll, useTransform, useInView, MotionStyle } from 'framer-
 import { useRef, useState, useEffect } from 'react';
 import { useScrollFade } from '@/hooks/useScrollFade';
 import { useTouchDevice } from '@/hooks/useTouchDevice';
-import { useWorkCardInView } from '@/hooks/useWorkCardInView';
 
 const IMG_THE_PAPER = '/assets/PCI_ThePaper.jpg';
 const IMG_THE_PAPER_OVERLAY = '/assets/PCI_ThePaper_NoTitle.jpg';
@@ -50,34 +49,56 @@ function WorkCard({
   style,
   className
 }: WorkCardProps) {
-  const { isInView } = useWorkCardInView(cardRef);
   const [showOverlay, setShowOverlay] = useState(false);
+  const [transitionSpeed, setTransitionSpeed] = useState<'fast' | 'slow'>('slow');
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
   
-  useEffect(() => {
+  // Handle card tap on mobile devices
+  const handleCardTap = () => {
     if (!isTouchDevice) return;
     
-    let timeoutId: NodeJS.Timeout;
-    
-    if (isInView) {
-      // Wait 0.5s then show overlay (image B)
-      timeoutId = setTimeout(() => {
-        setShowOverlay(true);
-      }, 500);
-    } else {
-      // Immediately show original image (image A) when scrolled out
-      setShowOverlay(false);
+    // Clear any existing timer
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
     }
     
+    // Toggle behavior: if overlay is already shown, hide it with fast transition
+    if (showOverlay) {
+      setTransitionSpeed('fast');
+      setShowOverlay(false);
+      return;
+    }
+    
+    // Set the card as active with slow transition
+    setTransitionSpeed('slow');
+    setShowOverlay(true);
+    
+    // Set timer to deactivate after 1.25 seconds with slow transition
+    timerRef.current = setTimeout(() => {
+      setTransitionSpeed('slow');
+      setShowOverlay(false);
+      timerRef.current = null;
+    }, 1250);
+  };
+  
+  // Cleanup timer on unmount
+  useEffect(() => {
     return () => {
-      if (timeoutId) clearTimeout(timeoutId);
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
     };
-  }, [isInView, isTouchDevice]);
+  }, []);
+  
+  const durationClass = transitionSpeed === 'fast' ? 'duration-200' : 'duration-500';
   
   return (
     <motion.div 
       ref={cardRef}
       className={className}
       style={style}
+      onClick={handleCardTap}
     >
       <Image
         alt={alt}
@@ -85,7 +106,7 @@ function WorkCard({
         fill
         sizes="50vw"
         quality={90}
-        className={`object-cover transition-all duration-300 ease-in-out ${
+        className={`object-cover transition-all ${durationClass} ease-in-out ${
           isTouchDevice 
             ? (showOverlay ? 'opacity-0' : 'opacity-100')
             : 'group-hover:opacity-0'
@@ -97,13 +118,13 @@ function WorkCard({
         fill
         sizes="50vw"
         quality={90}
-        className={`object-cover transition-all duration-300 ease-in-out ${
+        className={`object-cover transition-all ${durationClass} ease-in-out ${
           isTouchDevice 
             ? (showOverlay ? 'opacity-100' : 'opacity-0')
             : 'opacity-0 group-hover:opacity-100'
         }`}
       />
-      <div className={`absolute inset-0 bg-[rgba(3,3,3,0.6)] transition-opacity duration-300 ease-in-out flex items-start justify-start p-[10px] ${
+      <div className={`absolute inset-0 bg-[rgba(3,3,3,0.6)] transition-opacity ${durationClass} ease-in-out flex items-start justify-start p-[10px] ${
         isTouchDevice 
           ? (showOverlay ? 'opacity-100' : 'opacity-0')
           : 'opacity-0 group-hover:opacity-100'

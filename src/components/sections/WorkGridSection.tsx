@@ -56,6 +56,7 @@ interface WorkItemProps {
 function WorkItem({ src, srcOverlay, alt, title, subtitle1, subtitle2, studio, className = '', delay = 0, isTouchDevice }: WorkItemProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [showOverlay, setShowOverlay] = useState(false);
+  const [transitionSpeed, setTransitionSpeed] = useState<'fast' | 'slow'>('slow');
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   
   // Handle card tap on mobile devices
@@ -65,15 +66,26 @@ function WorkItem({ src, srcOverlay, alt, title, subtitle1, subtitle2, studio, c
     // Clear any existing timer
     if (timerRef.current) {
       clearTimeout(timerRef.current);
+      timerRef.current = null;
     }
     
-    // Set the card as active
+    // Toggle behavior: if overlay is already shown, hide it with fast transition
+    if (showOverlay) {
+      setTransitionSpeed('fast');
+      setShowOverlay(false);
+      return;
+    }
+    
+    // Set the card as active with slow transition
+    setTransitionSpeed('slow');
     setShowOverlay(true);
     
-    // Set timer to deactivate after 2.5 seconds
+    // Set timer to deactivate after 1.25 seconds with slow transition
     timerRef.current = setTimeout(() => {
+      setTransitionSpeed('slow');
       setShowOverlay(false);
-    }, 2500);
+      timerRef.current = null;
+    }, 1250);
   };
   
   // Cleanup timer on unmount
@@ -84,6 +96,8 @@ function WorkItem({ src, srcOverlay, alt, title, subtitle1, subtitle2, studio, c
       }
     };
   }, []);
+  
+  const durationClass = transitionSpeed === 'fast' ? 'duration-200' : 'duration-500';
   
   return (
     <motion.div 
@@ -110,7 +124,7 @@ function WorkItem({ src, srcOverlay, alt, title, subtitle1, subtitle2, studio, c
           fill
           sizes="50vw"
           quality={90}
-          className={`object-cover transition-all duration-300 ease-in-out ${
+          className={`object-cover transition-all ${durationClass} ease-in-out ${
             isTouchDevice 
               ? (showOverlay ? 'opacity-0' : 'opacity-100')
               : 'group-hover:opacity-0'
@@ -124,7 +138,7 @@ function WorkItem({ src, srcOverlay, alt, title, subtitle1, subtitle2, studio, c
           fill
           sizes="50vw"
           quality={90}
-          className={`object-cover transition-all duration-300 ease-in-out ${
+          className={`object-cover transition-all ${durationClass} ease-in-out ${
             isTouchDevice 
               ? (showOverlay ? 'opacity-100' : 'opacity-0')
               : 'opacity-0 group-hover:opacity-100'
@@ -132,7 +146,7 @@ function WorkItem({ src, srcOverlay, alt, title, subtitle1, subtitle2, studio, c
         />
         
         {/* Text Overlay - Fade in on hover or scroll trigger */}
-        <div className={`absolute inset-0 bg-[rgba(3,3,3,0.6)] transition-opacity duration-300 ease-in-out flex items-start justify-start p-[10px] ${
+        <div className={`absolute inset-0 bg-[rgba(3,3,3,0.6)] transition-opacity ${durationClass} ease-in-out flex items-start justify-start p-[10px] ${
           isTouchDevice 
             ? (showOverlay ? 'opacity-100' : 'opacity-0')
             : 'opacity-0 group-hover:opacity-100'

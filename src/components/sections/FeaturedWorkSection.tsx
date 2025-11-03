@@ -22,6 +22,7 @@ export function FeaturedWorkSection() {
   const router = useRouter();
   const isTouchDevice = useTouchDevice();
   const [activeCard, setActiveCard] = useState<number | null>(null);
+  const [transitionSpeed, setTransitionSpeed] = useState<'fast' | 'slow'>('slow');
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleViewMoreClick = () => {
@@ -35,15 +36,26 @@ export function FeaturedWorkSection() {
     // Clear any existing timer
     if (timerRef.current) {
       clearTimeout(timerRef.current);
+      timerRef.current = null;
     }
     
-    // Set the card as active
+    // Toggle behavior: if card is already active, deactivate it with fast transition
+    if (activeCard === cardIndex) {
+      setTransitionSpeed('fast');
+      setActiveCard(null);
+      return;
+    }
+    
+    // Set the card as active with slow transition
+    setTransitionSpeed('slow');
     setActiveCard(cardIndex);
     
-    // Set timer to deactivate after 2.5 seconds
+    // Set timer to deactivate after 1.25 seconds with slow transition
     timerRef.current = setTimeout(() => {
+      setTransitionSpeed('slow');
       setActiveCard(null);
-    }, 2500);
+      timerRef.current = null;
+    }, 1250);
   };
 
   // Cleanup timer on unmount
@@ -54,6 +66,8 @@ export function FeaturedWorkSection() {
       }
     };
   }, []);
+
+  const durationClass = transitionSpeed === 'fast' ? 'duration-200' : 'duration-500';
 
   return (
     <div 
@@ -110,7 +124,7 @@ export function FeaturedWorkSection() {
           sizes="100vw"
           quality={90}
           priority
-          className={`object-cover transition-all duration-300 ease-in-out ${
+          className={`object-cover transition-all ${durationClass} ease-in-out ${
             isTouchDevice 
               ? (activeCard === 0 ? 'opacity-0' : 'opacity-100')
               : 'group-hover:opacity-0'
@@ -122,13 +136,13 @@ export function FeaturedWorkSection() {
           fill
           sizes="100vw"
           quality={90}
-          className={`object-cover transition-all duration-300 ease-in-out ${
+          className={`object-cover transition-all ${durationClass} ease-in-out ${
             isTouchDevice 
               ? (activeCard === 0 ? 'opacity-100' : 'opacity-0')
               : 'opacity-0 group-hover:opacity-100'
           }`}
         />
-        <div className={`absolute inset-0 bg-[rgba(3,3,3,0.6)] transition-opacity duration-300 ease-in-out flex items-start justify-start p-[10px] ${
+        <div className={`absolute inset-0 bg-[rgba(3,3,3,0.6)] transition-opacity ${durationClass} ease-in-out flex items-start justify-start p-[10px] ${
           isTouchDevice 
             ? (activeCard === 0 ? 'opacity-100' : 'opacity-0')
             : 'opacity-0 group-hover:opacity-100'
@@ -192,7 +206,7 @@ export function FeaturedWorkSection() {
             fill
             sizes="50vw"
             quality={90}
-            className={`object-cover transition-all duration-300 ease-in-out ${
+            className={`object-cover transition-all ${durationClass} ease-in-out ${
               isTouchDevice 
                 ? (activeCard === 1 ? 'opacity-0' : 'opacity-100')
                 : 'group-hover:opacity-0'
@@ -204,13 +218,13 @@ export function FeaturedWorkSection() {
             fill
             sizes="50vw"
             quality={90}
-            className={`object-cover transition-all duration-300 ease-in-out ${
+            className={`object-cover transition-all ${durationClass} ease-in-out ${
               isTouchDevice 
                 ? (activeCard === 1 ? 'opacity-100' : 'opacity-0')
                 : 'opacity-0 group-hover:opacity-100'
             }`}
           />
-          <div className={`absolute inset-0 bg-[rgba(3,3,3,0.6)] transition-opacity duration-300 ease-in-out flex items-start justify-start p-[10px] ${
+          <div className={`absolute inset-0 bg-[rgba(3,3,3,0.6)] transition-opacity ${durationClass} ease-in-out flex items-start justify-start p-[10px] ${
             isTouchDevice 
               ? (activeCard === 1 ? 'opacity-100' : 'opacity-0')
               : 'opacity-0 group-hover:opacity-100'
@@ -268,7 +282,7 @@ export function FeaturedWorkSection() {
             fill
             sizes="50vw"
             quality={90}
-            className={`object-cover transition-all duration-300 ease-in-out ${
+            className={`object-cover transition-all ${durationClass} ease-in-out ${
               isTouchDevice 
                 ? (activeCard === 2 ? 'opacity-0' : 'opacity-100')
                 : 'group-hover:opacity-0'
@@ -280,13 +294,13 @@ export function FeaturedWorkSection() {
             fill
             sizes="50vw"
             quality={90}
-            className={`object-cover transition-all duration-300 ease-in-out ${
+            className={`object-cover transition-all ${durationClass} ease-in-out ${
               isTouchDevice 
                 ? (activeCard === 2 ? 'opacity-100' : 'opacity-0')
                 : 'opacity-0 group-hover:opacity-100'
             }`}
           />
-          <div className={`absolute inset-0 bg-[rgba(3,3,3,0.6)] transition-opacity duration-300 ease-in-out flex items-start justify-start p-[10px] ${
+          <div className={`absolute inset-0 bg-[rgba(3,3,3,0.6)] transition-opacity ${durationClass} ease-in-out flex items-start justify-start p-[10px] ${
             isTouchDevice 
               ? (activeCard === 2 ? 'opacity-100' : 'opacity-0')
               : 'opacity-0 group-hover:opacity-100'

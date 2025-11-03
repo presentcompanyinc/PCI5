@@ -6,7 +6,7 @@
  */
 
 import Link from 'next/link';
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useContactModal } from '@/contexts/ContactModalContext';
@@ -28,6 +28,17 @@ function MenuItem({ children, rotation, href, onClick, menuIndex, isTouchDevice 
   const [isTapped, setIsTapped] = useState(false);
   const router = useRouter();
   const navigationTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Detect mobile viewport
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   // Generate organic squiggle path (consistent per menu item)
   const squigglePath = useMemo(() => {
@@ -78,7 +89,35 @@ function MenuItem({ children, rotation, href, onClick, menuIndex, isTouchDevice 
     }, 350);
   };
 
-  const content = (
+  // Simplified mobile version - no transforms, no SVG animations
+  const mobileContent = (
+    <div 
+      style={{ 
+        padding: '8px 12px',
+        minWidth: 'fit-content',
+        width: 'auto',
+        display: 'block'
+      }}
+      onTouchStart={isTouchDevice ? handleTap : undefined}
+      onClick={isTouchDevice ? handleTap : undefined}
+    >
+      <span
+        className="font-pci-sans-bold text-black whitespace-nowrap"
+        style={{ 
+          fontSize: '14px',
+          letterSpacing: '0.04em',
+          display: 'inline-block',
+          color: '#000',
+          fontWeight: 'bold'
+        }}
+      >
+        {children}
+      </span>
+    </div>
+  );
+
+  // Full desktop version with animations
+  const desktopContent = (
     <div 
       className="flex flex-col items-center justify-center"
       style={{ minWidth: 'fit-content', width: 'auto' }}
@@ -140,7 +179,21 @@ function MenuItem({ children, rotation, href, onClick, menuIndex, isTouchDevice 
     </div>
   );
 
-  const itemStyle: React.CSSProperties = {
+  const content = isMobile ? mobileContent : desktopContent;
+
+  const itemStyle: React.CSSProperties = isMobile ? {
+    // Simplified mobile styles
+    flexShrink: 0,
+    flexGrow: 0,
+    minWidth: 'fit-content',
+    width: 'auto',
+    display: 'block',
+    visibility: 'visible',
+    opacity: 1,
+    padding: '0',
+    margin: '0'
+  } : {
+    // Desktop styles
     flexShrink: 0,
     flexGrow: 0,
     flexBasis: 'auto',
@@ -155,7 +208,7 @@ function MenuItem({ children, rotation, href, onClick, menuIndex, isTouchDevice 
     return (
       <button
         onClick={isTouchDevice ? undefined : onClick}
-        className="bg-[#f2efea] flex items-start cursor-pointer"
+        className="bg-[#f2efea] cursor-pointer"
         style={itemStyle}
         data-menu-item="contact"
       >
@@ -168,7 +221,7 @@ function MenuItem({ children, rotation, href, onClick, menuIndex, isTouchDevice 
     <Link 
       href={href!}
       onClick={isTouchDevice ? handleTap : undefined}
-      className="bg-[#f2efea] flex items-start cursor-pointer"
+      className="bg-[#f2efea] cursor-pointer"
       style={itemStyle}
       data-menu-item={href}
     >

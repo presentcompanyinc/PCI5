@@ -417,13 +417,17 @@ body {
 
 /* Additional mobile fixes - ensure all menu items render */
 @media (max-width: 639px) {
-  /* Force visibility of all menu items */
+  /* Force visibility of all menu items - more specific selectors */
+  .menu-bar-inner > a,
+  .menu-bar-inner > button,
   [data-name="Menu Bar"] a,
   [data-name="Menu Bar"] button {
-    display: block !important;
+    display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
     position: relative !important;
+    flex-shrink: 0 !important;
+    min-width: fit-content !important;
   }
   
   /* Ensure menu bar has enough space */
@@ -431,9 +435,15 @@ body {
     min-height: 40px;
   }
   
-  /* Prevent any transforms from hiding content */
-  .menu-bar-inner > * {
+  /* Allow very subtle rotations on mobile but prevent transforms from hiding content */
+  .menu-bar-inner > * > div:first-child {
     transform: none !important;
+  }
+  
+  /* Force the menu text to be visible */
+  .menu-bar-inner p {
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 }
 

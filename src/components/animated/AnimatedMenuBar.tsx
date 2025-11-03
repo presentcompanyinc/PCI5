@@ -139,19 +139,22 @@ function MenuItem({ children, rotation, href, onClick, menuIndex, isTouchDevice 
     </div>
   );
 
-  const itemStyle = {
+  const itemStyle: React.CSSProperties = {
     flexShrink: 0,
     flexBasis: 'auto',
     minWidth: 'fit-content',
-    display: 'block'
+    display: 'flex',
+    visibility: 'visible',
+    opacity: 1
   };
 
   if (onClick) {
     return (
       <button
         onClick={isTouchDevice ? undefined : onClick}
-        className="bg-[#f2efea] flex items-start overflow-hidden cursor-pointer"
+        className="bg-[#f2efea] flex items-start cursor-pointer"
         style={itemStyle}
+        data-menu-item="contact"
       >
         {content}
       </button>
@@ -162,8 +165,9 @@ function MenuItem({ children, rotation, href, onClick, menuIndex, isTouchDevice 
     <Link 
       href={href!}
       onClick={isTouchDevice ? handleTap : undefined}
-      className="bg-[#f2efea] flex items-start overflow-hidden cursor-pointer"
+      className="bg-[#f2efea] flex items-start cursor-pointer"
       style={itemStyle}
+      data-menu-item={href}
     >
       {content}
     </Link>
@@ -187,7 +191,7 @@ export function AnimatedMenuBar() {
       data-name="Menu Bar"
       aria-label="Main navigation"
     >
-      <div className="menu-bar-inner">
+      <div className="menu-bar-inner" style={{ display: 'flex', gap: '12px', minWidth: 'max-content' }}>
         <MenuItem rotation={358.749} href="/" menuIndex={0} isTouchDevice={isTouchDevice}>
           Home
         </MenuItem>

@@ -24,7 +24,7 @@ const IMG_SERIAL_OVERLAY = '/assets/PCI_Serial_NoTitle.jpg';
 const ARROW = '/assets/arrow.svg';
 
 interface WorkCardProps {
-  cardRef: React.RefObject<HTMLDivElement>;
+  cardRef: React.RefObject<HTMLDivElement | null>;
   imageSrc: string;
   imageOverlaySrc: string;
   alt: string;

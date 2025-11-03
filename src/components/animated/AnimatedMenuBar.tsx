@@ -174,24 +174,42 @@ export function AnimatedMenuBar() {
   const isTouchDevice = useTouchDevice();
 
   return (
-    <div 
-      className="bg-[#f2efea] flex flex-nowrap items-start w-full max-w-[1700px] overflow-hidden scrollbar-hide justify-between sm:justify-start sm:gap-6" 
+    <nav 
+      className="bg-[#f2efea] w-full max-w-[1700px] overflow-hidden scrollbar-hide" 
       style={{
         padding: '16px var(--padding-lr)',
         minWidth: 0
       }}
       data-name="Menu Bar"
+      aria-label="Main navigation"
     >
-      <MenuItem rotation={358.749} href="/" menuIndex={0} isTouchDevice={isTouchDevice}>Home</MenuItem>
-      <MenuItem rotation={2} href="/work" menuIndex={1} isTouchDevice={isTouchDevice}>Work</MenuItem>
-      <MenuItem rotation={359.25} width="var(--menu-catalog-width)" href="/catalog" menuIndex={2} isTouchDevice={isTouchDevice}>
-        Catalog
-      </MenuItem>
-      <MenuItem rotation={1} href="/about" menuIndex={3} isTouchDevice={isTouchDevice}>About</MenuItem>
-      <MenuItem rotation={358.25} width="var(--menu-catalog-width)" onClick={openContactModal} menuIndex={4} isTouchDevice={isTouchDevice}>
-        Contact
-      </MenuItem>
-    </div>
+      <style jsx>{`
+        .menu-bar-inner {
+          display: flex;
+          flex-wrap: nowrap;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 0;
+        }
+        @media (min-width: 640px) {
+          .menu-bar-inner {
+            justify-content: flex-start;
+            gap: 24px;
+          }
+        }
+      `}</style>
+      <div className="menu-bar-inner">
+        <MenuItem rotation={358.749} href="/" menuIndex={0} isTouchDevice={isTouchDevice}>Home</MenuItem>
+        <MenuItem rotation={2} href="/work" menuIndex={1} isTouchDevice={isTouchDevice}>Work</MenuItem>
+        <MenuItem rotation={359.25} width="var(--menu-catalog-width)" href="/catalog" menuIndex={2} isTouchDevice={isTouchDevice}>
+          Catalog
+        </MenuItem>
+        <MenuItem rotation={1} href="/about" menuIndex={3} isTouchDevice={isTouchDevice}>About</MenuItem>
+        <MenuItem rotation={358.25} width="var(--menu-catalog-width)" onClick={openContactModal} menuIndex={4} isTouchDevice={isTouchDevice}>
+          Contact
+        </MenuItem>
+      </div>
+    </nav>
   );
 }
 

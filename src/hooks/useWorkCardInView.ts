@@ -8,7 +8,7 @@ import { useInView } from 'framer-motion';
  * Used for triggering image transitions on touch devices
  * Returns isInView (current state) and hasBeenInView (ever been in view)
  */
-export function useWorkCardInView(ref: RefObject<HTMLElement>) {
+export function useWorkCardInView(ref: RefObject<HTMLElement | null>) {
   const isInView = useInView(ref, { 
     amount: 0.3, // Trigger when 30% of element is visible
     margin: '-50px' // Add some offset for better trigger timing

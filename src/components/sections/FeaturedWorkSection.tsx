@@ -7,6 +7,8 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useState, useEffect, useRef } from 'react';
+import { useTouchDevice } from '@/hooks/useTouchDevice';
 
 const IMG_THE_PAPER = '/assets/PCI_ThePaper.jpg';
 const IMG_THE_PAPER_OVERLAY = '/assets/PCI_ThePaper_NoTitle.jpg';
@@ -18,10 +20,40 @@ const ARROW = '/assets/arrow.svg';
 
 export function FeaturedWorkSection() {
   const router = useRouter();
+  const isTouchDevice = useTouchDevice();
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleViewMoreClick = () => {
     router.push('/work');
   };
+
+  // Handle card tap on mobile devices
+  const handleCardTap = (cardIndex: number) => {
+    if (!isTouchDevice) return;
+    
+    // Clear any existing timer
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    
+    // Set the card as active
+    setActiveCard(cardIndex);
+    
+    // Set timer to deactivate after 2.5 seconds
+    timerRef.current = setTimeout(() => {
+      setActiveCard(null);
+    }, 2500);
+  };
+
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div 
@@ -66,7 +98,11 @@ export function FeaturedWorkSection() {
       </div>
 
       {/* Main Featured Image */}
-      <div className="w-full relative group cursor-pointer overflow-hidden" style={{ aspectRatio: '4096/1886' }}>
+      <div 
+        className="w-full relative group cursor-pointer overflow-hidden" 
+        style={{ aspectRatio: '4096/1886' }}
+        onClick={() => handleCardTap(0)}
+      >
         <Image
           alt="The Paper"
           src={IMG_THE_PAPER}
@@ -74,7 +110,11 @@ export function FeaturedWorkSection() {
           sizes="100vw"
           quality={90}
           priority
-          className="object-cover transition-all duration-300 ease-in-out group-hover:opacity-0"
+          className={`object-cover transition-all duration-300 ease-in-out ${
+            isTouchDevice 
+              ? (activeCard === 0 ? 'opacity-0' : 'opacity-100')
+              : 'group-hover:opacity-0'
+          }`}
         />
         <Image
           alt="The Paper"
@@ -82,9 +122,17 @@ export function FeaturedWorkSection() {
           fill
           sizes="100vw"
           quality={90}
-          className="object-cover opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100"
+          className={`object-cover transition-all duration-300 ease-in-out ${
+            isTouchDevice 
+              ? (activeCard === 0 ? 'opacity-100' : 'opacity-0')
+              : 'opacity-0 group-hover:opacity-100'
+          }`}
         />
-        <div className="absolute inset-0 bg-[rgba(3,3,3,0.6)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out flex items-start justify-start p-[10px]">
+        <div className={`absolute inset-0 bg-[rgba(3,3,3,0.6)] transition-opacity duration-300 ease-in-out flex items-start justify-start p-[10px] ${
+          isTouchDevice 
+            ? (activeCard === 0 ? 'opacity-100' : 'opacity-0')
+            : 'opacity-0 group-hover:opacity-100'
+        }`}>
           <div 
             className="flex flex-col w-full"
             style={{
@@ -133,14 +181,22 @@ export function FeaturedWorkSection() {
         className="flex flex-row items-start w-full"
         style={{ gap: 'var(--padding-gap)' }}
       >
-        <div className="flex-1 relative group cursor-pointer overflow-hidden" style={{ aspectRatio: '2000/2000' }}>
+        <div 
+          className="flex-1 relative group cursor-pointer overflow-hidden" 
+          style={{ aspectRatio: '2000/2000' }}
+          onClick={() => handleCardTap(1)}
+        >
           <Image
             alt="Anything Roots"
             src={IMG_ANYTHING_ROOTS}
             fill
             sizes="50vw"
             quality={90}
-            className="object-cover transition-all duration-300 ease-in-out group-hover:opacity-0"
+            className={`object-cover transition-all duration-300 ease-in-out ${
+              isTouchDevice 
+                ? (activeCard === 1 ? 'opacity-0' : 'opacity-100')
+                : 'group-hover:opacity-0'
+            }`}
           />
           <Image
             alt="Anything Roots"
@@ -148,9 +204,17 @@ export function FeaturedWorkSection() {
             fill
             sizes="50vw"
             quality={90}
-            className="object-cover opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100"
+            className={`object-cover transition-all duration-300 ease-in-out ${
+              isTouchDevice 
+                ? (activeCard === 1 ? 'opacity-100' : 'opacity-0')
+                : 'opacity-0 group-hover:opacity-100'
+            }`}
           />
-          <div className="absolute inset-0 bg-[rgba(3,3,3,0.6)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out flex items-start justify-start p-[10px]">
+          <div className={`absolute inset-0 bg-[rgba(3,3,3,0.6)] transition-opacity duration-300 ease-in-out flex items-start justify-start p-[10px] ${
+            isTouchDevice 
+              ? (activeCard === 1 ? 'opacity-100' : 'opacity-0')
+              : 'opacity-0 group-hover:opacity-100'
+          }`}>
             <div 
               className="flex flex-col w-full"
               style={{
@@ -193,14 +257,22 @@ export function FeaturedWorkSection() {
             </div>
           </div>
         </div>
-        <div className="flex-1 relative group cursor-pointer overflow-hidden" style={{ aspectRatio: '2000/2000' }}>
+        <div 
+          className="flex-1 relative group cursor-pointer overflow-hidden" 
+          style={{ aspectRatio: '2000/2000' }}
+          onClick={() => handleCardTap(2)}
+        >
           <Image
             alt="Serial"
             src={IMG_SERIAL}
             fill
             sizes="50vw"
             quality={90}
-            className="object-cover transition-all duration-300 ease-in-out group-hover:opacity-0"
+            className={`object-cover transition-all duration-300 ease-in-out ${
+              isTouchDevice 
+                ? (activeCard === 2 ? 'opacity-0' : 'opacity-100')
+                : 'group-hover:opacity-0'
+            }`}
           />
           <Image
             alt="Serial"
@@ -208,9 +280,17 @@ export function FeaturedWorkSection() {
             fill
             sizes="50vw"
             quality={90}
-            className="object-cover opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100"
+            className={`object-cover transition-all duration-300 ease-in-out ${
+              isTouchDevice 
+                ? (activeCard === 2 ? 'opacity-100' : 'opacity-0')
+                : 'opacity-0 group-hover:opacity-100'
+            }`}
           />
-          <div className="absolute inset-0 bg-[rgba(3,3,3,0.6)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out flex items-start justify-start p-[10px]">
+          <div className={`absolute inset-0 bg-[rgba(3,3,3,0.6)] transition-opacity duration-300 ease-in-out flex items-start justify-start p-[10px] ${
+            isTouchDevice 
+              ? (activeCard === 2 ? 'opacity-100' : 'opacity-0')
+              : 'opacity-0 group-hover:opacity-100'
+          }`}>
             <div 
               className="flex flex-col w-full"
               style={{

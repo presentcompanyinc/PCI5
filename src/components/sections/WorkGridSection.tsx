@@ -9,7 +9,6 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { useTouchDevice } from '@/hooks/useTouchDevice';
-import { useWorkCardInView } from '@/hooks/useWorkCardInView';
 
 // Work sample images - Default
 const IMG_OH_JEROME_NO = '/assets/PCI_OhJeromeNo.jpg';
@@ -56,28 +55,35 @@ interface WorkItemProps {
 
 function WorkItem({ src, srcOverlay, alt, title, subtitle1, subtitle2, studio, className = '', delay = 0, isTouchDevice }: WorkItemProps) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const { isInView } = useWorkCardInView(cardRef);
   const [showOverlay, setShowOverlay] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
   
-  useEffect(() => {
+  // Handle card tap on mobile devices
+  const handleCardTap = () => {
     if (!isTouchDevice) return;
     
-    let timeoutId: NodeJS.Timeout;
-    
-    if (isInView) {
-      // Wait 0.5s then show overlay (image B)
-      timeoutId = setTimeout(() => {
-        setShowOverlay(true);
-      }, 500);
-    } else {
-      // Immediately show original image (image A) when scrolled out
-      setShowOverlay(false);
+    // Clear any existing timer
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
     }
     
+    // Set the card as active
+    setShowOverlay(true);
+    
+    // Set timer to deactivate after 2.5 seconds
+    timerRef.current = setTimeout(() => {
+      setShowOverlay(false);
+    }, 2500);
+  };
+  
+  // Cleanup timer on unmount
+  useEffect(() => {
     return () => {
-      if (timeoutId) clearTimeout(timeoutId);
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
     };
-  }, [isInView, isTouchDevice]);
+  }, []);
   
   return (
     <motion.div 
@@ -91,6 +97,7 @@ function WorkItem({ src, srcOverlay, alt, title, subtitle1, subtitle2, studio, c
         delay,
         ease: [0.22, 1, 0.36, 1] // Custom easing for smooth float
       }}
+      onClick={handleCardTap}
     >
       <div 
         className="relative w-full overflow-hidden" 

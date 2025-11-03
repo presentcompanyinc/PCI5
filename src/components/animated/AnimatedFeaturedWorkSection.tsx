@@ -9,7 +9,7 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView, MotionStyle } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { useScrollFade } from '@/hooks/useScrollFade';
 import { useTouchDevice } from '@/hooks/useTouchDevice';
@@ -33,7 +33,7 @@ interface WorkCardProps {
   subtitle2: string;
   company: string;
   isTouchDevice: boolean;
-  style?: React.CSSProperties;
+  style?: MotionStyle;
   className?: string;
 }
 

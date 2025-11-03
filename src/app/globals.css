@@ -367,10 +367,26 @@ body {
   display: none;  /* Chrome, Safari and Opera */
 }
 
-/* Menu bar responsive fixes */
+/* Menu bar responsive layout */
 [data-name="Menu Bar"] {
   width: 100%;
   box-sizing: border-box;
+}
+
+.menu-bar-inner {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .menu-bar-inner {
+    justify-content: flex-start;
+    gap: 24px;
+  }
 }
 
 [data-name="Menu Bar"] > * {

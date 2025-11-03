@@ -183,21 +183,6 @@ export function AnimatedMenuBar() {
       data-name="Menu Bar"
       aria-label="Main navigation"
     >
-      <style jsx>{`
-        .menu-bar-inner {
-          display: flex;
-          flex-wrap: nowrap;
-          align-items: flex-start;
-          justify-content: space-between;
-          gap: 0;
-        }
-        @media (min-width: 640px) {
-          .menu-bar-inner {
-            justify-content: flex-start;
-            gap: 24px;
-          }
-        }
-      `}</style>
       <div className="menu-bar-inner">
         <MenuItem rotation={358.749} href="/" menuIndex={0} isTouchDevice={isTouchDevice}>Home</MenuItem>
         <MenuItem rotation={2} href="/work" menuIndex={1} isTouchDevice={isTouchDevice}>Work</MenuItem>

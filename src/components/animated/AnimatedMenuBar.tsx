@@ -28,7 +28,7 @@ function MenuItem({ children, rotation, width, href, onClick, menuIndex, isTouch
   const [isHovered, setIsHovered] = useState(false);
   const [isTapped, setIsTapped] = useState(false);
   const router = useRouter();
-  const navigationTimeoutRef = useRef<NodeJS.Timeout>();
+  const navigationTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
   
   // Generate organic squiggle path (consistent per menu item)
   const squigglePath = useMemo(() => {

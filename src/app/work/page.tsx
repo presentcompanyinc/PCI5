@@ -20,9 +20,7 @@ export default function WorkPage() {
       </div>
       
       {/* Menu Bar */}
-      <div className="w-full flex justify-start">
-        <AnimatedMenuBar />
-      </div>
+      <AnimatedMenuBar />
       
       <div className="w-full max-w-[1700px]">
         

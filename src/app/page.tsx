@@ -21,9 +21,7 @@ export default function Home() {
       <div className="w-full max-w-[1700px]">
         <Header />
       </div>
-      <div className="w-full flex justify-start">
-        <AnimatedMenuBar />
-      </div>
+      <AnimatedMenuBar />
       <div className="w-full max-w-[1700px]">
         
         <ScrollFadeWrapper>

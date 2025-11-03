@@ -10,18 +10,38 @@ import { Header } from '@/components/layout';
 import { AnimatedMenuBar } from '@/components/animated';
 import { useTouchDevice } from '@/hooks/useTouchDevice';
 
+interface DebugInfo {
+  userAgent: string;
+  platform: string;
+  maxTouchPoints: number;
+  hasTouch: boolean;
+  viewportWidth: number;
+  viewportHeight: number;
+  devicePixelRatio: number;
+  isMobile: boolean;
+  isTablet: boolean;
+  isDesktop: boolean;
+  hoverNone: boolean;
+  hoverHover: boolean;
+  textMenu: string;
+  paddingLR: string;
+  menuHomeWidth: string;
+  menuCatalogWidth: string;
+  isTouchDeviceHook: boolean;
+}
+
 export default function MenuDebugPage() {
-  const [debugInfo, setDebugInfo] = useState<any>({});
+  const [debugInfo, setDebugInfo] = useState<Partial<DebugInfo>>({});
   const isTouchDevice = useTouchDevice();
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const info = {
+    const info: DebugInfo = {
       // Device info
       userAgent: navigator.userAgent,
       platform: navigator.platform,
-      // @ts-ignore
+      // @ts-expect-error - msMaxTouchPoints is not in TypeScript's Navigator type but exists on some browsers
       maxTouchPoints: navigator.maxTouchPoints || navigator.msMaxTouchPoints || 0,
       hasTouch: 'ontouchstart' in window,
       

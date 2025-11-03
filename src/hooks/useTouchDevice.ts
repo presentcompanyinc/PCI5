@@ -19,10 +19,12 @@ export function useTouchDevice(): boolean {
     setIsClient(true);
     
     // Fallback: check for touch support
+    // msMaxTouchPoints is legacy IE/Edge property
+    const legacyNavigator = navigator as Navigator & { msMaxTouchPoints?: number };
     const hasTouchScreen = 
       'ontouchstart' in window || 
       navigator.maxTouchPoints > 0 ||
-      (navigator as any).msMaxTouchPoints > 0;
+      (legacyNavigator.msMaxTouchPoints || 0) > 0;
     
     try {
       // Primary check: hover capability
@@ -42,8 +44,11 @@ export function useTouchDevice(): boolean {
         touchQuery.removeEventListener('change', handleChange);
       };
     } catch (error) {
-      // If matchMedia fails, use touch detection fallback
-      console.warn('matchMedia not supported, using fallback touch detection', error);
+      // If matchMedia fails, use touch detection fallback (rare, but possible on very old browsers)
+      if (process.env.NODE_ENV === 'development') {
+        // eslint-disable-next-line no-console
+        console.warn('matchMedia not supported, using fallback touch detection', error);
+      }
       setIsTouchDevice(hasTouchScreen);
     }
   }, []);

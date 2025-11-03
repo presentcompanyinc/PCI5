@@ -17,14 +17,13 @@ import { useTouchDevice } from '@/hooks/useTouchDevice';
 interface MenuItemProps {
   children: React.ReactNode;
   rotation: number;
-  width?: string;
   href?: string;
   onClick?: () => void;
   menuIndex: number;
   isTouchDevice: boolean;
 }
 
-function MenuItem({ children, rotation, width, href, onClick, menuIndex, isTouchDevice }: MenuItemProps) {
+function MenuItem({ children, rotation, href, onClick, menuIndex, isTouchDevice }: MenuItemProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isTapped, setIsTapped] = useState(false);
   const router = useRouter();
@@ -195,13 +194,13 @@ export function AnimatedMenuBar() {
         <MenuItem rotation={2} href="/work" menuIndex={1} isTouchDevice={isTouchDevice}>
           Work
         </MenuItem>
-        <MenuItem rotation={359.25} width="var(--menu-catalog-width)" href="/catalog" menuIndex={2} isTouchDevice={isTouchDevice}>
+        <MenuItem rotation={359.25} href="/catalog" menuIndex={2} isTouchDevice={isTouchDevice}>
           Catalog
         </MenuItem>
         <MenuItem rotation={1} href="/about" menuIndex={3} isTouchDevice={isTouchDevice}>
           About
         </MenuItem>
-        <MenuItem rotation={358.25} width="var(--menu-catalog-width)" onClick={openContactModal} menuIndex={4} isTouchDevice={isTouchDevice}>
+        <MenuItem rotation={358.25} onClick={openContactModal} menuIndex={4} isTouchDevice={isTouchDevice}>
           Contact
         </MenuItem>
       </div>

@@ -3,7 +3,7 @@
 /**
  * WeatherTimeWidget - Real-time weather and time display for Los Feliz (90027)
  * Updates every minute for time, every 10 minutes for weather
- * Weather data fetched from OpenWeatherMap API
+ * Weather data fetched from National Weather Service API
  */
 
 import { useState, useEffect } from 'react';

@@ -5,15 +5,23 @@
  * Extracted from Figma design
  */
 
+import { useState, useEffect } from 'react';
 import { useContactModal } from '@/contexts/ContactModalContext';
 import { CONTACT_MODAL_TYPE } from '@/config/contact';
 import { WeatherTimeWidget } from '@/components/ui/WeatherTimeWidget';
-
-const CONTACT_BUTTON = '/assets/ContactUs.svg';
+import { getRandomButtonColor, getFixedButtonColor } from '@/lib/contactButtonRandomizer';
+import { ContactButton } from '@/components/ui/ContactButton';
 
 export function Footer() {
   const { openFormModal, openInfoModal } = useContactModal();
   const openContactModal = CONTACT_MODAL_TYPE === 'form' ? openFormModal : openInfoModal;
+  const [isHovered, setIsHovered] = useState(false);
+  const [buttonColor, setButtonColor] = useState(getFixedButtonColor());
+
+  // Randomize color on client-side mount to prevent hydration mismatch
+  useEffect(() => {
+    setButtonColor(getRandomButtonColor());
+  }, []);
 
   return (
     <div 
@@ -27,14 +35,20 @@ export function Footer() {
       <div className="flex items-center justify-center">
         <button 
           onClick={openContactModal}
-          className="relative cursor-pointer transition-transform duration-300 hover:scale-105"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="relative cursor-pointer"
           style={{
             width: 'var(--contact-button-width)',
             height: 'auto',
             aspectRatio: '356/95.986'
           }}
         >
-          <img alt="Contact Us" className="w-full h-full" src={CONTACT_BUTTON} />
+          <ContactButton
+            fillColor={isHovered ? buttonColor : 'transparent'}
+            animationStyle="wipe"
+            className="w-full h-full transition-transform hover:scale-105"
+          />
         </button>
       </div>
 
@@ -48,14 +62,19 @@ export function Footer() {
         }}
       >
         <div className="font-pci-sans-bold shrink-0">
-          <p className="leading-normal whitespace-pre">COPYRIGHT 2025 P.C.I</p>
+          <p className="leading-normal whitespace-pre">COPYRIGHT 2025 P.C.I.</p>
         </div>
 
         <WeatherTimeWidget />
 
-        <div className="font-pci-sans-bold shrink-0">
+        <a 
+          href="https://www.instagram.com/swiftstudiesdaily/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="font-pci-sans-bold shrink-0 hover:opacity-70 transition-opacity"
+        >
           <p className="leading-normal whitespace-pre">INSTAGRAM</p>
-        </div>
+        </a>
       </div>
     </div>
   );

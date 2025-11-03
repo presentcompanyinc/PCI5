@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
 import { siteConfig } from '@/constants/site';
 import { ContactModalProvider } from '@/contexts/ContactModalContext';
+import { DividerRandomizerProvider } from '@/contexts/DividerRandomizerContext';
 import { ContactModals } from '@/components/ui/ContactModals';
 import './globals.css';
 
@@ -74,9 +75,12 @@ export const metadata: Metadata = {
     creator: '@presentcompany',
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
-    apple: '/apple-touch-icon.png',
+    icon: [
+      { url: '/icon.png', sizes: 'any', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    shortcut: '/icon.png',
+    apple: '/icon.png',
   },
   manifest: '/site.webmanifest',
   robots: {
@@ -112,12 +116,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${pciSansBold.variable} antialiased min-h-screen bg-background text-foreground`}
       >
-        <ContactModalProvider>
-          <div className="relative flex min-h-screen flex-col">
-            <div className="flex-1">{children}</div>
-          </div>
-          <ContactModals />
-        </ContactModalProvider>
+        <DividerRandomizerProvider>
+          <ContactModalProvider>
+            <div className="relative flex min-h-screen flex-col">
+              <div className="flex-1">{children}</div>
+            </div>
+            <ContactModals />
+          </ContactModalProvider>
+        </DividerRandomizerProvider>
       </body>
     </html>
   );

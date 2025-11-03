@@ -17,18 +17,26 @@ export default function WorkPage() {
       <div className="w-full max-w-[1700px]">
         {/* Header */}
         <Header />
-        
-        {/* Menu Bar */}
+      </div>
+      
+      {/* Menu Bar */}
+      <div className="w-full flex justify-start">
         <AnimatedMenuBar />
+      </div>
+      
+      <div className="w-full max-w-[1700px]">
         
         {/* Intro Text */}
         <WorkIntroSection />
         
-        {/* Olive Divider */}
-        <div className="py-6"><DividerSection variant="olive" /></div>
+        {/* Top Divider */}
+        <div className="py-6"><DividerSection index={2} /></div>
         
         {/* Work Grid */}
         <WorkGridSection />
+        
+        {/* Bottom Divider */}
+        <div className="py-6"><DividerSection index={3} /></div>
         
         {/* Footer */}
         <Footer />

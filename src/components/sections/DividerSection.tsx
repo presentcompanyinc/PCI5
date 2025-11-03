@@ -1,51 +1,22 @@
+'use client';
+
 /**
  * DividerSection component - Memphis-style decorative dividers
- * Extracted from Figma design
+ * Now with randomization support - pass an index (0-6) instead of variant
  */
 
-const DIVIDER_RED_BLOBS = '/assets/PCI_Divider_1.svg';
-const DIVIDER_TEAL = '/assets/Divider2.svg';
-const DIVIDER_BLUE = '/assets/Divider3.svg';
-const DIVIDER_OLIVE = '/assets/PCI_Divider_4.svg';
-const DIVIDER_PURPLE = '/assets/Divider 5.svg';
+import { useDividerRandomizer } from '@/contexts/DividerRandomizerContext';
 
 interface DividerSectionProps {
-  variant?: 'red' | 'teal' | 'blue' | 'olive' | 'purple';
+  index: number; // Index 0-6 to get a randomized divider
 }
 
-export function DividerSection({ variant = 'red' }: DividerSectionProps) {
-  const config = {
-    red: {
-      bgColor: 'bg-[#f37d7d]',
-      imgSrc: DIVIDER_RED_BLOBS,
-      aspectRatio: '3546/282.001',
-    },
-    teal: {
-      bgColor: 'bg-[#afbab6]',
-      imgSrc: DIVIDER_TEAL,
-      aspectRatio: '2838/175',
-    },
-    blue: {
-      bgColor: 'bg-[#03bed8]',
-      imgSrc: DIVIDER_BLUE,
-      aspectRatio: '2838/175',
-    },
-    olive: {
-      bgColor: 'bg-[#666a47]',
-      imgSrc: DIVIDER_OLIVE,
-      aspectRatio: '6001.53/482.588',
-    },
-    purple: {
-      bgColor: 'bg-[#8b5fbf]',
-      imgSrc: DIVIDER_PURPLE,
-      aspectRatio: '2838/175',
-    },
-  };
-
-  const { bgColor, imgSrc, aspectRatio } = config[variant];
+export function DividerSection({ index }: DividerSectionProps) {
+  const { getDivider } = useDividerRandomizer();
+  const { bgColor, imgSrc, aspectRatio } = getDivider(index);
 
   return (
-    <div className={`${bgColor} flex flex-col items-start w-full min-w-full`} data-name="Divider">
+    <div className="flex flex-col items-start w-full min-w-full" style={{ backgroundColor: bgColor }} data-name="Divider">
       <div className="w-full relative lg:block hidden" style={{ aspectRatio }}>
         <img alt="" className="w-full h-auto" src={imgSrc} />
       </div>

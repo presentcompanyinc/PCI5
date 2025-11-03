@@ -68,7 +68,7 @@ function MenuItem({ children, rotation, width, href, onClick }: MenuItemProps) {
 
   const content = (
     <div 
-      className="flex flex-col items-center justify-center w-full"
+      className="flex flex-col items-start justify-center w-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -97,15 +97,16 @@ function MenuItem({ children, rotation, width, href, onClick }: MenuItemProps) {
   );
 
   const itemStyle = {
-    minWidth: width || 'var(--menu-home-width)',
-    flexShrink: 0
+    flexShrink: 0,
+    flexBasis: 'auto',
+    width: 'auto'
   };
 
   if (onClick) {
     return (
       <button
         onClick={onClick}
-        className="bg-[#f2efea] flex items-start overflow-hidden shrink-0 cursor-pointer"
+        className="bg-[#f2efea] flex items-start overflow-hidden cursor-pointer"
         style={itemStyle}
       >
         {content}
@@ -116,7 +117,7 @@ function MenuItem({ children, rotation, width, href, onClick }: MenuItemProps) {
   return (
     <Link 
       href={href!}
-      className="bg-[#f2efea] flex items-start overflow-hidden shrink-0 cursor-pointer"
+      className="bg-[#f2efea] flex items-start overflow-hidden cursor-pointer"
       style={itemStyle}
     >
       {content}
@@ -134,8 +135,9 @@ export function MenuBar() {
       style={{
         gap: 'var(--padding-gap)',
         padding: '16px var(--padding-lr)',
-        maxWidth: 'var(--display-width)',
-        WebkitOverflowScrolling: 'touch'
+        maxWidth: 'min(100%, var(--display-width))',
+        WebkitOverflowScrolling: 'touch',
+        minWidth: 0
       }}
       data-name="Menu Bar"
     >

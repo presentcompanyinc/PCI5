@@ -5,19 +5,27 @@
  * Animation 7: Footer Float Elements + Contact Button Fill Effect
  */
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useContactModal } from '@/contexts/ContactModalContext';
 import { CONTACT_MODAL_TYPE } from '@/config/contact';
 import { WeatherTimeWidget } from '@/components/ui/WeatherTimeWidget';
 import { useSpring, animated } from '@react-spring/web';
-import { motion } from 'framer-motion';
-
-const CONTACT_BUTTON = '/assets/ContactUs.svg';
+import { useTouchDevice } from '@/hooks/useTouchDevice';
+import { getRandomButtonColor, getFixedButtonColor } from '@/lib/contactButtonRandomizer';
+import { ContactButton } from '@/components/ui/ContactButton';
 
 export function AnimatedFooter() {
   const { openFormModal, openInfoModal } = useContactModal();
   const openContactModal = CONTACT_MODAL_TYPE === 'form' ? openFormModal : openInfoModal;
   const [isHovered, setIsHovered] = useState(false);
+  const [buttonColor, setButtonColor] = useState(getFixedButtonColor());
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const isTouchDevice = useTouchDevice();
+
+  // Randomize color on client-side mount to prevent hydration mismatch
+  useEffect(() => {
+    setButtonColor(getRandomButtonColor());
+  }, []);
 
   // Subtle float animation for contact button - gentle movement with slight rotation
   const float1 = useSpring({
@@ -76,62 +84,16 @@ export function AnimatedFooter() {
           }}
         >
           <button
+            ref={buttonRef}
             onClick={openContactModal}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            className="relative cursor-pointer w-full h-full group"
+            onMouseEnter={() => !isTouchDevice && setIsHovered(true)}
+            onMouseLeave={() => !isTouchDevice && setIsHovered(false)}
+            className="relative cursor-pointer w-full h-full"
           >
-            {/* Scribbled fill animation - multiple irregular shapes for organic feel */}
-            <div className="absolute inset-0" style={{ margin: '8px', zIndex: 0 }}>
-              {/* Layer 1 - Bottom scribble */}
-              <motion.div
-                className="absolute inset-0 bg-[#03bed8] rounded-[48px]"
-                initial={{ clipPath: 'inset(0 100% 0 0)' }}
-                animate={{ 
-                  clipPath: isHovered ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)'
-                }}
-                transition={{ 
-                  duration: 0.25, 
-                  ease: [0.65, 0, 0.35, 1] as const,
-                  delay: 0
-                }}
-              />
-              {/* Layer 2 - Middle scribble with offset */}
-              <motion.div
-                className="absolute inset-0 bg-[#03bed8] rounded-[48px]"
-                style={{ 
-                  clipPath: 'polygon(0 30%, 100% 20%, 100% 70%, 0 80%)',
-                  transformOrigin: 'left'
-                }}
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: isHovered ? 1 : 0 }}
-                transition={{ 
-                  duration: 0.3, 
-                  ease: [0.87, 0, 0.13, 1] as const,
-                  delay: 0.05
-                }}
-              />
-              {/* Layer 3 - Top scribble */}
-              <motion.div
-                className="absolute inset-0 bg-[#03bed8] rounded-[48px]"
-                initial={{ clipPath: 'polygon(0 0, 0% 0, 0% 100%, 0 100%)' }}
-                animate={{ 
-                  clipPath: isHovered 
-                    ? 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' 
-                    : 'polygon(0 0, 0% 0, 0% 100%, 0 100%)'
-                }}
-                transition={{ 
-                  duration: 0.35, 
-                  ease: [0.76, 0, 0.24, 1] as const,
-                  delay: 0.1
-                }}
-              />
-            </div>
-            {/* Button SVG on top */}
-            <img 
-              alt="Contact Us" 
-              className="relative w-full h-full z-10 transition-transform group-hover:scale-105" 
-              src={CONTACT_BUTTON} 
+            <ContactButton
+              fillColor={isHovered ? buttonColor : 'transparent'}
+              animationStyle="wipe"
+              className="w-full h-full transition-transform hover:scale-105"
             />
           </button>
         </animated.div>
@@ -154,21 +116,24 @@ export function AnimatedFooter() {
           }} 
           className="font-pci-sans-bold shrink-0"
         >
-          <p className="leading-normal whitespace-pre">COPYRIGHT 2025 P.C.I</p>
+          <p className="leading-normal whitespace-pre">COPYRIGHT 2025 P.C.I.</p>
         </animated.div>
 
         <WeatherTimeWidget />
 
-        <animated.div 
+        <animated.a 
+          href="https://www.instagram.com/swiftstudiesdaily/" 
+          target="_blank" 
+          rel="noopener noreferrer"
           style={{
             y: float3.y,
             x: float3.x,
             rotate: float3.rotate
           }} 
-          className="font-pci-sans-bold shrink-0"
+          className="font-pci-sans-bold shrink-0 hover:opacity-70 transition-opacity"
         >
           <p className="leading-normal whitespace-pre">INSTAGRAM</p>
-        </animated.div>
+        </animated.a>
       </div>
     </div>
   );

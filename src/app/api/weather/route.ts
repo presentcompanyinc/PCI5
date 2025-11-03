@@ -22,6 +22,11 @@ export async function GET() {
     }
 
     const stationData = await stationResponse.json();
+    
+    if (!stationData?.properties?.forecast) {
+      throw new Error('Forecast URL not found in station data');
+    }
+    
     const forecastUrl = stationData.properties.forecast;
 
     // Get current weather conditions
@@ -42,7 +47,15 @@ export async function GET() {
     const data = await weatherResponse.json();
 
     // Get current period data from National Weather Service
+    if (!data?.properties?.periods || data.properties.periods.length === 0) {
+      throw new Error('No forecast periods available');
+    }
+    
     const currentPeriod = data.properties.periods[0];
+    
+    if (!currentPeriod?.temperature || !currentPeriod?.shortForecast) {
+      throw new Error('Invalid forecast period data');
+    }
     
     // Extract temperature and condition
     const temperature = currentPeriod.temperature;

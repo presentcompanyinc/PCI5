@@ -5,12 +5,13 @@
 
 "use client";
 
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 const IMG_THE_PAPER = '/assets/PCI_ThePaper.jpg';
 const IMG_THE_PAPER_OVERLAY = '/assets/PCI_ThePaper_NoTitle.jpg';
-const IMG_OH_JEROME_NO = '/assets/PCI_OhJeromeNo.jpg';
-const IMG_OH_JEROME_NO_OVERLAY = '/assets/PCI_OhJeromeNo_NoTitle.jpg';
+const IMG_ANYTHING_ROOTS = '/assets/PCI_RootsSquare.jpg';
+const IMG_ANYTHING_ROOTS_OVERLAY = '/assets/PCI_RootsSquare_NoTitle.png';
 const IMG_SERIAL = '/assets/PCI_Serial.jpg';
 const IMG_SERIAL_OVERLAY = '/assets/PCI_Serial_NoTitle.jpg';
 const ARROW = '/assets/arrow.svg';
@@ -66,19 +67,26 @@ export function FeaturedWorkSection() {
 
       {/* Main Featured Image */}
       <div className="w-full relative group cursor-pointer overflow-hidden" style={{ aspectRatio: '4096/1886' }}>
-        <img
+        <Image
           alt="The Paper"
-          className="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:opacity-0"
           src={IMG_THE_PAPER}
+          fill
+          sizes="100vw"
+          quality={90}
+          priority
+          className="object-cover transition-all duration-300 ease-in-out group-hover:opacity-0"
         />
-        <img
+        <Image
           alt="The Paper"
-          className="absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-700 ease-in-out group-hover:opacity-100"
           src={IMG_THE_PAPER_OVERLAY}
+          fill
+          sizes="100vw"
+          quality={90}
+          className="object-cover opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100"
         />
-        <div className="absolute inset-0 bg-[rgba(3,3,3,0.6)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out flex items-start justify-start p-[10px]">
+        <div className="absolute inset-0 bg-[rgba(3,3,3,0.6)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out flex items-start justify-start p-[10px]">
           <div 
-            className="flex flex-col w-full transform scale-95 group-hover:scale-100 transition-transform duration-700 ease-in-out"
+            className="flex flex-col w-full"
             style={{
               padding: 'var(--overlay-padding)',
               gap: 'var(--overlay-gap)'
@@ -95,13 +103,13 @@ export function FeaturedWorkSection() {
               </div>
               <div className="flex flex-col gap-1 w-full">
                 <p 
-                  className="font-pci-sans-bold text-[#cecece] uppercase leading-normal"
+                  className="font-pci-sans-bold text-[#cecece] leading-normal"
                   style={{ fontSize: 'var(--text-overlay-subtitle)' }}
                 >
                   Main Theme
                 </p>
                 <p 
-                  className="font-pci-sans-bold text-[#cecece] uppercase leading-normal"
+                  className="font-pci-sans-bold text-[#cecece] leading-normal"
                   style={{ fontSize: 'var(--text-overlay-subtitle)' }}
                 >
                   Created by Greg Daniels
@@ -110,7 +118,7 @@ export function FeaturedWorkSection() {
             </div>
             <div className="w-full">
               <p 
-                className="font-pci-sans-bold text-[#cecece] uppercase leading-normal"
+                className="font-pci-sans-bold text-[#cecece] leading-normal"
                 style={{ fontSize: 'var(--text-overlay-subtitle)' }}
               >
                 NBC Universal Peacock
@@ -126,19 +134,25 @@ export function FeaturedWorkSection() {
         style={{ gap: 'var(--padding-gap)' }}
       >
         <div className="flex-1 relative group cursor-pointer overflow-hidden" style={{ aspectRatio: '2000/2000' }}>
-          <img
-            alt="Oh Jerome No"
-            className="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:opacity-0"
-            src={IMG_OH_JEROME_NO}
+          <Image
+            alt="Anything Roots"
+            src={IMG_ANYTHING_ROOTS}
+            fill
+            sizes="50vw"
+            quality={90}
+            className="object-cover transition-all duration-300 ease-in-out group-hover:opacity-0"
           />
-          <img
-            alt="Oh Jerome No"
-            className="absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-700 ease-in-out group-hover:opacity-100"
-            src={IMG_OH_JEROME_NO_OVERLAY}
+          <Image
+            alt="Anything Roots"
+            src={IMG_ANYTHING_ROOTS_OVERLAY}
+            fill
+            sizes="50vw"
+            quality={90}
+            className="object-cover opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100"
           />
-          <div className="absolute inset-0 bg-[rgba(3,3,3,0.6)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out flex items-start justify-start p-[10px]">
+          <div className="absolute inset-0 bg-[rgba(3,3,3,0.6)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out flex items-start justify-start p-[10px]">
             <div 
-              className="flex flex-col w-full transform scale-95 group-hover:scale-100 transition-transform duration-700 ease-in-out"
+              className="flex flex-col w-full"
               style={{
                 padding: 'var(--overlay-padding)',
                 gap: 'var(--overlay-gap)'
@@ -150,49 +164,55 @@ export function FeaturedWorkSection() {
                     className="font-pci-sans-bold text-[#cecece] uppercase leading-normal"
                     style={{ fontSize: 'var(--text-overlay-title)' }}
                   >
-                    Oh Jerome, No
+                    ANYTHING ROOTS
                   </p>
                 </div>
                 <div className="flex flex-col gap-1 w-full">
                   <p 
-                    className="font-pci-sans-bold text-[#cecece] uppercase leading-normal"
+                    className="font-pci-sans-bold text-[#cecece] leading-normal"
                     style={{ fontSize: 'var(--text-overlay-subtitle)' }}
                   >
-                  Music Supervision
+                  Custom Music
                 </p>
                 <p 
-                  className="font-pci-sans-bold text-[#cecece] uppercase leading-normal"
+                  className="font-pci-sans-bold text-[#cecece] leading-normal"
                   style={{ fontSize: 'var(--text-overlay-subtitle)' }}
                 >
-                  Dir. Teddy Blanks/Alex Karpovsky
+                  dir. Josh Locy
                 </p>
               </div>
             </div>
             <div className="w-full">
               <p 
-                className="font-pci-sans-bold text-[#cecece] uppercase leading-normal"
+                className="font-pci-sans-bold text-[#cecece] leading-normal"
                 style={{ fontSize: 'var(--text-overlay-subtitle)' }}
               >
-                FX
+                Cartel
               </p>
               </div>
             </div>
           </div>
         </div>
         <div className="flex-1 relative group cursor-pointer overflow-hidden" style={{ aspectRatio: '2000/2000' }}>
-          <img
+          <Image
             alt="Serial"
-            className="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:opacity-0"
             src={IMG_SERIAL}
+            fill
+            sizes="50vw"
+            quality={90}
+            className="object-cover transition-all duration-300 ease-in-out group-hover:opacity-0"
           />
-          <img
+          <Image
             alt="Serial"
-            className="absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-700 ease-in-out group-hover:opacity-100"
             src={IMG_SERIAL_OVERLAY}
+            fill
+            sizes="50vw"
+            quality={90}
+            className="object-cover opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100"
           />
-          <div className="absolute inset-0 bg-[rgba(3,3,3,0.6)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out flex items-start justify-start p-[10px]">
+          <div className="absolute inset-0 bg-[rgba(3,3,3,0.6)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out flex items-start justify-start p-[10px]">
             <div 
-              className="flex flex-col w-full transform scale-95 group-hover:scale-100 transition-transform duration-700 ease-in-out"
+              className="flex flex-col w-full"
               style={{
                 padding: 'var(--overlay-padding)',
                 gap: 'var(--overlay-gap)'
@@ -209,13 +229,13 @@ export function FeaturedWorkSection() {
                 </div>
                 <div className="flex flex-col gap-1 w-full">
                   <p 
-                    className="font-pci-sans-bold text-[#cecece] uppercase leading-normal"
+                    className="font-pci-sans-bold text-[#cecece] leading-normal"
                     style={{ fontSize: 'var(--text-overlay-subtitle)' }}
                   >
                   Original Theme + Music
                 </p>
                 <p 
-                  className="font-pci-sans-bold text-[#cecece] uppercase leading-normal"
+                  className="font-pci-sans-bold text-[#cecece] leading-normal"
                   style={{ fontSize: 'var(--text-overlay-subtitle)' }}
                 >
                   Prod. Sarah Koenig
@@ -224,7 +244,7 @@ export function FeaturedWorkSection() {
             </div>
             <div className="w-full">
               <p 
-                className="font-pci-sans-bold text-[#cecece] uppercase leading-normal"
+                className="font-pci-sans-bold text-[#cecece] leading-normal"
                 style={{ fontSize: 'var(--text-overlay-subtitle)' }}
               >
                 Serial Productions

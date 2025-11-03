@@ -5,6 +5,8 @@
 
 "use client";
 
+import Image from 'next/image';
+
 // Existing client logos
 const IMG_ABC = '/assets/ABC.svg';
 const IMG_NBC = '/assets/NBC.svg';
@@ -101,11 +103,21 @@ export function ClientsSection() {
                   key={`row1-set${setIndex}-${index}`}
                   className="relative shrink-0 w-[79px] md:w-[105px] lg:w-[118px] aspect-square"
                 >
-                  <img 
-                    alt={logo.alt} 
-                    className="w-full h-full object-contain" 
-                    src={logo.src} 
-                  />
+                  {logo.src.endsWith('.svg') ? (
+                    <img 
+                      alt={logo.alt} 
+                      className="w-full h-full object-contain" 
+                      src={logo.src} 
+                    />
+                  ) : (
+                    <Image 
+                      alt={logo.alt} 
+                      src={logo.src}
+                      fill
+                      sizes="120px"
+                      className="object-contain"
+                    />
+                  )}
                 </div>
               ))
             ))}
@@ -129,11 +141,21 @@ export function ClientsSection() {
                   key={`row2-set${setIndex}-${index}`}
                   className="relative shrink-0 w-[79px] md:w-[105px] lg:w-[118px] aspect-square"
                 >
-                  <img 
-                    alt={logo.alt} 
-                    className="w-full h-full object-contain" 
-                    src={logo.src} 
-                  />
+                  {logo.src.endsWith('.svg') ? (
+                    <img 
+                      alt={logo.alt} 
+                      className="w-full h-full object-contain" 
+                      src={logo.src} 
+                    />
+                  ) : (
+                    <Image 
+                      alt={logo.alt} 
+                      src={logo.src}
+                      fill
+                      sizes="120px"
+                      className="object-contain"
+                    />
+                  )}
                 </div>
               ))
             ))}

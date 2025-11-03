@@ -48,7 +48,7 @@ export function ScrollFadeWrapper({
   return (
     <motion.div
       ref={ref}
-      style={{ opacity }}
+      style={{ opacity, overflow: 'visible' }}
       className={className}
     >
       {children}

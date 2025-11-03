@@ -20,21 +20,25 @@ export default function Home() {
     <main className="min-h-screen bg-[#f2efea] flex flex-col items-center">
       <div className="w-full max-w-[1700px]">
         <Header />
+      </div>
+      <div className="w-full flex justify-start">
         <AnimatedMenuBar />
+      </div>
+      <div className="w-full max-w-[1700px]">
         
         <ScrollFadeWrapper>
           <AnimatedIntroSection />
         </ScrollFadeWrapper>
         
         <ScrollFadeWrapper>
-          <div className="py-6"><AnimatedDividerSection variant="red" /></div>
+          <div className="py-6"><AnimatedDividerSection index={6} /></div>
         </ScrollFadeWrapper>
         
         {/* FeaturedWork has individual card scroll-fade built-in */}
         <AnimatedFeaturedWorkSection />
         
         <ScrollFadeWrapper>
-          <div className="py-6"><AnimatedDividerSection variant="teal" /></div>
+          <div className="py-4"><AnimatedDividerSection index={0} /></div>
         </ScrollFadeWrapper>
         
         <ScrollFadeWrapper>
@@ -42,7 +46,7 @@ export default function Home() {
         </ScrollFadeWrapper>
         
         <ScrollFadeWrapper>
-          <div className="py-6"><AnimatedDividerSection variant="blue" /></div>
+          <div className="py-6"><AnimatedDividerSection index={1} /></div>
         </ScrollFadeWrapper>
         
         <ScrollFadeWrapper>
@@ -50,7 +54,7 @@ export default function Home() {
         </ScrollFadeWrapper>
         
         <ScrollFadeWrapper>
-          <div className="py-6"><AnimatedDividerSection variant="purple" /></div>
+          <div className="py-6"><AnimatedDividerSection index={2} /></div>
         </ScrollFadeWrapper>
         
         {/* Footer stays at full opacity */}

@@ -11,25 +11,26 @@ import {
   DividerSection,
 } from '@/components/sections';
 
-// Divider image
-const DIVIDER_WAVY = '/assets/PCI_Divider_1.svg';
-const DIVIDER_BOTTOM = '/assets/PCI_Divider_4.svg';
-
 export default function CatalogPage() {
   return (
     <main className="min-h-screen bg-[#f2efea] flex flex-col items-center">
       <div className="w-full max-w-[1700px]">
         {/* Header */}
         <Header />
-        
-        {/* Menu Bar */}
+      </div>
+      
+      {/* Menu Bar */}
+      <div className="w-full flex justify-start">
         <AnimatedMenuBar />
+      </div>
+      
+      <div className="w-full max-w-[1700px]">
         
         {/* Intro Text */}
         <CatalogIntroSection />
         
         {/* Top Divider */}
-        <div className="py-6"><DividerSection variant="red" /></div>
+        <div className="py-6"><DividerSection index={0} /></div>
         
         {/* Catalog Grid */}
         <div className="pt-6">
@@ -37,7 +38,7 @@ export default function CatalogPage() {
         </div>
         
         {/* Bottom Divider */}
-        <div className="py-6"><DividerSection variant="olive" /></div>
+        <div className="py-6"><DividerSection index={1} /></div>
         
         {/* Footer */}
         <Footer />

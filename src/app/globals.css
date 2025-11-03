@@ -10,15 +10,15 @@
   /* Layout - Mobile mode */
   --max-width: 340px;
   --min-width: 100px;
-  --menu-home-width: 40px;
-  --menu-catalog-width: 55px;
+  --menu-home-width: 80px;
+  --menu-catalog-width: 110px;
   --contact-button-width: 100px;
   --contact-button-weight: 3;
   
   /* Typography - Mobile mode */
   --text-tiny: 12px;
-  --text-menu: 16px;
-  --text-paragraph: 18px;
+  --text-menu: 14px;
+  --text-paragraph: 16px;
   --text-header: 32px;
   
   /* Spacing - Mobile mode */
@@ -67,8 +67,12 @@
 @media (max-width: 389px) {
   :root {
     /* Reduce text sizes on very small screens */
-    --text-menu: 12px;
+    --text-menu: 14px;
     --text-paragraph: 16px;
+    --text-header: 24px;
+    /* Adjust menu widths for smaller text */
+    --menu-home-width: 65px;
+    --menu-catalog-width: 95px;
   }
 }
 
@@ -86,7 +90,7 @@
   }
 }
 
-/* Tablet breakpoint (640px - 768px) */
+/* Tablet breakpoint (640px - 767px) - Tailwind sm: */
 @media (min-width: 640px) {
   :root {
     /* Layout - Tablet mode */
@@ -98,9 +102,9 @@
     --contact-button-weight: 8;
     
     /* Typography - Tablet mode */
-    --text-menu: 24px;
-    --text-paragraph: 20px;
-    --text-header: 54px;
+    --text-menu: 16px;
+    --text-paragraph: 18px;
+    --text-header: 48px;
     
     /* Spacing - Tablet mode */
     --padding-gap: 24px;
@@ -145,7 +149,7 @@
   }
 }
 
-/* Large tablet breakpoint (768px - 1024px) */
+/* Large tablet breakpoint (768px - 1023px) - Tailwind md: */
 @media (min-width: 768px) {
   :root {
     /* Layout - Large tablet mode */
@@ -157,9 +161,9 @@
     --contact-button-weight: 9;
     
     /* Typography - Large tablet mode */
-    --text-menu: 28px;
-    --text-paragraph: 22px;
-    --text-header: 63px;
+    --text-menu: 22px;
+    --text-paragraph: 24px;
+    --text-header: 58px;
     
     /* Spacing - Large tablet mode */
     --padding-gap: 24px;
@@ -200,11 +204,11 @@
     --modal-input-text: 22px;
     --modal-input-height: 55px;
     --modal-button-text: 29px;
-    --modal-gap: 28px;
+    --modal-gap: 26px;
   }
 }
 
-/* Desktop breakpoint (1024px+) */
+/* Desktop breakpoint (1024px+) - Tailwind lg: */
 @media (min-width: 1024px) {
   :root {
     /* Layout - Desktop mode */
@@ -218,8 +222,8 @@
     /* Typography - Desktop mode */
     --text-tiny: 16px;
     --text-menu: 24px;
-    --text-paragraph: 24px;
-    --text-header: 54px;
+    --text-paragraph: 26px;
+    --text-header: 63px;
     
     /* Spacing - Desktop mode */
     --padding-gap: 24px;
@@ -260,7 +264,7 @@
     --modal-input-text: 24px;
     --modal-input-height: 59px;
     --modal-button-text: 32px;
-    --modal-gap: 24px;
+    --modal-gap: 28px;
   }
 }
 
@@ -361,4 +365,21 @@ body {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Menu bar responsive fixes */
+[data-name="Menu Bar"] {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+[data-name="Menu Bar"] > * {
+  white-space: nowrap;
+  min-width: fit-content;
+}
+
+/* Ensure menu text doesn't wrap or get cut off */
+[data-name="Menu Bar"] p {
+  white-space: nowrap;
+  overflow: visible;
 }

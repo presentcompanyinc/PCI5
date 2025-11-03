@@ -5,6 +5,7 @@
  * Click any logo to make it explode with cartoon-style burst effects!
  */
 
+import Image from 'next/image';
 import { useRef, useState, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 
@@ -347,11 +348,9 @@ export function CarnivalPopperClientsSection() {
                   >
                     <AnimatePresence mode="wait">
                       {!isExploded ? (
-                        <motion.img 
+                        <motion.div
                           key={`img-${key}`}
-                          alt={logo.alt} 
-                          className="w-full h-full object-contain" 
-                          src={logo.src}
+                          className="w-full h-full relative"
                           initial={{ scale: 1, rotate: 0, opacity: 1 }}
                           exit={{ 
                             scale: 1.3, 
@@ -359,7 +358,23 @@ export function CarnivalPopperClientsSection() {
                             opacity: 0,
                             transition: { duration: 0.2 }
                           }}
-                        />
+                        >
+                          {logo.src.endsWith('.svg') ? (
+                            <img 
+                              alt={logo.alt} 
+                              className="w-full h-full object-contain" 
+                              src={logo.src}
+                            />
+                          ) : (
+                            <Image 
+                              alt={logo.alt} 
+                              src={logo.src}
+                              fill
+                              sizes="120px"
+                              className="object-contain"
+                            />
+                          )}
+                        </motion.div>
                       ) : (
                         <div key={`empty-${key}`} />
                       )}
@@ -429,11 +444,9 @@ export function CarnivalPopperClientsSection() {
                   >
                     <AnimatePresence mode="wait">
                       {!isExploded ? (
-                        <motion.img 
+                        <motion.div
                           key={`img-${key}`}
-                          alt={logo.alt} 
-                          className="w-full h-full object-contain" 
-                          src={logo.src}
+                          className="w-full h-full relative"
                           initial={{ scale: 1, rotate: 0, opacity: 1 }}
                           exit={{ 
                             scale: 1.3, 
@@ -441,7 +454,23 @@ export function CarnivalPopperClientsSection() {
                             opacity: 0,
                             transition: { duration: 0.2 }
                           }}
-                        />
+                        >
+                          {logo.src.endsWith('.svg') ? (
+                            <img 
+                              alt={logo.alt} 
+                              className="w-full h-full object-contain" 
+                              src={logo.src}
+                            />
+                          ) : (
+                            <Image 
+                              alt={logo.alt} 
+                              src={logo.src}
+                              fill
+                              sizes="120px"
+                              className="object-contain"
+                            />
+                          )}
+                        </motion.div>
                       ) : (
                         <div key={`empty-${key}`} />
                       )}

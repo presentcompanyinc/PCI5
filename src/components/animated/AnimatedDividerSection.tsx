@@ -3,55 +3,24 @@
 /**
  * AnimatedDividerSection - Memphis-style dividers with simple fade-in
  * Animation 2: Divider Fade-In (using actual SVG files)
+ * Now with randomization support - pass an index (0-6) instead of variant
  */
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-
-const DIVIDER_RED_BLOBS = '/assets/PCI_Divider_1.svg';
-const DIVIDER_TEAL = '/assets/Divider2.svg';
-const DIVIDER_BLUE = '/assets/Divider3.svg';
-const DIVIDER_OLIVE = '/assets/PCI_Divider_4.svg';
-const DIVIDER_PURPLE = '/assets/Divider 5.svg';
+import { useDividerRandomizer } from '@/contexts/DividerRandomizerContext';
 
 interface AnimatedDividerSectionProps {
-  variant?: 'red' | 'teal' | 'blue' | 'olive' | 'purple';
+  index: number; // Index 0-6 to get a randomized divider
 }
 
-export function AnimatedDividerSection({ variant = 'red' }: AnimatedDividerSectionProps) {
+export function AnimatedDividerSection({ index }: AnimatedDividerSectionProps) {
   const ref = useRef(null);
   // Trigger when divider reaches center of viewport (50% visible)
   const isInView = useInView(ref, { once: true, amount: 0.5 });
-
-  const config = {
-    red: {
-      bgColor: 'bg-[#f37d7d]',
-      imgSrc: DIVIDER_RED_BLOBS,
-      aspectRatio: '3546/282.001',
-    },
-    teal: {
-      bgColor: 'bg-[#afbab6]',
-      imgSrc: DIVIDER_TEAL,
-      aspectRatio: '2838/175',
-    },
-    blue: {
-      bgColor: 'bg-[#03bed8]',
-      imgSrc: DIVIDER_BLUE,
-      aspectRatio: '2838/175',
-    },
-    olive: {
-      bgColor: 'bg-[#666a47]',
-      imgSrc: DIVIDER_OLIVE,
-      aspectRatio: '6001.53/482.588',
-    },
-    purple: {
-      bgColor: 'bg-[#8b5fbf]',
-      imgSrc: DIVIDER_PURPLE,
-      aspectRatio: '2838/175',
-    },
-  };
-
-  const { bgColor, imgSrc, aspectRatio } = config[variant];
+  
+  const { getDivider } = useDividerRandomizer();
+  const { bgColor, imgSrc, aspectRatio } = getDivider(index);
 
   return (
     <motion.div 
@@ -61,7 +30,8 @@ export function AnimatedDividerSection({ variant = 'red' }: AnimatedDividerSecti
     >
       {/* Animated background color that fades in with the SVG */}
       <motion.div
-        className={`absolute inset-0 ${bgColor}`}
+        className="absolute inset-0"
+        style={{ backgroundColor: bgColor }}
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : {}}
         transition={{ 

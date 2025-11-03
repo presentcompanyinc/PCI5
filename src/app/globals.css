@@ -371,15 +371,19 @@ body {
 [data-name="Menu Bar"] {
   width: 100%;
   box-sizing: border-box;
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
 }
 
 .menu-bar-inner {
   display: flex;
   flex-wrap: nowrap;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: 0;
+  justify-content: flex-start;
+  gap: 12px;
   width: 100%;
+  min-width: max-content;
 }
 
 @media (min-width: 640px) {
@@ -389,13 +393,57 @@ body {
   }
 }
 
+/* Mobile: ensure all menu items are visible and properly sized */
+@media (max-width: 639px) {
+  .menu-bar-inner {
+    gap: 8px;
+    padding-right: 16px; /* Extra padding for scroll affordance */
+  }
+}
+
 [data-name="Menu Bar"] > * {
   white-space: nowrap;
   min-width: fit-content;
+  flex-shrink: 0;
 }
 
 /* Ensure menu text doesn't wrap or get cut off */
 [data-name="Menu Bar"] p {
   white-space: nowrap;
   overflow: visible;
+  display: block;
+  width: 100%;
+}
+
+/* Additional mobile fixes - ensure all menu items render */
+@media (max-width: 639px) {
+  /* Force visibility of all menu items */
+  [data-name="Menu Bar"] a,
+  [data-name="Menu Bar"] button {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+  }
+  
+  /* Ensure menu bar has enough space */
+  [data-name="Menu Bar"] {
+    min-height: 40px;
+  }
+  
+  /* Prevent any transforms from hiding content */
+  .menu-bar-inner > * {
+    transform: none !important;
+  }
+}
+
+/* Very small screens - additional defensive measures */
+@media (max-width: 389px) {
+  .menu-bar-inner {
+    gap: 6px !important;
+  }
+  
+  [data-name="Menu Bar"] p {
+    font-size: 14px !important;
+  }
 }

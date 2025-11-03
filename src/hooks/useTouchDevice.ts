@@ -6,29 +6,48 @@ import { useState, useEffect } from 'react';
  * Hook to detect if the device is a touch device
  * Uses media query (hover: none) for reliable touch detection
  * Returns true for touch devices, false for devices with hover capability
+ * 
+ * SSR-safe: starts with false and updates on client-side mount
  */
 export function useTouchDevice(): boolean {
+  // Start with false for SSR, will update on client
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    // Check if hover is not available (indicates touch device)
-    const touchQuery = window.matchMedia('(hover: none)');
+    // Mark as client-side
+    setIsClient(true);
     
-    // Set initial value
-    setIsTouchDevice(touchQuery.matches);
+    // Fallback: check for touch support
+    const hasTouchScreen = 
+      'ontouchstart' in window || 
+      navigator.maxTouchPoints > 0 ||
+      (navigator as any).msMaxTouchPoints > 0;
+    
+    try {
+      // Primary check: hover capability
+      const touchQuery = window.matchMedia('(hover: none)');
+      
+      // Set initial value - prefer media query, fallback to touch detection
+      setIsTouchDevice(touchQuery.matches || (hasTouchScreen && window.innerWidth < 1024));
 
-    // Listen for changes (e.g., connecting/disconnecting external mouse)
-    const handleChange = (e: MediaQueryListEvent) => {
-      setIsTouchDevice(e.matches);
-    };
+      // Listen for changes (e.g., connecting/disconnecting external mouse)
+      const handleChange = (e: MediaQueryListEvent) => {
+        setIsTouchDevice(e.matches);
+      };
 
-    touchQuery.addEventListener('change', handleChange);
+      touchQuery.addEventListener('change', handleChange);
 
-    return () => {
-      touchQuery.removeEventListener('change', handleChange);
-    };
+      return () => {
+        touchQuery.removeEventListener('change', handleChange);
+      };
+    } catch (error) {
+      // If matchMedia fails, use touch detection fallback
+      console.warn('matchMedia not supported, using fallback touch detection', error);
+      setIsTouchDevice(hasTouchScreen);
+    }
   }, []);
 
-  return isTouchDevice;
+  return isClient ? isTouchDevice : false;
 }
 

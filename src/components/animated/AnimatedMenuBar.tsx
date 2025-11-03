@@ -81,7 +81,8 @@ function MenuItem({ children, rotation, width, href, onClick, menuIndex, isTouch
 
   const content = (
     <div 
-      className="flex flex-col items-center justify-center w-full"
+      className="flex flex-col items-center justify-center"
+      style={{ minWidth: 'fit-content' }}
       onMouseEnter={() => !isTouchDevice && setIsHovered(true)}
       onMouseLeave={() => !isTouchDevice && setIsHovered(false)}
       onTouchStart={isTouchDevice ? handleTap : undefined}
@@ -91,15 +92,16 @@ function MenuItem({ children, rotation, width, href, onClick, menuIndex, isTouch
         <p
           className="font-pci-sans-bold text-black leading-normal whitespace-nowrap"
           style={{ 
-            fontSize: 'var(--text-menu)',
-            letterSpacing: '0.04em'
+            fontSize: 'var(--text-menu, 14px)',
+            letterSpacing: '0.04em',
+            display: 'block'
           }}
         >
           {children}
         </p>
       </div>
       {/* Animated squiggle underline with path morphing */}
-      <div className="relative w-full h-[6px] mt-1 flex items-center justify-start" style={{ overflow: 'visible' }}>
+      <div className="relative w-full h-[6px] mt-1 flex items-center justify-start" style={{ overflow: 'visible', minWidth: '100%' }}>
         <svg className="w-full h-[6px]" style={{ overflow: 'visible' }} viewBox="0 -3 100 12" preserveAspectRatio="none">
           <defs>
             {/* Subtle texture filter for hand-drawn effect - reduced by additional 50% */}
@@ -141,7 +143,8 @@ function MenuItem({ children, rotation, width, href, onClick, menuIndex, isTouch
   const itemStyle = {
     flexShrink: 0,
     flexBasis: 'auto',
-    width: 'auto'
+    minWidth: 'fit-content',
+    display: 'block'
   };
 
   if (onClick) {
@@ -175,21 +178,29 @@ export function AnimatedMenuBar() {
 
   return (
     <nav 
-      className="bg-[#f2efea] w-full max-w-[1700px] overflow-hidden scrollbar-hide" 
+      className="bg-[#f2efea] w-full max-w-[1700px] scrollbar-hide" 
       style={{
         padding: '16px var(--padding-lr)',
-        minWidth: 0
+        minWidth: 0,
+        overflowX: 'auto',
+        overflowY: 'visible'
       }}
       data-name="Menu Bar"
       aria-label="Main navigation"
     >
       <div className="menu-bar-inner">
-        <MenuItem rotation={358.749} href="/" menuIndex={0} isTouchDevice={isTouchDevice}>Home</MenuItem>
-        <MenuItem rotation={2} href="/work" menuIndex={1} isTouchDevice={isTouchDevice}>Work</MenuItem>
+        <MenuItem rotation={358.749} href="/" menuIndex={0} isTouchDevice={isTouchDevice}>
+          Home
+        </MenuItem>
+        <MenuItem rotation={2} href="/work" menuIndex={1} isTouchDevice={isTouchDevice}>
+          Work
+        </MenuItem>
         <MenuItem rotation={359.25} width="var(--menu-catalog-width)" href="/catalog" menuIndex={2} isTouchDevice={isTouchDevice}>
           Catalog
         </MenuItem>
-        <MenuItem rotation={1} href="/about" menuIndex={3} isTouchDevice={isTouchDevice}>About</MenuItem>
+        <MenuItem rotation={1} href="/about" menuIndex={3} isTouchDevice={isTouchDevice}>
+          About
+        </MenuItem>
         <MenuItem rotation={358.25} width="var(--menu-catalog-width)" onClick={openContactModal} menuIndex={4} isTouchDevice={isTouchDevice}>
           Contact
         </MenuItem>

@@ -81,19 +81,20 @@ function MenuItem({ children, rotation, href, onClick, menuIndex, isTouchDevice 
   const content = (
     <div 
       className="flex flex-col items-center justify-center"
-      style={{ minWidth: 'fit-content' }}
+      style={{ minWidth: 'fit-content', width: 'auto' }}
       onMouseEnter={() => !isTouchDevice && setIsHovered(true)}
       onMouseLeave={() => !isTouchDevice && setIsHovered(false)}
       onTouchStart={isTouchDevice ? handleTap : undefined}
       onClick={isTouchDevice ? handleTap : undefined}
     >
-      <div style={{ transform: `rotate(${rotation}deg)` }}>
+      <div style={{ transform: `rotate(${rotation}deg)`, width: 'fit-content' }}>
         <p
           className="font-pci-sans-bold text-black leading-normal whitespace-nowrap"
           style={{ 
             fontSize: 'var(--text-menu, 14px)',
             letterSpacing: '0.04em',
-            display: 'block'
+            display: 'inline-block',
+            minWidth: 'fit-content'
           }}
         >
           {children}
@@ -141,9 +142,11 @@ function MenuItem({ children, rotation, href, onClick, menuIndex, isTouchDevice 
 
   const itemStyle: React.CSSProperties = {
     flexShrink: 0,
+    flexGrow: 0,
     flexBasis: 'auto',
     minWidth: 'fit-content',
-    display: 'flex',
+    width: 'auto',
+    display: 'inline-flex',
     visibility: 'visible',
     opacity: 1
   };
@@ -191,7 +194,7 @@ export function AnimatedMenuBar() {
       data-name="Menu Bar"
       aria-label="Main navigation"
     >
-      <div className="menu-bar-inner" style={{ display: 'flex', gap: '12px', minWidth: 'max-content' }}>
+      <div className="menu-bar-inner" style={{ display: 'flex', gap: '12px', width: 'auto', minWidth: '100%' }}>
         <MenuItem rotation={358.749} href="/" menuIndex={0} isTouchDevice={isTouchDevice}>
           Home
         </MenuItem>

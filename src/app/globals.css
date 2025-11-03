@@ -382,8 +382,8 @@ body {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 12px;
-  width: 100%;
-  min-width: max-content;
+  width: auto;
+  min-width: 100%;
 }
 
 @media (min-width: 640px) {
@@ -422,12 +422,14 @@ body {
   .menu-bar-inner > button,
   [data-name="Menu Bar"] a,
   [data-name="Menu Bar"] button {
-    display: flex !important;
+    display: inline-flex !important;
     visibility: visible !important;
     opacity: 1 !important;
     position: relative !important;
     flex-shrink: 0 !important;
+    flex-grow: 0 !important;
     min-width: fit-content !important;
+    width: auto !important;
   }
   
   /* Ensure menu bar has enough space */
@@ -438,12 +440,22 @@ body {
   /* Allow very subtle rotations on mobile but prevent transforms from hiding content */
   .menu-bar-inner > * > div:first-child {
     transform: none !important;
+    width: fit-content !important;
   }
   
-  /* Force the menu text to be visible */
+  /* Force the menu text to be visible and sized properly */
   .menu-bar-inner p {
     visibility: visible !important;
     opacity: 1 !important;
+    display: inline-block !important;
+    min-width: fit-content !important;
+    width: auto !important;
+  }
+  
+  /* Ensure the inner container doesn't collapse */
+  .menu-bar-inner {
+    width: auto !important;
+    min-width: 100% !important;
   }
 }
 

@@ -73,6 +73,8 @@
     /* Adjust menu widths for smaller text */
     --menu-home-width: 65px;
     --menu-catalog-width: 95px;
+    /* Reduce gap for menu to fit all items */
+    --padding-gap: 8px;
   }
 }
 

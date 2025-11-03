@@ -175,12 +175,10 @@ export function AnimatedMenuBar() {
 
   return (
     <div 
-      className="bg-[#f2efea] flex flex-nowrap items-start w-full overflow-x-auto overflow-y-hidden scrollbar-hide" 
+      className="bg-[#f2efea] flex flex-nowrap items-start w-full overflow-hidden scrollbar-hide" 
       style={{
         gap: 'var(--padding-gap)',
         padding: '16px var(--padding-lr)',
-        maxWidth: 'min(100%, var(--display-width))',
-        WebkitOverflowScrolling: 'touch',
         minWidth: 0
       }}
       data-name="Menu Bar"

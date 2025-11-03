@@ -131,9 +131,8 @@ export function MenuBar() {
 
   return (
     <div 
-      className="bg-[#f2efea] flex flex-nowrap items-start w-full overflow-hidden scrollbar-hide" 
+      className="bg-[#f2efea] flex flex-nowrap items-start w-full overflow-hidden scrollbar-hide justify-between sm:justify-start sm:gap-6" 
       style={{
-        gap: 'var(--padding-gap)',
         padding: '16px var(--padding-lr)',
         minWidth: 0
       }}

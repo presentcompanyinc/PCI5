@@ -93,10 +93,11 @@ function MenuItem({ children, rotation, href, onClick, menuIndex, isTouchDevice 
   const mobileContent = (
     <div 
       style={{ 
-        padding: '8px 12px',
+        padding: '8px 4px',
         minWidth: 'fit-content',
         width: 'auto',
-        display: 'block'
+        display: 'block',
+        flexShrink: 0
       }}
       onTouchStart={isTouchDevice ? handleTap : undefined}
       onClick={isTouchDevice ? handleTap : undefined}
@@ -108,7 +109,8 @@ function MenuItem({ children, rotation, href, onClick, menuIndex, isTouchDevice 
           letterSpacing: '0.04em',
           display: 'inline-block',
           color: '#000',
-          fontWeight: 'bold'
+          fontWeight: 'bold',
+          minWidth: 'fit-content'
         }}
       >
         {children}
@@ -234,20 +236,40 @@ export function AnimatedMenuBar() {
   const { openFormModal, openInfoModal } = useContactModal();
   const openContactModal = CONTACT_MODAL_TYPE === 'form' ? openFormModal : openInfoModal;
   const isTouchDevice = useTouchDevice();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <nav 
       className="bg-[#f2efea] w-full max-w-[1700px] scrollbar-hide" 
       style={{
-        padding: '16px var(--padding-lr)',
+        padding: `16px ${isMobile ? '24px' : 'var(--padding-lr)'} 16px var(--padding-lr)`,
         minWidth: 0,
         overflowX: 'auto',
-        overflowY: 'visible'
+        overflowY: 'visible',
+        WebkitOverflowScrolling: 'touch'
       }}
       data-name="Menu Bar"
       aria-label="Main navigation"
     >
-      <div className="menu-bar-inner" style={{ display: 'flex', gap: '12px', width: 'auto', minWidth: '100%' }}>
+      <div 
+        className="menu-bar-inner" 
+        style={{ 
+          display: 'flex', 
+          gap: isMobile ? '8px' : '12px', 
+          width: 'max-content',
+          minWidth: '100%',
+          flexWrap: 'nowrap'
+        }}
+      >
         <MenuItem rotation={358.749} href="/" menuIndex={0} isTouchDevice={isTouchDevice}>
           Home
         </MenuItem>

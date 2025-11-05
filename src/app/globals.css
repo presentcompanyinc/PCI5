@@ -382,7 +382,7 @@ body {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 12px;
-  width: auto;
+  width: max-content;
   min-width: 100%;
 }
 
@@ -452,10 +452,15 @@ body {
     width: auto !important;
   }
   
-  /* Ensure the inner container doesn't collapse */
+  /* Ensure the inner container doesn't collapse and can grow */
   .menu-bar-inner {
-    width: auto !important;
+    width: max-content !important;
     min-width: 100% !important;
+  }
+  
+  /* Add extra padding to right side for scroll affordance */
+  [data-name="Menu Bar"] {
+    padding-right: 24px !important;
   }
 }
 

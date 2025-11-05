@@ -93,7 +93,7 @@ function MenuItem({ children, rotation, href, onClick, menuIndex, isTouchDevice 
   const mobileContent = (
     <div 
       style={{ 
-        padding: '8px 4px',
+        padding: '4px 2px',
         minWidth: 'fit-content',
         width: 'auto',
         display: 'block',
@@ -105,8 +105,8 @@ function MenuItem({ children, rotation, href, onClick, menuIndex, isTouchDevice 
       <span
         className="font-pci-sans-bold text-black whitespace-nowrap"
         style={{ 
-          fontSize: '14px',
-          letterSpacing: '0.04em',
+          fontSize: '12px',
+          letterSpacing: '0.02em',
           display: 'inline-block',
           color: '#000',
           fontWeight: 'bold',
@@ -184,7 +184,7 @@ function MenuItem({ children, rotation, href, onClick, menuIndex, isTouchDevice 
   const content = isMobile ? mobileContent : desktopContent;
 
   const itemStyle: React.CSSProperties = isMobile ? {
-    // Simplified mobile styles
+    // Simplified mobile styles - prevent shrinking to avoid text truncation
     flexShrink: 0,
     flexGrow: 0,
     minWidth: 'fit-content',
@@ -249,13 +249,12 @@ export function AnimatedMenuBar() {
 
   return (
     <nav 
-      className="bg-[#f2efea] w-full max-w-[1700px] scrollbar-hide" 
+      className="bg-[#f2efea] w-full max-w-[1700px]" 
       style={{
-        padding: `16px ${isMobile ? '24px' : 'var(--padding-lr)'} 16px var(--padding-lr)`,
+        padding: isMobile ? '12px var(--padding-lr)' : '16px var(--padding-lr)',
         minWidth: 0,
-        overflowX: 'auto',
-        overflowY: 'visible',
-        WebkitOverflowScrolling: 'touch'
+        overflowX: 'hidden',
+        overflowY: 'visible'
       }}
       data-name="Menu Bar"
       aria-label="Main navigation"
@@ -264,9 +263,9 @@ export function AnimatedMenuBar() {
         className="menu-bar-inner" 
         style={{ 
           display: 'flex', 
-          gap: isMobile ? '8px' : '12px', 
-          width: 'max-content',
-          minWidth: '100%',
+          gap: isMobile ? '4px' : '12px', 
+          width: '100%',
+          justifyContent: isMobile ? 'space-between' : 'flex-start',
           flexWrap: 'nowrap'
         }}
       >

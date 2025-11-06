@@ -33,3 +33,5 @@ export function getFixedButtonColor(): string {
   return BUTTON_COLORS[2].bgColor; // Default to blue (#03bed8)
 }
 
+
+

@@ -4,7 +4,7 @@ export const siteConfig: SiteConfig = {
   name: 'Present Company Included',
   description: 'A modern, accessible, and performant website built with Next.js and Tailwind CSS.',
   url: 'https://presentcompanyincluded.com',
-  ogImage: '/og-image.jpg',
+  ogImage: 'https://presentcompanyincluded.com/assets/og-image.jpg',
   links: {
     twitter: 'https://twitter.com/presentcompany',
     github: 'https://github.com/presentcompany',

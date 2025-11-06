@@ -225,22 +225,70 @@ const MemphisPlayground = React.forwardRef<MemphisPlaygroundHandle, MemphisPlayg
                   audioRef.current?.setMuted(next);
                 }}
                 aria-label={muted ? 'Unmute' : 'Mute'}
-                style={{ width: 36, height: 36, borderRadius: 999, border: '2px solid rgba(0,0,0,0.8)', background: '#fff', display: 'grid', placeItems: 'center' }}
+                style={{ 
+                  width: 36, 
+                  height: 36, 
+                  borderRadius: 999, 
+                  border: '2px solid rgba(0,0,0,0.8)', 
+                  background: '#fff', 
+                  display: 'grid', 
+                  placeItems: 'center',
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none',
+                  WebkitTouchCallout: 'none',
+                  touchAction: 'manipulation',
+                  cursor: 'pointer'
+                }}
               >
-                <span style={{ fontSize: 16 }} role="img" aria-hidden>{muted ? '🔇' : '🔊'}</span>
+                <span style={{ fontSize: 16, userSelect: 'none', WebkitUserSelect: 'none', pointerEvents: 'none' }} role="img" aria-hidden>{muted ? '🔇' : '🔊'}</span>
               </button>
               <div style={{ position: 'relative' }}>
                 <button
                   className="memphis-freeze"
-                  onPointerDown={() => { audioRef.current?.freezePress(); setFreezeState('recording'); }}
+                  onPointerDown={(e) => { 
+                    e.preventDefault(); 
+                    audioRef.current?.freezePress(); 
+                    setFreezeState('recording'); 
+                  }}
                   onPointerUp={() => { audioRef.current?.freezeRelease(); setFreezeState('playing'); }}
                   onPointerLeave={() => { if (freezeState === 'recording') { audioRef.current?.freezeRelease(); setFreezeState('playing'); } }}
+                  onTouchStart={(e) => { 
+                    e.preventDefault(); 
+                    audioRef.current?.freezePress(); 
+                    setFreezeState('recording'); 
+                  }}
+                  onTouchEnd={(e) => { 
+                    e.preventDefault(); 
+                    audioRef.current?.freezeRelease(); 
+                    setFreezeState('playing'); 
+                  }}
+                  onTouchCancel={(e) => { 
+                    e.preventDefault(); 
+                    if (freezeState === 'recording') { 
+                      audioRef.current?.freezeRelease(); 
+                      setFreezeState('playing'); 
+                    } 
+                  }}
                   onMouseEnter={() => setHoverFreeze(true)}
                   onMouseLeave={() => setHoverFreeze(false)}
                   aria-label="Freeze"
-                  style={{ width: 36, height: 36, borderRadius: 999, border: '2px solid rgba(0,0,0,0.8)', background: freezeBg, display: 'grid', placeItems: 'center', transition: 'background-color 120ms ease' }}
+                  style={{ 
+                    width: 36, 
+                    height: 36, 
+                    borderRadius: 999, 
+                    border: '2px solid rgba(0,0,0,0.8)', 
+                    background: freezeBg, 
+                    display: 'grid', 
+                    placeItems: 'center', 
+                    transition: 'background-color 120ms ease',
+                    userSelect: 'none',
+                    WebkitUserSelect: 'none',
+                    WebkitTouchCallout: 'none',
+                    touchAction: 'manipulation',
+                    cursor: 'pointer'
+                  }}
                 >
-                  <span style={{ fontSize: 18 }} role="img" aria-hidden>❄️</span>
+                  <span style={{ fontSize: 18, userSelect: 'none', WebkitUserSelect: 'none', pointerEvents: 'none' }} role="img" aria-hidden>❄️</span>
                 </button>
                 {freezeState === 'recording' && (
                   <div style={{ position: 'absolute', top: '100%', left: 0, marginTop: 6, background: '#fff', border: '1px solid rgba(0,0,0,0.3)', borderRadius: 8, padding: '2px 6px', fontSize: 12, boxShadow: '0 1px 4px rgba(0,0,0,0.1)' }}>
@@ -252,9 +300,22 @@ const MemphisPlayground = React.forwardRef<MemphisPlaygroundHandle, MemphisPlayg
                 className="memphis-clear"
                 onClick={() => { audioRef.current?.clearFreezeBuffer(); setFreezeState('idle'); }}
                 aria-label="Clear freeze"
-                style={{ width: 36, height: 36, borderRadius: 999, border: '2px solid rgba(0,0,0,0.8)', background: '#fff', display: 'grid', placeItems: 'center' }}
+                style={{ 
+                  width: 36, 
+                  height: 36, 
+                  borderRadius: 999, 
+                  border: '2px solid rgba(0,0,0,0.8)', 
+                  background: '#fff', 
+                  display: 'grid', 
+                  placeItems: 'center',
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none',
+                  WebkitTouchCallout: 'none',
+                  touchAction: 'manipulation',
+                  cursor: 'pointer'
+                }}
               >
-                <span style={{ fontSize: 16 }} role="img" aria-hidden>🗑️</span>
+                <span style={{ fontSize: 16, userSelect: 'none', WebkitUserSelect: 'none', pointerEvents: 'none' }} role="img" aria-hidden>🗑️</span>
               </button>
             </div>
           )}
@@ -275,7 +336,17 @@ const MemphisPlayground = React.forwardRef<MemphisPlaygroundHandle, MemphisPlayg
                   shapeFactoryRef.current?.resetScene();
                 }}
                 aria-label="Decrease blobs"
-                style={{ width: 28, height: 28, borderRadius: 4, border: '1px solid rgba(0,0,0,0.5)' }}
+                style={{ 
+                  width: 28, 
+                  height: 28, 
+                  borderRadius: 4, 
+                  border: '1px solid rgba(0,0,0,0.5)',
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none',
+                  WebkitTouchCallout: 'none',
+                  touchAction: 'manipulation',
+                  cursor: 'pointer'
+                }}
               >
                 ▾
               </button>
@@ -293,7 +364,17 @@ const MemphisPlayground = React.forwardRef<MemphisPlaygroundHandle, MemphisPlayg
                   shapeFactoryRef.current?.resetScene();
                 }}
                 aria-label="Increase blobs"
-                style={{ width: 28, height: 28, borderRadius: 4, border: '1px solid rgba(0,0,0,0.5)' }}
+                style={{ 
+                  width: 28, 
+                  height: 28, 
+                  borderRadius: 4, 
+                  border: '1px solid rgba(0,0,0,0.5)',
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none',
+                  WebkitTouchCallout: 'none',
+                  touchAction: 'manipulation',
+                  cursor: 'pointer'
+                }}
               >
                 ▴
               </button>

@@ -161,3 +161,5 @@ The fixes are **defensive and additive** - they don't break existing functionali
 
 These changes follow the **progressive enhancement** principle - basic functionality (showing all menu items) is guaranteed, while animations are added progressively.
 
+
+

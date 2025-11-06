@@ -19,7 +19,7 @@ export function AboutIntroSection() {
             style={{ fontSize: 'var(--text-paragraph)' }}
           >
             <p className="leading-[1.15]">
-            Conceived by two Los Angeles based musicians with a knack for timeless melodies, out of the ordinary productions, and resonant emotional impact, PCI fills the unconventional void in TV and Film.
+            Conceived by two Los Angeles based musicians,PCI fills the unconventional void in TV and Film.
             </p>
           </div>
         </div>

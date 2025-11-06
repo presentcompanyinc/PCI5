@@ -19,7 +19,7 @@ export function CatalogIntroSection() {
             style={{ fontSize: 'var(--text-paragraph)' }}
           >
             <p className="leading-[1.15]">
-            Inspired by the music libraries of yesteryear like KPM, Dewolfe, and Chappell we've created and crafted thematic albums for a variety of usages where original yet unusual library music is wanted.
+             KPM. DeWolfe.Chappell. Inspired by the music libraries of yesteryear, we've crafted thematic albums from our private collectionwhere unusual library music is needed.
             </p>
           </div>
         </div>

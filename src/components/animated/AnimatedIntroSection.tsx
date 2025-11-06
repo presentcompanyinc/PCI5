@@ -31,7 +31,7 @@ export function AnimatedIntroSection() {
         }}
       >
         <p className="leading-[1.15]">
-          We make hits.
+          We make good music.
         </p>
         <p className="leading-[1.15]">
           PCI is a collective of acclaimed recording artists making music for film, television, and commercials

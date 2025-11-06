@@ -15,7 +15,7 @@ import { useTouchDevice } from '@/hooks/useTouchDevice';
 const ALBUMS = [
   // Corrected mapping: titles read from artwork, URLs matched by title
   { id: 1, src: '/assets/PCI001final.jpg', alt: 'PCI001', streamingUrl: 'https://present-company-inc.disco.ac/cat/1732058163/albums/25188763' }, // Mind Out Of Time
-  { id: 2, src: '/assets/PCI002final.jpg', alt: 'PCI002', streamingUrl: '' }, // Down To A Science (not on DISCO list yet)
+  { id: 2, src: '/assets/PCI002final.jpg', alt: 'PCI002', streamingUrl: 'https://s.disco.ac/ikfrdlvivrjy' }, // Down To A Science
   { id: 3, src: '/assets/PCI003final.jpg', alt: 'PCI003', streamingUrl: 'https://present-company-inc.disco.ac/cat/1732058163/albums/25188735' }, // Event Horizons
   { id: 4, src: '/assets/PCI004final.jpg', alt: 'PCI004', streamingUrl: '' }, // Sixes & Sevens (not on list yet)
   { id: 5, src: '/assets/PCI005final.jpg', alt: 'PCI005', streamingUrl: 'https://present-company-inc.disco.ac/cat/1732058163/albums/25184394' }, // A Few Dark Clouds
@@ -39,7 +39,7 @@ const ALBUMS = [
   { id: 23, src: '/assets/PCI023final.jpg', alt: 'PCI023', streamingUrl: '' }, // East Of Exeter (not on list yet)
   { id: 24, src: '/assets/PCI024final.jpg', alt: 'PCI024', streamingUrl: '' }, // The Void (not on list yet)
   { id: 25, src: '/assets/PCI025final.jpg', alt: 'PCI025', streamingUrl: '' }, // Tailored Kitsch (not on list yet)
-  { id: 26, src: '/assets/PCI026final.jpg', alt: 'PCI026', streamingUrl: 'https://present-company-inc.disco.ac/cat/1732058163/albums/25243354' }, // For Your Amusement Only
+  { id: 26, src: '/assets/PCI026final.jpg', alt: 'PCI026', streamingUrl: 'https://s.disco.ac/oaiqewpddksi' }, // For Your Amusement Only
   { id: 27, src: '/assets/PCI027final.jpg', alt: 'PCI027', streamingUrl: '' }, // A Bend In The Road (not on list yet)
   { id: 28, src: '/assets/PCI028final.jpg', alt: 'PCI028', streamingUrl: '' }, // Stellar Drift (not on list yet)
   { id: 29, src: '/assets/PCI029final.jpg', alt: 'PCI029', streamingUrl: '' }, // Give Me Back My Face (not on list yet)

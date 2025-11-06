@@ -172,7 +172,7 @@ export function AnimatedServicesSection() {
             className="font-pci-sans-bold text-black leading-normal whitespace-nowrap"
             style={{ fontSize: 'var(--text-header)' }}
           >
-            HERE'S WHAT WE DO
+            WHAT WE DO
           </p>
         </motion.div>
 
@@ -190,7 +190,7 @@ export function AnimatedServicesSection() {
               fontVariationSettings: "'CTGR' 0, 'wdth' 100, 'wght' 400" 
             }}
           >
-            We've written iconic themes for award winning podcasts and hit television shows, original songs for cutting edge dramas, and gripping underscore for cult classics. What can we do for you?
+            We've written iconic themes for award winning podcasts and hit television shows, original songs for cutting edge dramas, and gripping underscore for cult classics.
 
           </p>
         </motion.div>

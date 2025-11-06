@@ -26,11 +26,15 @@ export function AnimatedIntroSection() {
         className="flex flex-col justify-center leading-[1.15] w-full text-black font-pci-sans-bold"
         style={{
           fontSize: 'var(--text-paragraph)',
-          maxWidth: 'var(--max-width)'
+          maxWidth: 'var(--max-width)',
+          gap: '1em'
         }}
       >
         <p className="leading-[1.15]">
-          Made-to-measure music from artists with years of experience. We deliver with precision, quality and exceptional value for projects that demand novel creativity and professional standards.
+          We make hits.
+        </p>
+        <p className="leading-[1.15]">
+          PCI is a collective of acclaimed recording artists making music for film, television, and commercials
         </p>
       </motion.div>
     </div>

@@ -6,7 +6,6 @@
 import { Header, Footer } from '@/components/layout';
 import { AnimatedMenuBar } from '@/components/animated';
 import {
-  WorkIntroSection,
   DividerSection,
   WorkGridSection,
 } from '@/components/sections';
@@ -23,9 +22,6 @@ export default function WorkPage() {
       <AnimatedMenuBar />
       
       <div className="w-full max-w-[1700px]">
-        
-        {/* Intro Text */}
-        <WorkIntroSection />
         
         {/* Top Divider */}
         <div className="py-6"><DividerSection index={2} /></div>

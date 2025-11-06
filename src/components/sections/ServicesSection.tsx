@@ -10,7 +10,6 @@ const services = [
   'Custom Music',
   'Music Supervision',
   'Sync Licensing',
-  'Activations',
 ];
 
 function ServiceItem({
@@ -59,7 +58,7 @@ export function ServicesSection() {
             className="font-pci-sans-bold text-black leading-normal"
             style={{ fontSize: 'var(--text-header)' }}
           >
-            WHAT IS PCI?
+            HERE'S WHAT WE DO
           </p>
         </div>
 
@@ -86,7 +85,6 @@ export function ServicesSection() {
         <ServiceItem rotation={359.75}>{services[1]}</ServiceItem>
         <ServiceItem rotation={0.5}>{services[2]}</ServiceItem>
         <ServiceItem rotation={359.5}>{services[3]}</ServiceItem>
-        <ServiceItem rotation={359.75}>{services[4]}</ServiceItem>
       </div>
     </div>
   );

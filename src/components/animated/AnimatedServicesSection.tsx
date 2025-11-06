@@ -17,7 +17,6 @@ const services = [
   'Custom Music',
   'Music Supervision',
   'Sync Licensing',
-  'Activations',
 ];
 
 function AnimatedServiceItem({
@@ -156,27 +155,29 @@ export function AnimatedServicesSection() {
     >
       {/* Description with Parallax */}
       <motion.div 
-        className="flex flex-col items-start w-full md:max-w-[600px]"
+        className="flex flex-col items-start w-full md:flex-shrink-0"
         style={{ gap: 'var(--padding-gap-large)' }}
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: [0, 0, 0.58, 1] as const }}
       >
         <motion.div 
+          className="w-full md:w-auto md:min-w-fit"
           style={{ transform: 'rotate(359.75deg)' }}
           initial={{ opacity: 0, x: -30 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <p 
-            className="font-pci-sans-bold text-black leading-normal"
+            className="font-pci-sans-bold text-black leading-normal whitespace-nowrap"
             style={{ fontSize: 'var(--text-header)' }}
           >
-            WHAT IS PCI?
+            HERE'S WHAT WE DO
           </p>
         </motion.div>
 
         <motion.div 
+          className="w-full md:max-w-[600px]"
           style={{ transform: 'rotate(0.25deg)' }}
           initial={{ opacity: 0, x: -30 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -189,7 +190,7 @@ export function AnimatedServicesSection() {
               fontVariationSettings: "'CTGR' 0, 'wdth' 100, 'wght' 400" 
             }}
           >
-            A one-stop shop for all your music needs. A music house with an off-beat library, production services, and the ability to tailor to your project's creative goals.
+            We've written iconic themes for award winning podcasts and hit television shows, original songs for cutting edge dramas, and gripping underscore for cult classics. What can we do for you?
 
           </p>
         </motion.div>
@@ -204,7 +205,6 @@ export function AnimatedServicesSection() {
         <AnimatedServiceItem rotation={359.75} itemIndex={1} isTouchDevice={isTouchDevice}>{services[1]}</AnimatedServiceItem>
         <AnimatedServiceItem rotation={0.5} itemIndex={2} isTouchDevice={isTouchDevice}>{services[2]}</AnimatedServiceItem>
         <AnimatedServiceItem rotation={359.5} itemIndex={3} isTouchDevice={isTouchDevice}>{services[3]}</AnimatedServiceItem>
-        <AnimatedServiceItem rotation={359.75} itemIndex={4} isTouchDevice={isTouchDevice}>{services[4]}</AnimatedServiceItem>
       </div>
     </div>
   );

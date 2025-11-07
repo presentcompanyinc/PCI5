@@ -15,7 +15,7 @@ import { useTouchDevice } from '@/hooks/useTouchDevice';
 const ALBUMS = [
   // Corrected mapping: titles read from artwork, URLs matched by title
   { id: 1, src: '/assets/PCI001final.jpg', alt: 'PCI001', streamingUrl: 'https://present-company-inc.disco.ac/cat/1732058163/albums/25188763' }, // Mind Out Of Time
-  { id: 2, src: '/assets/PCI002final.jpg', alt: 'PCI002', streamingUrl: 'https://s.disco.ac/ikfrdlvivrjy' }, // Down To A Science
+  { id: 2, src: '/assets/PCI002final.jpg', alt: 'PCI002', streamingUrl: 'https://present-company-inc.disco.ac/cat/1732058163/albums/25188721' }, // Down To A Science
   { id: 3, src: '/assets/PCI003final.jpg', alt: 'PCI003', streamingUrl: 'https://present-company-inc.disco.ac/cat/1732058163/albums/25188735' }, // Event Horizons
   { id: 4, src: '/assets/PCI004final.jpg', alt: 'PCI004', streamingUrl: '' }, // Sixes & Sevens (not on list yet)
   { id: 5, src: '/assets/PCI005final.jpg', alt: 'PCI005', streamingUrl: 'https://present-company-inc.disco.ac/cat/1732058163/albums/25184394' }, // A Few Dark Clouds

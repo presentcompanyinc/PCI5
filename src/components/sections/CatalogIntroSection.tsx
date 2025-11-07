@@ -19,7 +19,16 @@ export function CatalogIntroSection() {
             style={{ fontSize: 'var(--text-paragraph)' }}
           >
             <p className="leading-[1.15]">
-            Inspired by the iconic music libraries of the past (KPM, DeWolfe, Chappell), we've built a custom catalog of original instrumentals, when more sophisticated library music is needed.
+            Inspired by the iconic music libraries of the past (KPM, DeWolfe, Chappell), we&apos;ve built a{' '}
+            <a
+              href="https://present-company-inc.disco.ac/cat/1732058163"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              custom catalog
+            </a>{' '}
+            of original instrumentals, when more sophisticated library music is needed.
             </p>
           </div>
         </div>

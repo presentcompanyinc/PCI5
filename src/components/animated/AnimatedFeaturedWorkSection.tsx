@@ -9,7 +9,7 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { motion, useScroll, useTransform, useInView, MotionStyle } from 'framer-motion';
+import { motion, useInView, MotionStyle } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { useTouchDevice } from '@/hooks/useTouchDevice';
 
@@ -187,16 +187,6 @@ export function AnimatedFeaturedWorkSection() {
   const card2Ref = useRef<HTMLDivElement>(null);
   const card3Ref = useRef<HTMLDivElement>(null);
 
-  // Parallax effect for images
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const y0 = useTransform(scrollYProgress, [0, 1], [0, -30]); // Top featured image
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -30]); // Main image - slower
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -50]); // Side images - faster
-  
   // For touch devices: trigger button wiggle once on scroll into view
   const buttonInView = useInView(buttonRef, { once: true, amount: 0.5 });
 
@@ -226,7 +216,7 @@ export function AnimatedFeaturedWorkSection() {
     <div 
       ref={containerRef}
       className="bg-[#f2efea] flex flex-col items-start w-full" 
-      style={{ gap: 'var(--padding-gap)' }}
+      style={{ gap: '16px' }}
       data-name="Latest Work Frame"
     >
       {/* Title and View More */}
@@ -281,7 +271,7 @@ export function AnimatedFeaturedWorkSection() {
         company="NBCUniversal/Telemundo/Peacock"
         isTouchDevice={isTouchDevice}
         className="w-full relative group cursor-pointer overflow-hidden"
-        style={{ y: y0, aspectRatio: '4096/1886' }}
+        style={{ aspectRatio: '4096/1886' }}
       />
 
       {/* The Paper - Featured Image with Parallax */}
@@ -296,13 +286,13 @@ export function AnimatedFeaturedWorkSection() {
         company="NBC Universal Peacock"
         isTouchDevice={isTouchDevice}
         className="w-full relative group cursor-pointer overflow-hidden"
-        style={{ y: y1, aspectRatio: '4096/1886' }}
+        style={{ aspectRatio: '4096/1886' }}
       />
 
       {/* Two Column Grid with Parallax */}
       <div 
         className="flex flex-row items-start w-full"
-        style={{ gap: 'var(--padding-gap)' }}
+        style={{ gap: '16px' }}
       >
         <WorkCard
           cardRef={card2Ref}
@@ -315,7 +305,7 @@ export function AnimatedFeaturedWorkSection() {
           company="Cartel"
           isTouchDevice={isTouchDevice}
           className="flex-1 relative group cursor-pointer overflow-hidden"
-          style={{ y: y2, aspectRatio: '2000/2000' }}
+          style={{ aspectRatio: '2000/2000' }}
         />
         <WorkCard
           cardRef={card3Ref}
@@ -328,7 +318,7 @@ export function AnimatedFeaturedWorkSection() {
           company="Serial Productions"
           isTouchDevice={isTouchDevice}
           className="flex-1 relative group cursor-pointer overflow-hidden"
-          style={{ y: y2, aspectRatio: '2000/2000' }}
+          style={{ aspectRatio: '2000/2000' }}
         />
       </div>
     </div>

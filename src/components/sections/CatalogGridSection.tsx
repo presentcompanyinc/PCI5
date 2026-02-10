@@ -46,14 +46,18 @@ const ALBUMS = [
   { id: 30, src: '/assets/PCI030final.jpg', alt: 'PCI030', streamingUrl: '' }, // Familial Strangers (not on list yet)
 ];
 
+// Small base64 placeholder for blur effect while images load
+const BLUR_PLACEHOLDER = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJYvDbLjbNtJRKiRFm7VBIG5wB4ycAAnJ61LZS8jyeSurqGJooppmkVHI3UssZGfyQfypSlMdeOwS1nF//2Q==';
+
 interface AlbumCoverProps {
   src: string;
   alt: string;
   streamingUrl?: string;
   isTouchDevice: boolean;
+  isPriority?: boolean;
 }
 
-function AlbumCover({ src, alt, streamingUrl, isTouchDevice }: AlbumCoverProps) {
+function AlbumCover({ src, alt, streamingUrl, isTouchDevice, isPriority = false }: AlbumCoverProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isTapped, setIsTapped] = useState(false);
   
@@ -146,7 +150,10 @@ function AlbumCover({ src, alt, streamingUrl, isTouchDevice }: AlbumCoverProps) 
             src={src}
             fill
             sizes="(max-width: 768px) 100vw, 25vw"
-            quality={90}
+            quality={75}
+            placeholder="blur"
+            blurDataURL={BLUR_PLACEHOLDER}
+            priority={isPriority}
             className="object-cover"
             style={{ pointerEvents: 'none' }}
           />
@@ -225,7 +232,7 @@ export function CatalogGridSection() {
               opacity: 1, 
               x: 0 
             }}
-            viewport={{ once: true, margin: "0px" }}
+            viewport={{ once: true, margin: "200px" }}
             transition={{ 
               duration: 1.2, 
               delay: 0.1,
@@ -239,6 +246,7 @@ export function CatalogGridSection() {
                 alt={album.alt}
                 streamingUrl={album.streamingUrl}
                 isTouchDevice={isTouchDevice}
+                isPriority={rowIndex === 0}
               />
             ))}
             {/* Fill empty slots in last row to maintain grid alignment */}

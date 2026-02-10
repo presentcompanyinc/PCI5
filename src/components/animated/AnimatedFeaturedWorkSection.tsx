@@ -11,9 +11,10 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { motion, useScroll, useTransform, useInView, MotionStyle } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import { useScrollFade } from '@/hooks/useScrollFade';
 import { useTouchDevice } from '@/hooks/useTouchDevice';
 
+const IMG_TELEMUNDO_COPA = '/assets/PCI_TelemundoCopa.png';
+const IMG_TELEMUNDO_COPA_OVERLAY = '/assets/PCI_TelemundoCopa_NoTitle.png';
 const IMG_THE_PAPER = '/assets/PCI_ThePaper.jpg';
 const IMG_THE_PAPER_OVERLAY = '/assets/PCI_ThePaper_NoTitle.jpg';
 const IMG_ANYTHING_ROOTS = '/assets/PCI_RootsSquare.jpg';
@@ -180,7 +181,8 @@ export function AnimatedFeaturedWorkSection() {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const isTouchDevice = useTouchDevice();
   
-  // Refs for each card for scroll-fade effect
+  // Refs for each card
+  const card0Ref = useRef<HTMLDivElement>(null);
   const card1Ref = useRef<HTMLDivElement>(null);
   const card2Ref = useRef<HTMLDivElement>(null);
   const card3Ref = useRef<HTMLDivElement>(null);
@@ -191,13 +193,9 @@ export function AnimatedFeaturedWorkSection() {
     offset: ["start end", "end start"]
   });
 
+  const y0 = useTransform(scrollYProgress, [0, 1], [0, -30]); // Top featured image
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -30]); // Main image - slower
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -50]); // Side images - faster
-  
-  // Scroll-fade for each individual card
-  const { opacity: opacity1 } = useScrollFade({ target: card1Ref });
-  const { opacity: opacity2 } = useScrollFade({ target: card2Ref });
-  const { opacity: opacity3 } = useScrollFade({ target: card3Ref });
   
   // For touch devices: trigger button wiggle once on scroll into view
   const buttonInView = useInView(buttonRef, { once: true, amount: 0.5 });
@@ -271,7 +269,22 @@ export function AnimatedFeaturedWorkSection() {
         </motion.button>
       </div>
 
-      {/* Main Featured Image with Parallax */}
+      {/* Telemundo Copa - Top Featured Image */}
+      <WorkCard
+        cardRef={card0Ref}
+        imageSrc={IMG_TELEMUNDO_COPA}
+        imageOverlaySrc={IMG_TELEMUNDO_COPA_OVERLAY}
+        alt="Copa Mundial 2026: Super Bowl LX"
+        title="Copa Mundial 2026: Super Bowl LX"
+        subtitle1="Custom Music + License"
+        subtitle2="dir. Jason Wollner"
+        company="NBCUniversal/Telemundo/Peacock"
+        isTouchDevice={isTouchDevice}
+        className="w-full relative group cursor-pointer overflow-hidden"
+        style={{ y: y0, aspectRatio: '4096/1886' }}
+      />
+
+      {/* The Paper - Featured Image with Parallax */}
       <WorkCard
         cardRef={card1Ref}
         imageSrc={IMG_THE_PAPER}
@@ -283,7 +296,7 @@ export function AnimatedFeaturedWorkSection() {
         company="NBC Universal Peacock"
         isTouchDevice={isTouchDevice}
         className="w-full relative group cursor-pointer overflow-hidden"
-        style={{ y: y1, opacity: opacity1, aspectRatio: '4096/1886' }}
+        style={{ y: y1, aspectRatio: '4096/1886' }}
       />
 
       {/* Two Column Grid with Parallax */}
@@ -302,7 +315,7 @@ export function AnimatedFeaturedWorkSection() {
           company="Cartel"
           isTouchDevice={isTouchDevice}
           className="flex-1 relative group cursor-pointer overflow-hidden"
-          style={{ y: y2, opacity: opacity2, aspectRatio: '2000/2000' }}
+          style={{ y: y2, aspectRatio: '2000/2000' }}
         />
         <WorkCard
           cardRef={card3Ref}
@@ -315,7 +328,7 @@ export function AnimatedFeaturedWorkSection() {
           company="Serial Productions"
           isTouchDevice={isTouchDevice}
           className="flex-1 relative group cursor-pointer overflow-hidden"
-          style={{ y: y2, opacity: opacity3, aspectRatio: '2000/2000' }}
+          style={{ y: y2, aspectRatio: '2000/2000' }}
         />
       </div>
     </div>

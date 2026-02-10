@@ -12,7 +12,6 @@ import {
   CarnivalPopperClientsSection,
   AnimatedServicesSection,
   AnimatedFooter,
-  ScrollFadeWrapper,
 } from '@/components/animated';
 
 export default function Home() {
@@ -24,38 +23,22 @@ export default function Home() {
       <AnimatedMenuBar />
       <div className="w-full max-w-[1700px]">
         
-        <ScrollFadeWrapper>
-          <AnimatedIntroSection />
-        </ScrollFadeWrapper>
+        <AnimatedIntroSection />
         
-        <ScrollFadeWrapper>
-          <div className="py-6"><AnimatedDividerSection index={6} /></div>
-        </ScrollFadeWrapper>
+        <div className="py-6"><AnimatedDividerSection index={6} /></div>
         
-        {/* FeaturedWork has individual card scroll-fade built-in */}
         <AnimatedFeaturedWorkSection />
         
-        <ScrollFadeWrapper>
-          <div className="py-4"><AnimatedDividerSection index={0} /></div>
-        </ScrollFadeWrapper>
+        <div className="py-4"><AnimatedDividerSection index={0} /></div>
         
-        <ScrollFadeWrapper>
-          <AnimatedServicesSection />
-        </ScrollFadeWrapper>
+        <AnimatedServicesSection />
         
-        <ScrollFadeWrapper>
-          <div className="py-6"><AnimatedDividerSection index={1} /></div>
-        </ScrollFadeWrapper>
+        <div className="py-6"><AnimatedDividerSection index={1} /></div>
         
-        <ScrollFadeWrapper>
-          <CarnivalPopperClientsSection />
-        </ScrollFadeWrapper>
+        <CarnivalPopperClientsSection />
         
-        <ScrollFadeWrapper>
-          <div className="py-6"><AnimatedDividerSection index={2} /></div>
-        </ScrollFadeWrapper>
+        <div className="py-6"><AnimatedDividerSection index={2} /></div>
         
-        {/* Footer stays at full opacity */}
         <AnimatedFooter />
       </div>
     </main>

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { siteConfig } from '@/constants/site';
 import { ContactModalProvider } from '@/contexts/ContactModalContext';
 import { DividerRandomizerProvider } from '@/contexts/DividerRandomizerContext';
@@ -125,6 +126,7 @@ export default function RootLayout({
             <ContactModals />
           </ContactModalProvider>
         </DividerRandomizerProvider>
+        <SpeedInsights />
       </body>
     </html>
   );

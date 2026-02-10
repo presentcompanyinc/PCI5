@@ -277,7 +277,7 @@ export function AnimatedFeaturedWorkSection() {
         alt="Copa Mundial 2026: Super Bowl LX"
         title="Copa Mundial 2026: Super Bowl LX"
         subtitle1="Custom Music + License"
-        subtitle2="dir. Jason Wollner"
+        subtitle2="dir. Jason Woliner"
         company="NBCUniversal/Telemundo/Peacock"
         isTouchDevice={isTouchDevice}
         className="w-full relative group cursor-pointer overflow-hidden"

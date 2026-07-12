@@ -1,22 +1,25 @@
 /**
  * Header component - Top bar with PCI logotype
  * Extracted from Figma design
+ *
+ * Each word's flex-grow matches its SVG aspect ratio so all three words
+ * render at the same cap height while filling the bar on desktop.
  */
 
 const LOGO_PRESENT = '/assets/Present.svg';
 const LOGO_COMPANY = '/assets/Company.svg';
-const LOGO_INCLUDED = '/assets/Included.svg';
+const LOGO_INC = '/assets/Inc.svg';
 
 export function Header() {
   return (
     <div className="bg-[#f2efea] flex flex-wrap items-center gap-0 w-full" data-name="Top Bar">
-      <div 
+      <div
         className="bg-[#f2efea] flex flex-col md:flex-row items-start w-full gap-2 md:gap-[var(--padding-gap)]"
-        style={{ 
+        style={{
           padding: 'var(--padding-gap) var(--padding-lr)'
         }}
       >
-        <div className="w-full md:flex-1 md:min-w-[150px] lg:min-w-[200px] min-h-[31.639px] relative">
+        <div className="w-full md:flex-[6.3214_1_0%] md:w-auto md:min-w-0 relative">
           <img
             alt="Present"
             className="w-full h-auto"
@@ -24,7 +27,7 @@ export function Header() {
             style={{ aspectRatio: '231.507/36.6232' }}
           />
         </div>
-        <div className="w-full md:flex-1 md:min-w-[150px] lg:min-w-[200px] min-h-[30.26px] relative">
+        <div className="w-full md:flex-[6.6094_1_0%] md:w-auto md:min-w-0 relative">
           <img
             alt="Company"
             className="w-full h-auto"
@@ -32,12 +35,12 @@ export function Header() {
             style={{ aspectRatio: '461.533/69.8303' }}
           />
         </div>
-        <div className="w-full md:flex-1 md:min-w-[150px] lg:min-w-[200px] min-h-[29.476px] relative">
+        <div className="w-[41.2%] md:flex-[2.722_1_0%] md:w-auto md:min-w-0 relative">
           <img
-            alt="Included"
+            alt="Inc."
             className="w-full h-auto"
-            src={LOGO_INCLUDED}
-            style={{ aspectRatio: '461.373/67.9979' }}
+            src={LOGO_INC}
+            style={{ aspectRatio: '544.4/200' }}
           />
         </div>
       </div>
